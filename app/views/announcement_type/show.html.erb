@@ -1,0 +1,5 @@
+<%= content_tag( 'h1', @announcement_type.name ) %>
+
+<ol>
+	<%= render :partial => 'announcement/announcement', :collection => @announcement_type.announcements %>
+</ol>

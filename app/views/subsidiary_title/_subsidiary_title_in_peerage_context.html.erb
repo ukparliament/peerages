@@ -1,0 +1,12 @@
+<li>
+	
+	<!-- plain title -->
+	<%= content_tag( 'h3', link_to( "#{subsidiary_title_in_peerage_context.rank.name} #{subsidiary_title_in_peerage_context.title}", peerage_show_url( :peerage => subsidiary_title_in_peerage_context.peerage, :anchor => "subsidiary-title-#{subsidiary_title_in_peerage_context.id}" ) ) ) %>
+	
+	<!-- subsidiary to -->
+	<% if subsidiary_title_in_peerage_context.peerage.of -%>
+		<%= content_tag( 'p', "Subsidiary to #{link_to( "#{subsidiary_title_in_peerage_context.peerage.rank.name} #{subsidiary_title_in_peerage_context.peerage.title}, #{subsidiary_title_in_peerage_context.peerage.of}", peerage_show_url( :peerage => subsidiary_title_in_peerage_context.peerage ) )}".html_safe ) %>
+	<% else -%>
+		<%= content_tag( 'p', "Subsidiary to #{link_to( "#{subsidiary_title_in_peerage_context.peerage.rank.name} #{subsidiary_title_in_peerage_context.peerage.title}", peerage_show_url( :peerage => subsidiary_title_in_peerage_context.peerage ) )}".html_safe ) %>
+	<% end -%>
+</li>

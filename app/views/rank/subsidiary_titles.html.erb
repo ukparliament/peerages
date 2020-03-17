@@ -1,0 +1,5 @@
+<%= content_tag( 'h1', "Subsidiary titles of rank #{@rank.name}" ) %>
+
+<ol>
+	<%= render :partial => 'subsidiary_title/subsidiary_title_in_peerage_context', :collection => @rank.subsidiary_titles %>
+</ol>

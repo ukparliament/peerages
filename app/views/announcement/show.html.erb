@@ -1,0 +1,12 @@
+<%= content_tag( 'h1', "Announcement on #{@announcement.announced_on.strftime( '%-d %B %Y')}" ) %>
+
+<%= content_tag( 'p', "Published in the London Gazette." )if @announcement.in_gazette %>
+<%= content_tag( 'p', @announcement.notes )if @announcement.notes %>
+
+<h4>What is this?</h4>
+<%= content_tag( 'p', "Number: #{@announcement.number}" )if @announcement.number %>
+
+
+<ol>
+	<%= render :partial => 'peerage/peerage', :collection => @announcement.peerages %>
+</ol>

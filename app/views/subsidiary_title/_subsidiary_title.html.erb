@@ -1,0 +1,30 @@
+<li id="subsidiary-title-<%= subsidiary_title.id %>">
+	
+	<!-- plain title -->
+	<%= content_tag( 'h3', "#{link_to(subsidiary_title.rank.name, rank_show_url( :rank => subsidiary_title.rank ) )} #{subsidiary_title.title}".html_safe ) %>
+	
+	<!- patent with of -->
+	<% if subsidiary_title.of -%>
+		<%= content_tag( 'p', "Letters patent issued on the #{subsidiary_title.patent_on.strftime( '%-d %B %Y')} as #{link_to(subsidiary_title.rank.name, rank_show_url( :rank => subsidiary_title.rank ) )} #{subsidiary_title.title}, #{subsidiary_title.of}.".html_safe ) %>
+	<% else -%>
+		<%= content_tag( 'p', "Letters patent issued on the #{subsidiary_title.patent_on.strftime( '%-d %B %Y')} as #{link_to(subsidiary_title.rank.name, rank_show_url( :rank => subsidiary_title.rank ) )} #{subsidiary_title.title}.".html_safe ) %>
+	<% end -%>
+	
+	<!-- title extinction -->
+	<% if subsidiary_title.extinct_on -%>
+		<%= content_tag( 'p', "This title was held by #{pluralize( subsidiary_title.last_number, 'person' )} and became extinct on #{subsidiary_title.extinct_on.strftime( '%-d %B %Y')}." ) %>
+	<% else -%>
+		<%= content_tag( 'p', "This title is not extinct." ) %>
+	<% end -%>
+	
+	<!-- any notes -->
+	<%= content_tag( 'p', subsidiary_title.notes ) if subsidiary_title.notes %></p>	
+	
+	
+	
+	<h4>What is this?</h4>
+	<%= content_tag( 'p', "Nature of special remainder (where not male issue): #{subsidiary_title.sr}" ) %>
+	<%= content_tag( 'p', "Time (what is this?): #{subsidiary_title.time}" ) %>
+	<%= content_tag( 'p', "Last number (total generations til extinction?): #{subsidiary_title.last_number}" ) %>
+	<%= content_tag( 'p', "Name: #{subsidiary_title.subsidiary_title_name}" ) %>
+</li>

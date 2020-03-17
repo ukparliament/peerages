@@ -1,0 +1,63 @@
+# peerages
+
+all uk peerages
+
+a peerage and not a person. a person can have many peerages over time or at the same time
+
+IDNum - primary key
+
+Title - as appears hansard without rank (eg of somewhere)
+
+Rank - rank
+
+SR - nature of special remainder (where not male issue)
+* M = up and over family line > uncles etc
+* B 
+* F = Female
+* S 
+* L
+
+Sex - gender (male / female)
+
+of - qualifier past title (territorial designation)
+
+surname - as described in letters patent. sometimes names can be changed by deed poll to include other names in surname
+
+oldtitle - previous title before this peerage
+
+oldrank - concatenation of rank and succession number
+
+forenames - as per letters patent
+
+birthdateDRB - more of a circa where only month and year or only year are known
+
+announcement - date
+
+ListType - foreign key to Announcement (can be null)
+
+Patent - date of letters patent
+
+Time - seniority. time of letters patent ????????? numbers represent rank???? code for time. code for place on list
+
+Introduction - date when they took their seats
+
+Extinct - same as died for life peer, hered when peerage ends
+
+LastNo - number in succession when peerage ends
+
+Alpha - title + first 10 years. mc and mac treated as mac. st > saint. o'niel > oneil
+
+Administration - for key
+
+# Administrations
+
+ColourCode - roughly political party of appointer
+
+# law lords
+
+vice - preceding person
+
+ 
+
+
+

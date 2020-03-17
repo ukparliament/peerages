@@ -1,0 +1,5 @@
+<%= content_tag( 'h1', "Peerages announced on #{@announcement.announced_on}" ) %>
+
+<ol>
+	<%= render :partial => 'peerage/peerage', :collection => @announcement.peerages %>
+</ol>

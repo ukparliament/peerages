@@ -1,0 +1,10 @@
+<%= content_tag( 'h1', @administration.prime_minister ) %>
+
+<%= content_tag( 'p', "Administration number: #{@administration.number}" ) %>
+<%= content_tag( 'p', "Start date: #{@administration.start_date.strftime( '%-d %B %Y')}" ) if @administration.start_date %>
+<%= content_tag( 'p', "End date: #{@administration.end_date.strftime( '%-d %B %Y')}" ) if @administration.end_date %>
+<%= content_tag( 'p', "Colour code: #{@administration.colour_code}" ) %>
+
+<ol>
+	<%= render :partial => 'peerage/peerage', :collection => @administration.peerages %>
+</ol>
