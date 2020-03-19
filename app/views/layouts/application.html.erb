@@ -3,14 +3,27 @@
 <head>
   <title>Beamish</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/light.min.css">
   <%= csrf_meta_tags %>
 </head>
 <body>
-<header></header>
+<header>
+
+<nav>
+<%= content_tag( 'span', link_to( 'Ranks', rank_list_url ) ) %>
+	<%= content_tag( 'span', link_to( 'Types', peerage_type_list_url ) ) %>
+	<%= content_tag( 'span', link_to( 'Administrations', administration_list_url ) ) %>
+	<%= content_tag( 'span', link_to( 'Announcement types', announcement_type_list_url ) ) %>
+	<%= content_tag( 'span', link_to( 'Announcements', announcement_list_url ) ) %>
+	<%= content_tag( 'span', link_to( 'Peerages', peerage_list_url ) ) %>
+
+</nav>
+
+
+</header>
 <main>
+
+<h1></h1>
 <%= yield %>
 </main>
 <footer></footer>
