@@ -10,11 +10,18 @@
 <header>
 
 <nav>
+<strong><a href="/">peerages.herokuapp.com</a></strong>
+<br>
 <%= content_tag( 'span', link_to( 'Ranks', rank_list_url ) ) %>
+&middot;
 	<%= content_tag( 'span', link_to( 'Types', peerage_type_list_url ) ) %>
+	&middot;
 	<%= content_tag( 'span', link_to( 'Administrations', administration_list_url ) ) %>
+	&middot;
 	<%= content_tag( 'span', link_to( 'Announcement types', announcement_type_list_url ) ) %>
+	&middot;
 	<%= content_tag( 'span', link_to( 'Announcements', announcement_list_url ) ) %>
+	&middot;
 	<%= content_tag( 'span', link_to( 'Peerages', peerage_list_url ) ) %>
 
 </nav>
