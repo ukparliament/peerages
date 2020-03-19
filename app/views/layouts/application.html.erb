@@ -4,14 +4,17 @@
   <title>Beamish</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/light.min.css">
-  <%= csrf_meta_tags %>
+  <style>
+  body {max-width:38em;}
+  </style>
 </head>
 <body>
 <header>
 
 <nav>
+<p>
 <strong><a href="/">peerages.herokuapp.com</a></strong>
-<br>
+</p>
 <%= content_tag( 'span', link_to( 'Ranks', rank_list_url ) ) %>
 &middot;
 	<%= content_tag( 'span', link_to( 'Types', peerage_type_list_url ) ) %>
@@ -21,18 +24,21 @@
 	<%= content_tag( 'span', link_to( 'Announcement types', announcement_type_list_url ) ) %>
 	&middot;
 	<%= content_tag( 'span', link_to( 'Announcements', announcement_list_url ) ) %>
-	&middot;
-	<%= content_tag( 'span', link_to( 'Peerages', peerage_list_url ) ) %>
-
 </nav>
 
-
 </header>
+<hr>
 <main>
 
 <h1></h1>
 <%= yield %>
 </main>
-<footer></footer>
+<hr>
+<footer>
+<nav>
+	<%= content_tag( 'span', link_to( 'All Peerages', peerage_list_url ) ) %>
+
+</nav>
+</footer>
 </body>
 </html>
