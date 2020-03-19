@@ -88,3 +88,15 @@ task :link_subsidiary_titles_to_rank => :environment do
     subsidiary_title.save
   end
 end
+
+task :check_announcments => :environment do
+  puts "checking announcements"
+  peerages = Peerage.all.where( 'announcement_type_code is not null' ).where( 'announced_on is not null' )
+  peerages.each do |peerage|
+    announcment_type = AnnouncementType.all.where( code: peerage.announcement_type_code )
+    if announcment_type.size != 1
+      puts announcment_type.size
+      puts peerage.announcement_type_code
+    end
+  end
+end
