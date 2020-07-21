@@ -1,10 +1,10 @@
 /* people table */
-drop table people if exists;
+drop table if exists people;
 create table people (
 	id serial,
 	forenames varchar(200) not null,
-	surame varchar(100) not null
-	date_of_birth date not null,
+	surname varchar(100) not null,
+	date_of_birth date,
 	date_of_death date,
 	primary key (id)
 );
@@ -43,7 +43,7 @@ alter table peerages rename column "Notes" to notes;
 alter table peerages rename column "Alpha" to alpha;
 alter table peerages rename column "Administration" to administration_name;
 alter table peerages drop column "BirthdateDRB";
-alter table peerages alter column patent type date;
+alter table peerages alter column patent_on type date;
 alter table peerages alter column announced_on type date;
 alter table peerages alter column date_of_birth type date;
 alter table peerages alter column date_of_death type date;
@@ -128,7 +128,7 @@ alter table subsidiary_titles rename column "Rank" to rank_code;
 alter table subsidiary_titles rename column "Type" to subsidiary_title_name;
 alter table subsidiary_titles rename column "SR" to sr;
 alter table subsidiary_titles rename column "Extinct" to extinct_on;
-alter table subsidiary_titles alter column extinct type date;
+alter table subsidiary_titles alter column extinct_on type date;
 alter table subsidiary_titles rename column "LastNo" to last_number;
 alter table subsidiary_titles rename column "Notes" to notes;
 alter table subsidiary_titles rename column "Alpha" to alpha;
@@ -136,7 +136,7 @@ alter table subsidiary_titles rename column "ParentID" to peerage_id;
 alter table subsidiary_titles drop column "Parent";
 alter table subsidiary_titles drop column "ParentAlpha";
 alter table subsidiary_titles rename column "Patent" to patent_on;
-alter table subsidiary_titles alter column patent type date;
+alter table subsidiary_titles alter column patent_on type date;
 alter table subsidiary_titles rename column "Time" to time;
 alter table subsidiary_titles drop column "Surname";
 alter table subsidiary_titles add constraint peerage foreign key (peerage_id) references peerages(id);
