@@ -1,13 +1,13 @@
 <% if patent.of -%>
 	<% if patent.administration -%>
-		<%= content_tag( 'p', "Letters patent issued on the #{patent.patent_on.strftime( '%-d %B %Y')} as #{link_to(patent.rank.name, rank_show_url( :rank => patent.rank ) )} #{patent.title}, #{patent.of} to #{patent.forenames} #{patent.surname} under the #{link_to( patent.administration.prime_minister, administration_show_url( :administration => patent.administration ) )} administration.".html_safe ) %>
+		<%= content_tag( 'p', "Letters patent issued on the #{patent.patent_on.strftime( '%-d %B %Y')} as #{link_to(patent.rank.name, rank_show_url( :rank => patent.rank ) )} #{patent.title}, #{patent.of} to #{patent.person.display_name} under the #{link_to( patent.administration.prime_minister, administration_show_url( :administration => patent.administration ) )} administration.".html_safe ) %>
 	<% else -%>
-		<%= content_tag( 'p', "Letters patent issued on the #{patent.patent_on.strftime( '%-d %B %Y')} as #{link_to(patent.rank.name, rank_show_url( :rank => patent.rank ) )} #{patent.title}, #{patent.of} to #{patent.forenames} #{patent.surname}.".html_safe ) %>
+		<%= content_tag( 'p', "Letters patent issued on the #{patent.patent_on.strftime( '%-d %B %Y')} as #{link_to(patent.rank.name, rank_show_url( :rank => patent.rank ) )} #{patent.title}, #{patent.of} to #{patent.person.display_name}.".html_safe ) %>
 	<% end -%>
 <% else -%>
 	<% if patent.administration -%>
-		<%= content_tag( 'p', "Letters patent issued on the #{patent.patent_on.strftime( '%-d %B %Y')} as #{link_to(patent.rank.name, rank_show_url( :rank => patent.rank ) )} #{patent.title} to #{patent.forenames} #{patent.surname} under the #{link_to( patent.administration.prime_minister, administration_show_url( :administration => patent.administration ) )} administration.".html_safe ) %>
+		<%= content_tag( 'p', "Letters patent issued on the #{patent.patent_on.strftime( '%-d %B %Y')} as #{link_to(patent.rank.name, rank_show_url( :rank => patent.rank ) )} #{patent.title} to #{patent.person.display_name} under the #{link_to( patent.administration.prime_minister, administration_show_url( :administration => patent.administration ) )} administration.".html_safe ) %>
 	<% else -%>
-		<%= content_tag( 'p', "Letters patent issued on the #{patent.patent_on.strftime( '%-d %B %Y')} as #{link_to(patent.rank.name, rank_show_url( :rank => patent.rank ) )} #{patent.title} to #{patent.forenames} #{patent.surname}.".html_safe ) %>
+		<%= content_tag( 'p', "Letters patent issued on the #{patent.patent_on.strftime( '%-d %B %Y')} as #{link_to(patent.rank.name, rank_show_url( :rank => patent.rank ) )} #{patent.title} to #{patent.person.display_name}.".html_safe ) %>
 	<% end -%>
 <% end -%>
