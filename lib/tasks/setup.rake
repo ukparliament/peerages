@@ -92,11 +92,18 @@ end
 task :check_announcments => :environment do
   puts "checking announcements"
   peerages = Peerage.all.where( 'announcement_type_code is not null' ).where( 'announced_on is not null' )
+  count = 0
   peerages.each do |peerage|
-    announcment_type = AnnouncementType.all.where( code: peerage.announcement_type_code )
-    if announcment_type.size != 1
-      puts announcment_type.size
-      puts peerage.announcement_type_code
+    announcement_type = AnnouncementType.all.where( code: peerage.announcement_type_code )
+    if announcement_type.size == 1
+      announcement = Announcement.all.where( announced_on: peerage.announced_on ).first
+      if announcement
+        unless announcement.announcement_type_id = announcement.id
+          puts "yup"
+          count = count + 1
+        end
+      end
     end
   end
+  puts count
 end
