@@ -5,27 +5,14 @@
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/light.min.css">
   <style>
-  footer {padding-top:4rem;}
+  main {padding:2rem 0;}
   </style>
 </head>
 <body>
 <header>
 
-<p>
-<strong><a href="/">peerages.herokuapp.com</a></strong>
-</p>
-
-</header>
-
-<main>
-
-<h1></h1>
-<%= yield %>
-</main>
-
-<footer>
-
 <nav>
+<a href="/">peerages.herokuapp.com</a><br>
 <%= link_to( 'People', person_list_url ) %>
 &middot;
 <%= link_to( 'Ranks', rank_list_url )  %>
@@ -38,6 +25,15 @@
 	&middot;
 	<%= link_to( 'Announcement types', announcement_type_list_url  ) %>
 </nav>
+
+
+</header>
+
+<main>
+<%= yield %>
+</main>
+
+<footer>
 </footer>
 </body>
 </html>
