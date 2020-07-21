@@ -1,3 +1,14 @@
+/* people table */
+drop table people if exists;
+create table people (
+	id serial,
+	forenames varchar(200) not null,
+	surame varchar(100) not null
+	date_of_birth date not null,
+	date_of_death date,
+	primary key (id)
+);
+
 /* table renames */
 alter table "Administrations" rename to administrations;
 alter table "Announcement" rename to announcement_types;
@@ -143,12 +154,16 @@ alter table peerages add column announcement_id int;
 alter table peerages add constraint announcement foreign key (announcement_id) references announcements(id);
 alter table peerages add column law_lord_id int;
 alter table peerages add constraint law_lord foreign key (law_lord_id) references law_lords(id);
+alter table peerages add column person_id int;
+alter table peerages add constraint person foreign key (person_id) references people(id);
 
 alter table peerages drop column law_lord_id;
 
 /* foreign keys from law lords table */
 alter table law_lords add column peerage_id int;
 alter table law_lords add constraint peerage foreign key (peerage_id) references peerages(id);
+
+
 
 
 
