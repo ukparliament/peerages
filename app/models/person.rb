@@ -1,6 +1,7 @@
 class Person < ActiveRecord::Base
   
   has_many :peerages, -> { order( :patent_on ) }
+  belongs_to :letter
   
   def display_name
     display_name = self.forenames
