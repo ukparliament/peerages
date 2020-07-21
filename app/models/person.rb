@@ -3,22 +3,11 @@ class Person < ActiveRecord::Base
   has_many :peerages, -> { order( :patent_on ) }
   
   def display_name
-    display_name = self.forenames
-    display_name += ' '
-    display_name += self.surname
-    display_name
+    "#{self.forenames} #{self.surname}"
   end
   
   def list_display
-    list_display = self.surname
-    list_display += ', '
-    list_display += self.forenames
-    list_display += ' ('
-    list_display += self.date_of_birth_display
-    list_display += ' - '
-    list_display += self.date_of_death_display
-    list_display += ')'
-    list_display
+    "#{self.surname.upcase} #{self.forenames} ( #{self.date_of_birth_display} - #{self.date_of_death_display} )"
   end
   
   def date_of_birth_display
