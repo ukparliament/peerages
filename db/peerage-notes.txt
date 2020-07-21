@@ -57,6 +57,50 @@ ColourCode - roughly political party of appointer
 
 vice - preceding person
 
+ ===========
+ 
+ 
+ Dear Michael
+ Warm thanks for all this checking. I have attempted a response on each point below. I will try to incorporate these points in the database itself and then let you have another copy.
+ Best wishes
+ David
+ --
+ On 19/03/2020 18:57, SMETHURST, Michael wrote:
+ Hi David
+
+ As per the earlier email, Robert and I have been trying to wrap your data into a Rails application:
+ http://peerages.herokuapp.com/
+
+ We're wondering:
+
+ 1. Both the peerage and the subsidiary titles tables have a field called 'sr'. We believe from earlier conversations that this is used to capture special remainder - where not male heir - but we can't find a key. The values in the peerages table are M, F, B, S and L. And in the subsidiary title tables M, B and F. Are we missing a key somewhere? Or can you provide one? My notes say M means male where not direct descendent - 'can go up and over - uncles etc' - and F means female line. But we have no idea on the rest.
+ Yes, "SR" means that the peerage has a special remainder. I should have provided a key, as follows:
+ F: can go to a female
+ M: male only but can go to a non-descendant of the first holder, typically to brothers or the like.
+ B: both of the above
+ S: special, as defined in the letters patent
+ L: limited, as in Abercromby (only to her sons by her late husband)
+ 2. Both the peerage and the subsidiary titles tables have a field called 'time'. This is one character, mixed case alphanumeric.  My notes say, "seniority. time of letters patent ????????? numbers represent rank???? code for time. code for place on list." What makes no sense to me now. Can you tell us what this field means and how it's expected to be used.
+ The purpose of the "time" field is to enable sorting in chronological order. If two or more peerages of the same rank are created on one day then steps are taken to establish the relevant seniority. In recent times creations have generally been limited to two per day, and the letters patent state that they have been sealed in the "forenoon" or "afternoon". I identify those as "A" and "P" (short for "a.m." and "p.m"). In November 1999, when hereditary peers left the House of Lords, a number of them were given life peerages, and in the interests of speed there were multiple creations on one day and the letters patent showed the time. My encoding is as follows:
+ Q =  6 a.m.
+ R = 9 a.m.
+ S = 12 noon
+ T = 1 p.m.
+ U = 2 p.m.
+ V = 3 p.m.
+ W = 6 p.m.
+ X = 9 p.m.
+ Y = 11 p.m.
+ There is no problem with creating two peerages of different ranks on the same day, but to ensure consistent sorting I have encoded the degree of the peerage as a number: Duke 1, Marquess 2, Earl 3, Viscount 4, Baron 5.
+ 3. The subsidiary titles table has a type column which is always 'S'. We're guessing this is just redundant to say they're subsidiary?
+ Sorry, I adopted "S" as my code for a hereditary peerage which is subsidiary to another created by the same letters patent, but it is not actually necessary in the database.
+ 4. There's an oddity with announcements and announcement types. Or at least in our interpretation of it. There are 14 peers with an announcement type code of 'L'. But there doesn't appear to be an announcement type code of 'L' in the announcement types table. Lord Boothby is one example.
+ Sorry. I have added "L" to the list. When the Life Peerages Act 1958 came into force there was an initial list of appointments which does not neatly fit into any other category. The L (short for "Life Peerages Act") relates to that list.
+ 5. 1390 peerages have an announcement date that matches a date in the announcement table. But 485 do not. An example is Lord Bannside who has an announcement date of 28 May 2010 but the announcement table we have only goes up to 2001. I'm guessing this might be a translation error from the database conversion at our end.
+ No, it is my fault! The dates of lists are not actually needed for the purposes of the database and I have been remiss about adding them in recent years. But I only record a list when there is one and some peerages, e.g. some appointments of ministers in the House of Lords, or the creation of the dukedom of Sussex, are one-offs. So there will be some cases where the announcement date does not match anything in the table of lists.
+ Michael
+
+ UK Parliament Disclaimer: this e-mail is confidential to the intended recipient. If you have received it in error, please notify the sender and delete it from your system. Any unauthorised use, disclosure, or copying is not permitted. This e-mail has been checked for viruses, but no liability is accepted for any damage caused by any virus transmitted by this e-mail. This e-mail address is not secure, is not encrypted and should not be used for sensitive data.
  
 
 
