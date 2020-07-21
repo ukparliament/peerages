@@ -1,5 +1,7 @@
 class Person < ActiveRecord::Base
   
+  has_many :peerages, -> { order( :patent_on ) }
+  
   def display_name
     display_name = self.forenames
     display_name += ' '
@@ -29,10 +31,9 @@ class Person < ActiveRecord::Base
   end
   
   def date_of_death_display
+    date_of_death_display = ''
     if self.date_of_death
-      date_of_death_display = self.date_of_death.strftime( '%-d %B %Y')
-    else
-      date_of_death_display = 'Unknown'
+      date_of_death_display += self.date_of_death.strftime( '%-d %B %Y')
     end
     date_of_death_display
   end
