@@ -1,11 +1,21 @@
 /* people table */
 drop table if exists people;
+drop table if exists letters;
+
+create table letters (
+	id serial,
+	letter varchar(100) not null,
+	primary key (id)
+);
+
 create table people (
 	id serial,
 	forenames varchar(200) not null,
 	surname varchar(100) not null,
 	date_of_birth date,
 	date_of_death date,
+	letter_id int,
+	constraint fk_letter foreign key (letter_id) references letters(id),
 	primary key (id)
 );
 
