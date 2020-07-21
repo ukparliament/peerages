@@ -3,14 +3,11 @@
 <!-- patent, full title, person name and administration -->
 <%= render :partial => 'patent', :object => @peerage %>
 
-<!-- lifespan -->
-<% if @peerage.date_of_birth -%>
-	<% if @peerage.date_of_death -%>
-		<%= content_tag( 'p', "#{@peerage.forenames} #{@peerage.surname} was born on #{@peerage.date_of_birth.strftime( '%-d %B %Y')} and died on #{@peerage.date_of_death.strftime( '%-d %B %Y')}." ) %>
-	<% else -%>
-		<%= content_tag( 'p', "#{@peerage.forenames} #{@peerage.surname} was born on #{@peerage.date_of_birth.strftime( '%-d %B %Y')}." ) %>
-	<% end -%>
-<% end -%>
+
+
+
+
+
 
 <!-- announced on, announcement and announcement type -->
 <% if @peerage.announced_on -%>
@@ -23,9 +20,9 @@
 
 <!- Introduced -->
 <% if @peerage.introduced_on -%>
-	<%= content_tag( 'p', "#{link_to(@peerage.rank.name, rank_show_url( :rank => @peerage.rank ) )} #{@peerage.title} was introduced to the House of Lords on #{@peerage.introduced_on.strftime( '%-d %B %Y')}.".html_safe ) %>
+	<%= content_tag( 'p', "Introduced to the House of Lords on #{@peerage.introduced_on.strftime( '%-d %B %Y')}.".html_safe ) %>
 <% else -%>
-	<%= content_tag( 'p', "#{link_to(@peerage.rank.name, rank_show_url( :rank => @peerage.rank ) )} #{@peerage.title} was not introduced to the House of Lords.".html_safe ) %>
+	<%= content_tag( 'p', "Not introduced to the House of Lords." ) %>
 <% end -%>
 
 <!-- previous title -->
