@@ -6,7 +6,9 @@ task :setup => [
   :link_peerages_to_announcement,
   :link_law_lords_to_peerage,
   :link_subsidiary_titles_to_rank,
-  :normalise_people] do
+  :normalise_people,
+  :populate_letters,
+  :normalise_letters] do
 end
 
 task :link_peerages_to_administration => :environment do
@@ -104,6 +106,29 @@ task :normalise_people => :environment do
     end
     peerage.person = person
     peerage.save
+  end
+end
+task :populate_letters => :environment do
+  letter = Letter.new
+  letter.letter = "Without surname"
+  letter.save
+  ('A'..'Z').each do |l|
+    letter = Letter.new
+    letter.letter = l
+    letter.save
+  end
+end
+task :normalise_letters => :environment do
+  puts "normalising letters from surnames"
+  people = Person.all
+  people.each do |person|
+    if person.surname == '-' or person.surname == ''
+      person.letter_id = 1
+    else
+      letter = Letter.all.where( letter: person.surname[0,1] ).first
+      person.letter = letter
+    end
+    person.save
   end
 end
 
