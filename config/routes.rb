@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
   
+  get 'people' => 'person#index', as: :person_list
+  get 'people/:person' => 'person#show', as: :person_show
+  
   get 'peerages' => 'peerage#index', as: :peerage_list
   get 'peerages/:peerage' => 'peerage#show', as: :peerage_show
   
