@@ -5,7 +5,8 @@ task :setup => [
   :link_announcements_to_announcement_types,
   :link_peerages_to_announcement,
   :link_law_lords_to_peerage,
-  :link_subsidiary_titles_to_rank] do
+  :link_subsidiary_titles_to_rank,
+  :normalise_people] do
 end
 
 task :link_peerages_to_administration => :environment do
@@ -86,6 +87,23 @@ task :link_subsidiary_titles_to_rank => :environment do
     rank = Rank.all.where( code: subsidiary_title.rank_code).first
     subsidiary_title.rank = rank
     subsidiary_title.save
+  end
+end
+task :normalise_people => :environment do
+  puts "normalising people from the peerage table"
+  peerages = Peerage.all
+  peerages.each do |peerage|
+    person = Person.all.where( forenames: peerage.forenames ).where( surname: peerage.surname ).where( date_of_birth: peerage.date_of_birth ).where( date_of_death: peerage.date_of_death ).first
+    unless person
+      person = Person.new
+      person.forenames = peerage.forenames
+      person.surname = peerage.surname
+      person.date_of_birth = peerage.date_of_birth
+      person.date_of_death = peerage.date_of_death
+      person.save
+    end
+    peerage.person = person
+    peerage.save
   end
 end
 
