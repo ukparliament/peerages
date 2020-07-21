@@ -2,46 +2,38 @@
 <html lang="en-GB">
 <head>
   <title>peerages.herokuapp.com</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/light.min.css">
   <style>
-  body {max-width:38em;}
+  main {padding:2rem 0;}
   </style>
 </head>
 <body>
 <header>
 
 <nav>
-<p>
-<strong><a href="/">peerages.herokuapp.com</a></strong>
-</p>
-<%= content_tag( 'span', link_to( 'People', person_list_url ) ) %>
+<a href="/">peerages.herokuapp.com</a><br>
+<%= link_to( 'People', person_list_url ) %>
 &middot;
-<%= content_tag( 'span', link_to( 'Ranks', rank_list_url ) ) %>
+<%= link_to( 'Ranks', rank_list_url )  %>
 &middot;
-	<%= content_tag( 'span', link_to( 'Types', peerage_type_list_url ) ) %>
+	<%= link_to( 'Peerage types', peerage_type_list_url )  %>
 	&middot;
-	<%= content_tag( 'span', link_to( 'Administrations', administration_list_url ) ) %>
+	<%= link_to( 'Administrations', administration_list_url )  %>
 	&middot;
-	<%= content_tag( 'span', link_to( 'Announcement types', announcement_type_list_url ) ) %>
+	<%= link_to( 'Announcements', announcement_list_url ) %>
 	&middot;
-	<%= content_tag( 'span', link_to( 'Announcements', announcement_list_url ) ) %>
+	<%= link_to( 'Announcement types', announcement_type_list_url  ) %>
 </nav>
+
 
 </header>
-<hr>
-<main>
 
-<h1></h1>
+<main>
 <%= yield %>
 </main>
-<hr>
+
 <footer>
-
-<nav>
-	<%= content_tag( 'span', link_to( 'All Peerages', peerage_list_url ) ) %>
-
-</nav>
 </footer>
 </body>
 </html>
