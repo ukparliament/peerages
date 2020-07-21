@@ -6,6 +6,6 @@ class PeerageController < ApplicationController
   
   def show
     peerage = params[:peerage]
-    @peerage = Peerage.find ( peerage )
+    @peerage = Peerage.find( peerage )
   end
 end
