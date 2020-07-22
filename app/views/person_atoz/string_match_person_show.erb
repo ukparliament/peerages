@@ -1,0 +1,5 @@
+<%= content_tag( 'h1', "People - A to Z - #{@string}" ) %>
+<%= render :partial => 'atoz', :object => @letters %>
+<ol>
+	<%= render :partial => 'person/person', :collection => @people %>
+</ol>
