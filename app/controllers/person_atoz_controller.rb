@@ -11,7 +11,7 @@ class PersonAtozController < ApplicationController
       @letter = Letter.find_by_url_key( letter )
     else
       @string = letter.downcase
-      @people = Person.all.where( "lower(surname) like '#{letter}%'" )
+      @people = Person.all.where( "lower(surname) like '#{letter}%'" ).order( 'surname, forenames, date_of_birth, date_of_death' )
       render :template => 'person_atoz/string_match_person_show'
     end
   end
