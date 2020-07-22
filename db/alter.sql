@@ -5,6 +5,7 @@ drop table if exists letters;
 create table letters (
 	id serial,
 	letter varchar(100) not null,
+	url_key char(1) not null,
 	primary key (id)
 );
 
