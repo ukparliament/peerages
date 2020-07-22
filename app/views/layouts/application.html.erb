@@ -6,13 +6,20 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/light.min.css">
   <style>
   main {padding:2rem 0;}
+  
+  ol.horizontal li
+{
+display: inline;
+list-style-type: none;
+padding-right: 20px;
+}
   </style>
 </head>
 <body>
 <header>
 
 <nav>
-<strong><a href="/">peerages.herokuapp.com</a></strong><br>
+<strong><a href="/">peerages</a></strong><br>
 
 	<%= link_to( 'Administrations', administration_list_url )  %>
 	&middot;
