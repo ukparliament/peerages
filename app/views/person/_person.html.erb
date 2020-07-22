@@ -1,3 +1,7 @@
 <li>
-<%= link_to( person.list_display, person_show_url( :person => person  ) ) %>
+
+<%= link_to( "#{person.surname.upcase} #{person.forenames}", person_show_url( :person => person  ) ) %>
+
+<%= "#{person.date_of_birth_display} - #{person.date_of_death_display}" %>
+
 </li>
