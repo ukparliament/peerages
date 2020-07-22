@@ -1,7 +1,18 @@
-<li>
+<tr>
 
-<%= link_to( "#{person.surname.upcase} #{person.forenames}", person_show_url( :person => person  ) ) %>
+<td>
+<%= link_to( person.surname.upcase, person_show_url( :person => person  ) ) %>
+</td>
 
-<%= "#{person.date_of_birth_display} - #{person.date_of_death_display}" %>
+<td>
+<%= link_to( person.forenames, person_show_url( :person => person  ) ) %>
+</td>
 
-</li>
+<td>
+<%= person.date_of_birth_display %>
+</td>
+
+<td>
+<%= person.date_of_death_display %>
+</td>
+</tr>
