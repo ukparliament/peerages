@@ -12,7 +12,7 @@
 <header>
 
 <nav>
-<a href="/">peerages.herokuapp.com</a><br>
+<strong><a href="/">peerages.herokuapp.com</a></strong><br>
 
 	<%= link_to( 'Administrations', administration_list_url )  %>
 	&middot;
@@ -22,8 +22,7 @@
 		&middot;
 <%= link_to( 'Peerage types', peerage_type_list_url )  %>
 	&middot;
-
-	<%= link_to( 'People', person_list_url ) %>
+<%= link_to( 'People', person_atoz_show_url( :letter => 'a' ) ) %>
 &middot;
 <%= link_to( 'Ranks', rank_list_url )  %>
 </nav>

@@ -109,12 +109,15 @@ task :normalise_people => :environment do
   end
 end
 task :populate_letters => :environment do
+  puts "populating surname letters"
   letter = Letter.new
   letter.letter = "Without surname"
+  letter.url_key = "-"
   letter.save
   ('A'..'Z').each do |l|
     letter = Letter.new
     letter.letter = l
+    letter.url_key = l.downcase
     letter.save
   end
 end
@@ -125,7 +128,7 @@ task :normalise_letters => :environment do
     if person.surname == '-' or person.surname == ''
       person.letter_id = 1
     else
-      letter = Letter.all.where( letter: person.surname[0,1] ).first
+      letter = Letter.all.where( letter: person.surname[0,1].upcase ).first
       person.letter = letter
     end
     person.save
