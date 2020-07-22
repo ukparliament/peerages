@@ -7,7 +7,7 @@ class PersonAtozController < ApplicationController
   def show
     @letters = Letter.all
     letter = params[:letter]
-    if letter.length == '1'
+    if letter.length == 1
       @letter = Letter.find_by_url_key( letter )
     else
       @string = letter.downcase
