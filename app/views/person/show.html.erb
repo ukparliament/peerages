@@ -1,4 +1,4 @@
-<%= content_tag( 'h1', @person.display_name ) %>
+<h1><%= @person.display_name %></h1>
 
 <!-- lifespan -->
 <% if @person.date_of_birth -%>
@@ -9,7 +9,7 @@
 	<% end -%>
 <% end -%>
 
-<%= content_tag( 'h2', 'Peerages' ) %>
+<h2>Peerages</h2>
 <ol>
 	<%= render :partial => 'peerage/peerage', :collection => @person.peerages %>
 </ol>
