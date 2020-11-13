@@ -2,31 +2,34 @@
 <html lang="en-GB">
 <head>
   <title>peerages.herokuapp.com</title>
+  
   <meta name="viewport" content="width=device-width">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/light.min.css">
   <style>
   main {padding:2rem 0;}
-  </style>
+  ol.horizontal li {display: inline;list-style-type: none;padding-right: 20px;}
+  .row {display: flex;height:auto;padding:0.25rem;}
+  .row:hover {background-color:#eee;}
+.row span {flex:1 1;padding:0.2rem;}
+</style>
 </head>
 <body>
 <header>
-
 <nav>
-<a href="/">peerages.herokuapp.com</a><br>
-<%= link_to( 'People', person_atoz_show_url( :letter => 'a' ) ) %>
-&middot;
-<%= link_to( 'Ranks', rank_list_url )  %>
-&middot;
-	<%= link_to( 'Peerage types', peerage_type_list_url )  %>
-	&middot;
+<strong><a href="/">Peerages</a></strong><br>
+
 	<%= link_to( 'Administrations', administration_list_url )  %>
 	&middot;
 	<%= link_to( 'Announcements', announcement_list_url ) %>
 	&middot;
 	<%= link_to( 'Announcement types', announcement_type_list_url  ) %>
+		&middot;
+<%= link_to( 'Peerage types', peerage_type_list_url )  %>
+	&middot;
+<%= link_to( 'People', person_atoz_show_url( :letter => 'a' ) ) %>
+&middot;
+<%= link_to( 'Ranks', rank_list_url )  %>
 </nav>
-
-
 </header>
 
 <main>

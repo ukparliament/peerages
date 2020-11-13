@@ -1,3 +1,20 @@
-<li>
-<%= link_to( person.list_display, person_show_url( :person => person  ) ) %>
-</li>
+<a href="<%= person_show_url( :person => person  )  %>">
+
+<div class="row">
+<span><%= person.forenames %>
+</span>
+
+          <span>
+          <strong>
+          <%= person.surname %>
+</strong></span>
+
+          
+
+          <span><%= person.date_of_birth_display %>
+</span>
+
+<span><%= person.date_of_death_display %>
+
+</span>
+</div></a>

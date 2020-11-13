@@ -1,5 +1,6 @@
-<%= content_tag( 'h1', "People - A to Z - #{@string}" ) %>
+
+<h1>People: A-Z: <%= @string.titlecase %></h1>
+
 <%= render :partial => 'atoz', :object => @letters %>
-<ol>
-	<%= render :partial => 'person/person', :collection => @people %>
-</ol>
+
+<%= render :partial => 'person/person', :collection => @people %>
