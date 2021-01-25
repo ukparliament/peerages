@@ -1,5 +1,15 @@
 <%= content_tag( 'h1', 'Administrations' ) %>
 
-<ol>
-	<%= render :partial => 'administration', :collection => @administrations %>
-</ol>
+<table>
+	<thead>
+		<tr>
+			<%= content_tag( 'td', 'Number' )%>
+			<%= content_tag( 'td', 'Prime Minister' )%>
+			<%= content_tag( 'td', 'Start date' )%>
+			<%= content_tag( 'td', 'End date' )%>
+		</tr>
+	</thead>
+	<tbody>
+		<%= render :partial => 'administration', :collection => @administrations %>
+	</tbody>
+</table>
