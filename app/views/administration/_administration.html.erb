@@ -1,2 +1,7 @@
-<li><%= link_to( administration.prime_minister_ordinally, administration_show_url( :administration => administration ) ) %></li>
+<tr>
+	<%= content_tag( 'td', link_to( administration.number, administration_show_url( :administration => administration ) ) ) %>
+	<%= content_tag( 'td', link_to( administration.prime_minister_ordinally, administration_show_url( :administration => administration ) ) ) %>
+	<%= content_tag( 'td', administration.start_date_display ) %>
+	<%= content_tag( 'td', administration.end_date_display ) %>
+</tr>
 
