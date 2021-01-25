@@ -1,7 +1,16 @@
 <h1>Ranks</h1>
 
-<ul>
-	<%= render :partial => 'rank', :collection => @ranks %>
-</ul>
+<table>
+	<thead>
+		<tr>
+			<%= content_tag( 'td', 'Rank' ) %>
+			<%= content_tag( 'td', 'Male title' ) %>
+			<%= content_tag( 'td', 'Female title' ) %>
+		</tr>
+	</thead>
+	<tbody>
+		<%= render :partial => 'rank', :collection => @ranks %>
+	</tbody>
+</table>
 
 
