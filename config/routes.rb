@@ -11,12 +11,28 @@ Rails.application.routes.draw do
   get 'people' => 'person#index', as: :person_list
   get 'people/:person' => 'person#show', as: :person_show
   
-  get 'peerages' => 'peerage#index', as: :peerage_list
-  get 'peerages/:peerage' => 'peerage#show', as: :peerage_show
-  
   get 'administrations' => 'administration#index', as: :administration_list
   get 'administrations/:administration' => 'administration#show', as: :administration_show
   get 'administrations/:administration/peerages' => 'administration#peerages', as: :administration_peerages
+  
+  get 'special-remainders' => 'special_remainder#index', as: :special_remainder_list
+  get 'special-remainders/:special_remainder' => 'special_remainder#show', as: :special_remainder_show
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  get 'peerages' => 'peerage#index', as: :peerage_list
+  get 'peerages/:peerage' => 'peerage#show', as: :peerage_show
+  
+  
   
   get 'peerage-types' => 'peerage_type#index', as: :peerage_type_list
   get 'peerage-types/:peerage_type' => 'peerage_type#show', as: :peerage_type_show
