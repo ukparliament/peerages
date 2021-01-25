@@ -148,13 +148,13 @@ task :collapse_ranks_across_genders => :environment do
     if rank.gender_char == 'F'
       
       # ...find the rank that's male with the same degree
-      opposite_gender_rank = Rank.all.where( 'gender_char = ?', 'M' ).where( 'degree = ?', rank.degree ).first
+      male_gender_rank = Rank.all.where( 'gender_char = ?', 'M' ).where( 'degree = ?', rank.degree ).first
       
       # ...loop through all peerages with the female rank
       rank.peerages.each do |peerage|
         
         # ...Set the peeraage to the male version
-        peerage.rank = opposite_gender_rank
+        peerage.rank = male_gender_rank
         peerage.save
       end
       
@@ -162,7 +162,7 @@ task :collapse_ranks_across_genders => :environment do
       rank.subsidiary_titles.each do |subsidiary_title|
         
         # ...Set the peeraage to the male version
-        subsidiary_title.rank = opposite_gender_rank
+        subsidiary_title.rank = male_gender_rank
         subsidiary_title.save
       end
       
@@ -170,11 +170,11 @@ task :collapse_ranks_across_genders => :environment do
       gender = Gender.all.where( 'label = ?', 'Female' ).first
       
       # Find the female gendered rank label
-      gendered_rank_label = GenderedRankLabel.all.where( 'rank_id = ?', rank.id ).where( 'gender_id = ?', gender.id ).first
+      female_rank_label = GenderedRankLabel.all.where( 'rank_id = ?', rank.id ).where( 'gender_id = ?', gender.id ).first
       
       # Point the female gendered rank label at the male rank
-      gendered_rank_label.rank = opposite_gender_rank
-      gendered_rank_label.save
+      female_rank_label.rank = male_gender_rank
+      female_rank_label.save
       
       # nuke the female rank
       rank.destroy
