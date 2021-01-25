@@ -1,13 +1,3 @@
-<%= content_tag( 'h1', @rank.name ) %>
+<%= content_tag( 'h1', @gendered_rank_label.label ) %>
 
-<%= content_tag( 'h2', 'Peerages' ) %>
-<ol>
-	<%= render :partial => 'peerage/peerage', :collection => @rank.peerages %>
-</ol>
-
-<% unless @rank.subsidiary_titles.empty? -%>
-	<%= content_tag( 'h2', 'Subsidiary titles' ) %>
-	<ol>
-		<%= render :partial => 'subsidiary_title/subsidiary_title_in_peerage_context', :collection => @rank.subsidiary_titles %>
-	</ol>
-<% end -%>
+<%= content_tag( 'p', "Applies to #{@gendered_rank_label.gender.label.downcase}s of the species." ) %>
