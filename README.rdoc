@@ -1,28 +1,31 @@
-== README
+# Setup
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Recreate the database
 
-Things you may want to cover:
+` psql
 
-* Ruby version
+` drop database peerages;
 
-* System dependencies
+` create database peerages;
 
-* Configuration
+` \q
 
-* Database creation
+## Import source data
 
-* Database initialization
+` psql peerages < db/dumps/2020-03-12.sql
 
-* How to run the test suite
+## Railsify database and add foreign keys
 
-* Services (job queues, cache servers, search engines, etc.)
+` psql peerages < db/schema/railsify.sql
 
-* Deployment instructions
+## Add table relationships
 
-* ...
+` rake add_relationships
 
+## Add new tables
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+` psql peerages < db/schema/add-tables.sql
+
+## Populate newly modified database
+
+` rake modify
