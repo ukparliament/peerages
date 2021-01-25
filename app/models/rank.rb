@@ -2,14 +2,13 @@ class Rank < ActiveRecord::Base
   
   has_many :peerages, -> { order( :patent_on ) }
   has_many :subsidiary_titles, -> { order( :patent_on ) }
+  has_many :gendered_rank_labels
   
-  def gender_name
-    case gender
-    when "M"
-    	"male"
-    when "F"
-    	"female"
-    end
+  def male_gendered_label
+    self.gendered_rank_labels.where( 'gender_id = 1' ).first
   end
   
+  def female_gendered_label
+    self.gendered_rank_labels.where( 'gender_id = 2' ).first
+  end
 end
