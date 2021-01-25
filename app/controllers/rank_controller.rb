@@ -1,12 +1,12 @@
 class RankController < ApplicationController
   
   def index
-    @ranks = Rank.all.order( 'degree' ).order( 'name' )
+    @ranks = Rank.all.order( 'degree' )
   end
   
   def show
-    rank = params[:rank]
-    @rank = Rank.find ( rank )
+    gendered_rank_label = params[:gendered_rank_label]
+    @gendered_rank_label = GenderedRankLabel.find ( gendered_rank_label )
   end
   
   def peerages
@@ -15,7 +15,5 @@ class RankController < ApplicationController
   end
   
   def subsidiary_titles
-    rank = params[:rank]
-    @rank = Rank.find ( rank )
   end
 end
