@@ -1,3 +1,5 @@
-
-
-<li><%= link_to( rank.name, rank_show_url( :rank => rank ) )  %> ... name</li>
+<tr>
+	<%= content_tag( 'td', rank.degree ) %>
+	<%= content_tag( 'td', male_title( rank ) ) %>
+	<%= content_tag( 'td', female_title( rank ) ) %>
+</tr>
