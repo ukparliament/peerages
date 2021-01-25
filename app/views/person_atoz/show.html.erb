@@ -4,4 +4,17 @@
 
 <%= render :partial => 'atoz', :object => @letters %>
 
-<%= render :partial => 'person/person', :collection => @letter.people %>
+<table>
+	<thead>
+		<tr>
+			<%= content_tag( 'td', 'Surname' ) %>
+			<%= content_tag( 'td', 'Forenames' ) %>
+			<%= content_tag( 'td', 'Date of birth' ) %>
+			<%= content_tag( 'td', 'Date of death' ) %>
+			<%= content_tag( 'td', 'Gender' ) %>
+		</tr>
+	</thead>
+	<tbody>
+		<%= render :partial => 'person/person', :collection => @letter.people %>
+	</tbody>
+</table>
