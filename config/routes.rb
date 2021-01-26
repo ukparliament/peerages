@@ -26,6 +26,12 @@ Rails.application.routes.draw do
   get 'jurisdictions' => 'jurisdiction#index', as: :jurisdiction_list
   get 'jurisdictions/:jurisdiction' => 'jurisdiction#show', as: :jurisdiction_show
   
+  get 'announcement-types' => 'announcement_type#index', as: :announcement_type_list
+  get 'announcement-types/:announcement_type' => 'announcement_type#show', as: :announcement_type_show
+  
+  get 'announcements' => 'announcement#index', as: :announcement_list
+  get 'announcements/:announcement' => 'announcement#show', as: :announcement_show
+  
   
   
   
@@ -48,12 +54,10 @@ Rails.application.routes.draw do
   get 'ranks/:rank/peerages' => 'rank#peerages', as: :rank_peerages
   get 'ranks/:rank/subsidiary-titles' => 'rank#subsidiary_titles', as: :rank_subsidiary_titles
   
-  get 'announcements' => 'announcement#index', as: :announcement_list
-  get 'announcements/:announcement' => 'announcement#show', as: :announcement_show
+  
   get 'announcements/:announcement/peerages' => 'announcement#peerages', as: :announcement_peerages
   
-  get 'announcement-types' => 'announcement_type#index', as: :announcement_type_list
-  get 'announcement-types/:announcement_type' => 'announcement_type#show', as: :announcement_type_show
+  
   get 'announcement-types/:announcement_type/announcements' => 'announcement_type#announcements', as: :announcement_type_announcements
 
   # Example of regular route:
