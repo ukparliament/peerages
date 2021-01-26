@@ -1,7 +1,7 @@
 class PeerageTypeController < ApplicationController
   
   def index
-    @peerage_types = PeerageType.all
+    @peerage_types = PeerageType.all.order( 'name' )
   end
   
   def show
