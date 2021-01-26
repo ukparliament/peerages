@@ -1,7 +1,7 @@
 class AnnouncementTypeController < ApplicationController
   
   def index
-    @announcement_types = AnnouncementType.all
+    @announcement_types = AnnouncementType.all.order( 'name')
   end
   
   def show
