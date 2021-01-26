@@ -19,9 +19,13 @@
 <strong><a href="/">Peerages</a></strong><br>
 <%= link_to( 'Peerage types', peerage_type_list_url ) %>
 &middot;
-<%= link_to( 'People', person_atoz_show_url( :letter => 'a' ) ) %>
-&middot;
 <%= link_to( 'Ranks', rank_list_url )  %>
+&middot;
+<%= link_to( 'Announcement types', announcement_type_list_url )  %>
+&middot;
+<%= link_to( 'All announcements', announcement_list_url )  %>
+&middot;
+<%= link_to( 'People', person_atoz_show_url( :letter => 'a' ) ) %>
 &middot;
 <%= link_to( 'Administrations', administration_list_url )  %>
 &middot;
@@ -35,9 +39,7 @@
 	&middot;
 	<%= link_to( 'Announcement types', announcement_type_list_url  ) %>
 		&middot;
-<%= link_to( 'Peerage types', peerage_type_list_url )  %>
-	&middot;
-<%= link_to( 'Ranks', rank_list_url )  %> -->
+		 -->
 </nav>
 </header>
 
