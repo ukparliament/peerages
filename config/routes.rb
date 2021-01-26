@@ -20,6 +20,9 @@ Rails.application.routes.draw do
   get 'ranks' => 'rank#index', as: :rank_list
   get 'ranks/:gendered_rank_label' => 'rank#show', as: :rank_show
   
+  get 'peerage-types' => 'peerage_type#index', as: :peerage_type_list
+  get 'peerage-types/:peerage_type' => 'peerage_type#show', as: :peerage_type_show
+  
   get 'jurisdictions' => 'jurisdiction#index', as: :jurisdiction_list
   get 'jurisdictions/:jurisdiction' => 'jurisdiction#show', as: :jurisdiction_show
   
@@ -39,9 +42,6 @@ Rails.application.routes.draw do
   get 'peerages/:peerage' => 'peerage#show', as: :peerage_show
   
   
-  
-  get 'peerage-types' => 'peerage_type#index', as: :peerage_type_list
-  get 'peerage-types/:peerage_type' => 'peerage_type#show', as: :peerage_type_show
   get 'peerage-types/:peerage_type/peerages' => 'peerage_type#peerages', as: :peerage_type_peerages
   
   
