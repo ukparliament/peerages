@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   
   get 'administrations' => 'administration#index', as: :administration_list
   get 'administrations/:administration' => 'administration#show', as: :administration_show
-  get 'administrations/:administration/peerages' => 'administration#peerages', as: :administration_peerages
   
   get 'special-remainders' => 'special_remainder#index', as: :special_remainder_list
   get 'special-remainders/:special_remainder' => 'special_remainder#show', as: :special_remainder_show
@@ -21,12 +20,16 @@ Rails.application.routes.draw do
   get 'ranks' => 'rank#index', as: :rank_list
   get 'ranks/:gendered_rank_label' => 'rank#show', as: :rank_show
   
+  get 'jurisdictions' => 'jurisdiction#index', as: :jurisdiction_list
+  get 'jurisdictions/:jurisdiction' => 'jurisdiction#show', as: :jurisdiction_show
   
   
   
   
   
   
+
+  get 'administrations/:administration/peerages' => 'administration#peerages', as: :administration_peerages
   
   
   
