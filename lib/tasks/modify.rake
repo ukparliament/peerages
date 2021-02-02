@@ -8,7 +8,10 @@ task :modify => [
   :collapse_ranks_across_genders,
   :normalise_jurisdictions_from_law_lords,
   :normalise_special_remainders_from_peerages,
-  :normalise_special_remainders_from_subsidiary_titles] do
+  :normalise_special_remainders_from_subsidiary_titles,
+  :normalise_letters_patent,
+  :port_subsidiary_titles_to_peerages,
+  :link_letter_patent_to_peerages] do
 end
 
 task :collapse_title_of_into_peerage => :environment do
@@ -207,11 +210,11 @@ task :normalise_special_remainders_from_peerages => :environment do
     unless special_remainder
       special_remainder = SpecialRemainder.new
       special_remainder.code = peerage.sr
-      special_remainder.description = 'A peerage which may be inherited by a male indirect descendant of the first holder, for example: a brother or a male cousin.' if peerage.sr == 'M'
-      special_remainder.description = 'A peerage which may be inherited by a female direct descendant.' if peerage.sr == 'F'
-      special_remainder.description = 'A peerage which may be inherited by a female direct descendant or a male indirect descendant.' if peerage.sr == 'B'
-      special_remainder.description = 'A peerage with particular rules of inheritance set out in letters patent.' if peerage.sr == 'S'
-      special_remainder.description = 'A peerage with rules of limited inheritance, for example: the 1st Baroness Abercromby, whose peerage was limited to male descendants of her late husband.' if peerage.sr == 'L'
+      special_remainder.description = 'Peerages which may be inherited by a male indirect descendant of the first holder, for example: a brother or a male cousin.' if peerage.sr == 'M'
+      special_remainder.description = 'Peerages which may be inherited by a female direct descendant.' if peerage.sr == 'F'
+      special_remainder.description = 'Peerages which may be inherited by a female direct descendant or a male indirect descendant.' if peerage.sr == 'B'
+      special_remainder.description = 'Peerages with particular rules of inheritance set out in letters patent.' if peerage.sr == 'S'
+      special_remainder.description = 'Peerages with rules of limited inheritance, for example: the 1st Baroness Abercromby, whose peerage was limited to male descendants of her late husband.' if peerage.sr == 'L'
       special_remainder.save
     end
     peerage.special_remainder = special_remainder
@@ -227,3 +230,77 @@ task :normalise_special_remainders_from_subsidiary_titles => :environment do
     subsidiary_title.save
   end
 end
+task :normalise_letters_patent => :environment do
+  puts "normalising letters patent"
+  # Pull letters patent out of peerages table
+  peerages = Peerage.all
+  peerages.each do |peerage|
+    letters_patent = LettersPatent.new
+    letters_patent.patent_on = peerage.patent_on
+    letters_patent.patent_time = peerage.patent_time
+    letters_patent.administration = peerage.administration
+    letters_patent.peerage_type = peerage.peerage_type
+    letters_patent.announcement = peerage.announcement
+    letters_patent.save
+    peerage.letters_patent = letters_patent
+    peerage.save
+  end
+  
+  # Pull letters patent out of subsidiary titles table
+  # NOTE: The Duke of Cambridge has a patent_on date of 2011-05-26
+  # There are two subsidiary titles: the Earl of Strathearn and Lord Carrickfergus
+  # Both of these have a patent_on date of 2011-04-29
+  # We can only find one announcement in the London Gazette and assume this is a data entry error
+  # This script will set the patent_on and patent_time for the subsidiary title to be the same as those for the parent peerage
+  subsidiary_titles = SubsidiaryTitle.all
+  subsidiary_titles.each do |subsidiary_title|
+    subsidiary_title.letters_patent = subsidiary_title.peerage.letters_patent
+    subsidiary_title.save
+  end
+end
+task :port_subsidiary_titles_to_peerages => :environment do
+  puts "porting subsidiary title to peerages"
+  subsidiary_titles = SubsidiaryTitle.all
+  subsidiary_titles.each do |subsidiary_title|
+    
+    # create a new peerage
+    peerage = Peerage.new
+    peerage.title = subsidiary_title.title
+    peerage.of_place = subsidiary_title.of_place
+    peerage.of_title = subsidiary_title.of_title
+    peerage.extinct_on = subsidiary_title.extinct_on
+    peerage.last_number = subsidiary_title.last_number
+    peerage.notes = subsidiary_title.notes
+    peerage.alpha = subsidiary_title.alpha
+    peerage.rank_id = subsidiary_title.rank_id
+    peerage.special_remainder_id = subsidiary_title.special_remainder_id
+    peerage.letters_patent_id = subsidiary_title.letters_patent_id
+    peerage.save
+    
+    # create a new peerage holding to the same person as the parent peerage
+    parent_peerage = subsidiary_title.peerage
+    peerage_holding = PeerageHolding.new
+    peerage_holding.peerage = peerage
+    peerage_holding.person = parent_peerage.peerage_holdings.first.person
+    # NOTE: Are subsidiary peerages also introduced? Assuming so here
+    peerage_holding.introduced_on = parent_peerage.peerage_holdings.first.introduced_on
+    peerage_holding.save
+  end
+end
+task :link_letter_patent_to_peerages => :environment do
+  puts "linking letters patent to people"
+  letters_patents = LettersPatent.all
+  letters_patents.each do |letters_patent|
+    letters_patent.person = letters_patent.peerages.first.peerage_holdings.first.person
+    letters_patent.save
+  end
+end
+
+
+
+
+
+
+
+
+
