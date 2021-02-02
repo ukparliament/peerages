@@ -1,5 +1,5 @@
 <tr>
-	<%= content_tag( 'td', rank.degree ) %>
+	<%= content_tag( 'td', link_to( rank.degree, rank_show_url( :rank => rank ) ) ) %>
 	<%= content_tag( 'td', male_title( rank ) ) %>
 	<%= content_tag( 'td', female_title( rank ) ) %>
 </tr>
