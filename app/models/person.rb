@@ -3,6 +3,7 @@ class Person < ActiveRecord::Base
   has_many :peerages, -> { order( :patent_on ) }
   belongs_to :letter
   belongs_to :gender
+  has_many :peerage_holdings
   
   def display_name
     "#{self.forenames} #{self.surname}"
