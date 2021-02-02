@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get 'special-remainders/:special_remainder' => 'special_remainder#show', as: :special_remainder_show
   
   get 'ranks' => 'rank#index', as: :rank_list
-  get 'ranks/:gendered_rank_label' => 'rank#show', as: :rank_show
+  get 'ranks/:rank' => 'rank#show', as: :rank_show
   
   get 'peerage-types' => 'peerage_type#index', as: :peerage_type_list
   get 'peerage-types/:peerage_type' => 'peerage_type#show', as: :peerage_type_show
