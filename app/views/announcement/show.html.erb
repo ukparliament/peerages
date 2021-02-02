@@ -7,7 +7,8 @@
 <% end -%>
 <%= content_tag( 'p', @announcement.notes )if @announcement.notes %>
 
-<h4>What is this?</h4>
-<%= content_tag( 'p', "Number: #{@announcement.number}" )if @announcement.number %>
+<ol>
+	<%= render :partial => 'letters_patent/letters_patent', :collection => @announcement.letters_patents %>
+</ol>
 
 
