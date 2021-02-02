@@ -33,6 +33,7 @@ class Peerage < ActiveRecord::Base
     full_title += ' of ' if self.of_title 
     full_title += title
     full_title += ' ' + self.of_place if self.of_place
+    full_title
   end
   
   def gendered_full_title( gender )
