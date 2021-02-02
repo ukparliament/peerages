@@ -1,0 +1,5 @@
+<li>
+	<strong><%= link_to( "#{peerage.rank.name} #{peerage.title}", peerage_show_url( :peerage => peerage ) ) %></strong>
+	
+	<%= render :partial => 'peerage/patent', :object => peerage %>
+</li>
