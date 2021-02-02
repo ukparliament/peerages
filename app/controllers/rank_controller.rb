@@ -5,8 +5,8 @@ class RankController < ApplicationController
   end
   
   def show
-    gendered_rank_label = params[:gendered_rank_label]
-    @gendered_rank_label = GenderedRankLabel.find ( gendered_rank_label )
+    rank = params[:rank]
+    @rank = Rank.find ( rank )
   end
   
   def peerages
