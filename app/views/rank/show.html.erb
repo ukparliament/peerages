@@ -1,3 +1,5 @@
-<%= content_tag( 'h1', @gendered_rank_label.label ) %>
+<%= content_tag( 'h1', @rank.degree ) %>
 
-<%= content_tag( 'p', "Applies to #{@gendered_rank_label.gender.label.downcase}s of the species." ) %>
+<ol>
+	<%= render :partial => 'peerage/peerage', :collection => @rank.peerages %>
+</ol>
