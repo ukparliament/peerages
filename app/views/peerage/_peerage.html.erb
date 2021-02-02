@@ -1,5 +1,1 @@
-<li>
-	<strong><%= link_to( "#{peerage.rank.name} #{peerage.title}", peerage_show_url( :peerage => peerage ) ) %></strong>
-	
-	<%= render :partial => 'peerage/patent', :object => peerage %>
-</li>
+<%= content_tag( 'li', link_to( peerage.gendered_full_title( person.gender ), peerage_show_url( :peerage => peerage ) ) ) %>
