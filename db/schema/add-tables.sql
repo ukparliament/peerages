@@ -9,6 +9,7 @@ drop table if exists letters;
 drop table if exists genders;
 drop table if exists jurisdictions;
 drop table if exists special_remainders;
+drop table if exists letters_patents;
 
 create table genders (
 	id serial,
@@ -67,8 +68,24 @@ create table special_remainders (
 	description varchar(500) not null,
 	primary key (id)
 );
+create table letters_patents (
+	id serial,
+	patent_on date not null,
+	patent_time int,
+	administration_id int,
+	peerage_type_id int not null,
+	announcement_id int,
+	person_id int,
+	constraint fk_administration foreign key (administration_id) references administrations(id),
+	constraint fk_peerage_type foreign key (peerage_type_id) references peerage_types(id),
+	constraint fk_announcement foreign key (announcement_id) references announcements(id),
+	constraint fk_person foreign key (person_id) references people(id),
+	primary key (id)
+);
 
 alter table law_lords add column jurisdiction_id int;
 alter table peerages add column special_remainder_id int;
+alter table peerages add column letters_patent_id int;
+alter table subsidiary_titles add column letters_patent_id int;
 alter table subsidiary_titles add column special_remainder_id int;
 
