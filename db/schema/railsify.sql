@@ -152,6 +152,10 @@ alter table peerages drop column law_lord_id;
 alter table law_lords add column peerage_id int;
 alter table law_lords add constraint peerage foreign key (peerage_id) references peerages(id);
 
+/* Make the id on the peerages table into an auto incrementing serial */
+create sequence peerages_id_seq minvalue 2935;
+alter table peerages alter id set default nextval('peerages_id_seq');
+alter sequence peerages_id_seq owned by peerages.id;
 
 
 
