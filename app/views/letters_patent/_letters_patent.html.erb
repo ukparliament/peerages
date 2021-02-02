@@ -1,0 +1,7 @@
+<li>
+	<%= content_tag( 'h2', "Letters patent issued on #{letters_patent.patent_on} " ) %>
+	<%= content_tag( 'p', "To #{link_to( letters_patent.person.display_name, person_show_url( :person => letters_patent.person ) )}:".html_safe ) %>
+	<ol>
+		<%= render :partial => 'peerage/peerage', :collection => letters_patent.peerages, :locals => {:person => letters_patent.person} %>
+	</ol>
+</li>
