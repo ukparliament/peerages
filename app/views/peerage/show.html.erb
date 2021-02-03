@@ -1,3 +1,39 @@
 <%= content_tag( 'h1', @peerage.full_title ) %>
 
+<%= content_tag( 'h2', link_to( "Letters patent issued on #{@peerage.letters_patent.patent_on.strftime( '%-d %B %Y')}", letters_patent_show_url( :letters_patent => @peerage.letters_patent ) ) ) %>
+
+<%= content_tag( 'p', "To #{link_to( @peerage.letters_patent.person.display_name, person_show_url( :person => @peerage.letters_patent.person ) )} as #{link_to( @peerage.letters_patent.peerage_type.name, peerage_type_show_url( :peerage_type => @peerage.letters_patent.peerage_type ) )}.".html_safe ) %>
+
+<%= content_tag( 'p', "Issued during the #{link_to( @peerage.letters_patent.administration.prime_minister_ordinally, administration_show_url( :administration => @peerage.letters_patent.administration ) )}.".html_safe ) if @peerage.letters_patent.administration %>
+
+<%= content_tag( 'p', "Announced on #{link_to( @peerage.letters_patent.announcement.announced_on.strftime( '%-d %B %Y'), announcement_show_url( :announcement => @peerage.letters_patent.announcement ) )} as part of a #{link_to( @peerage.letters_patent.announcement.announcement_type.name, announcement_type_show_url( :announcement_type => @peerage.letters_patent.announcement.announcement_type ) )}.".html_safe ) if @peerage.letters_patent.announcement %>
+
+<%= content_tag( 'h2', 'Nature of Special Remainder' ) %>
+<% if @peerage.special_remainder %>
+	<%= content_tag 'p', link_to( @peerage.special_remainder.description, special_remainder_show_url( :special_remainder => @peerage.special_remainder ) ) %>
+<% else -%>
+	<%= content_tag 'p', 'No special remainder.' %>
+<% end -%>
+
+<%= content_tag( 'p', "Note: #{@peerage.notes}" ) if @peerage.notes %>
+
+<hr />
+
 <%= @peerage.inspect %>
+
+
+<br />
+
+previous_title: nil, previous_rank: nil, 
+
+
+
+ 
+
+   extinct_on: nil,
+    last_number: nil, 
+	
+	
+	
+	administration_id: 60, 
+	peerage_type_id: 2, rank_id: 4, announcement_id: nil, of_title: true, special_remainder_id: nil, letters_patent_id: 2859
