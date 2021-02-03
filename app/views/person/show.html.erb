@@ -8,3 +8,8 @@
 		<%= content_tag( 'p', "#{@person.forenames} #{@person.surname} was born on #{@person.date_of_birth.strftime( '%-d %B %Y')}." ) %>
 	<% end -%>
 <% end -%>
+
+<%= content_tag( 'h2', 'Letters Patent' ) %>
+<ol>
+	<%= render :partial => 'letters_patent/letters_patent', :collection => @person.letters_patents %>
+</ol>
