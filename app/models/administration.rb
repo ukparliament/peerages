@@ -1,6 +1,7 @@
 class Administration < ActiveRecord::Base
   
   has_many :peerages, -> { order( :patent_on ) }
+  has_many :letters_patents, -> { order( :patent_on ) }
   
   def prime_minister_ordinally
     prime_minister.gsub(/ \((.*)\)/) {|s| ', ' + s[2].to_i.ordinalize + ' administration'}
@@ -22,6 +23,13 @@ class Administration < ActiveRecord::Base
       end_date_display = '-'
     end
     end_date_display
+  end
+  
+  def date_range
+    date_range = self.start_date_display
+    date_range += ' - '
+    date_range += self.end_date_display if self.end_date
+    date_range
   end
 end
 
