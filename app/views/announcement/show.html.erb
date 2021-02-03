@@ -1,5 +1,7 @@
 <%= content_tag( 'h1', "Announcement on #{@announcement.announced_on.strftime( '%-d %B %Y')}" ) %>
 
+<%= content_tag( 'p', "As part of a #{link_to( @announcement.announcement_type.name, announcement_type_show_url( :announcement_type => @announcement.announcement_type ) )}.".html_safe ) %>
+
 <% if @announcement.in_gazette -%>
 	<%= content_tag( 'p', "Published in the London Gazette." ) %>
 <% else -%>
