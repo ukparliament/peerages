@@ -8,11 +8,9 @@
 
 <%= content_tag( 'p', "Announced on #{link_to( @peerage.letters_patent.announcement.announced_on.strftime( '%-d %B %Y'), announcement_show_url( :announcement => @peerage.letters_patent.announcement ) )} as part of a #{link_to( @peerage.letters_patent.announcement.announcement_type.name, announcement_type_show_url( :announcement_type => @peerage.letters_patent.announcement.announcement_type ) )}.".html_safe ) if @peerage.letters_patent.announcement %>
 
-<%= content_tag( 'h2', 'Nature of Special Remainder' ) %>
 <% if @peerage.special_remainder %>
+	<%= content_tag( 'h2', 'Nature of Special Remainder' ) %>
 	<%= content_tag 'p', link_to( @peerage.special_remainder.description, special_remainder_show_url( :special_remainder => @peerage.special_remainder ) ) %>
-<% else -%>
-	<%= content_tag 'p', 'No special remainder.' %>
 <% end -%>
 
 <%= content_tag( 'p', "Note: #{@peerage.notes}" ) if @peerage.notes %>
