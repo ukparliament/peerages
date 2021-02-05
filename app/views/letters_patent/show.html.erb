@@ -7,7 +7,7 @@
 
 <%= content_tag( 'p', "Announced on #{link_to( @letters_patent.announcement.announced_on.strftime( '%-d %B %Y'), announcement_show_url( :announcement => @letters_patent.announcement ) )} as part of a #{link_to( @letters_patent.announcement.announcement_type.name, announcement_type_show_url( :announcement_type => @letters_patent.announcement.announcement_type ) )}.".html_safe ) if @letters_patent.announcement %>
 
-<%= content_tag( 'p', "#{@letters_patent.person.display_name} previously held the title of #{@letters_patent.previous_rank} #{@letters_patent.previous_title}." ) %>
+<%= content_tag( 'p', "#{@letters_patent.person.display_name} previously held the title of #{@letters_patent.previous_rank} #{@letters_patent.previous_title}." ) if @letters_patent.previous_title  %>
 
 <%= content_tag( 'h2', 'Peerages' ) %>
 <ol>
