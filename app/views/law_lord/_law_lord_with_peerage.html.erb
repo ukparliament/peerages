@@ -1,0 +1,8 @@
+<li>
+	<!-- appointment period -->
+	<% if law_lord_with_peerage.retired_on -%>
+		<%= content_tag( 'h3', link_to( "#{law_lord_with_peerage.peerage.display_title} #{law_lord_with_peerage.appointed_on.strftime( '%-d %B %Y')} - #{law_lord_with_peerage.retired_on.strftime( '%-d %B %Y' )}", law_lord_show_url( :law_lord => law_lord_with_peerage ) ) ) %>
+	<% else -%>
+		<%= content_tag( 'h3', link_to( "#{law_lord_with_peerage.peerage.display_title} #{law_lord_with_peerage.appointed_on.strftime( '%-d %B %Y')} -", law_lord_show_url( :law_lord => law_lord_with_peerage ) ) ) %>
+	<% end -%>
+</li>
