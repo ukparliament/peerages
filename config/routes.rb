@@ -38,7 +38,7 @@ Rails.application.routes.draw do
   get 'letters-patent' => 'letters_patent#index', as: :letters_patent_list
   get 'letters-patent/:letters_patent' => 'letters_patent#show', as: :letters_patent_show
   
-  get 'law-lords' => 'law_lord#index', as: :lord_lord_list
+  get 'law-lords' => 'law_lord#index', as: :law_lord_list
   get 'law-lords/:law_lord' => 'law_lord#show', as: :law_lord_show
   
   
