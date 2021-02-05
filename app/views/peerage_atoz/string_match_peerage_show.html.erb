@@ -1,0 +1,5 @@
+<h1>Peerages: A-Z: <%= @string.titlecase %></h1>
+
+<%= render :partial => 'atoz', :object => @letters %>
+
+<%= render :partial => 'peerage/peerage', :collection => @peerages %>

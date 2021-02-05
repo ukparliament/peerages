@@ -1,0 +1,9 @@
+<h1>Peerages</h1>
+
+<h2>By title: <%= @letter.letter %></h2>
+
+<%= render :partial => 'atoz', :object => @letters %>
+
+<ol>
+	<%= render :partial => 'peerage/peerage_alpha', :collection => @letter.peerages %>
+</ol>
