@@ -32,6 +32,10 @@ Rails.application.routes.draw do
   get 'announcements' => 'announcement#index', as: :announcement_list
   get 'announcements/:announcement' => 'announcement#show', as: :announcement_show
   
+  get 'peerages/a-z' => 'peerage_atoz#index', as: :peerage_atoz_list
+  get 'peerages/a-z/:letter' => 'peerage_atoz#show', as: :peerage_atoz_show
+  
+  get 'peerages' => 'peerage#index', as: :peerage_list
   get 'peerages/:peerage' => 'peerage#show', as: :peerage_show
   
 
@@ -53,7 +57,7 @@ Rails.application.routes.draw do
   
   
   
-  get 'peerages' => 'peerage#index', as: :peerage_list
+
   
   
   
