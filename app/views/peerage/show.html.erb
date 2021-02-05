@@ -5,7 +5,7 @@
 
 <%= content_tag( 'p', "To #{link_to( @peerage.letters_patent.person.display_name, person_show_url( :person => @peerage.letters_patent.person ) )} as #{link_to( @peerage.letters_patent.peerage_type.name, peerage_type_show_url( :peerage_type => @peerage.letters_patent.peerage_type ) )}.".html_safe ) %>
 
-<%= content_tag( 'p', "Issued during the #{link_to( @peerage.letters_patent.administration.prime_minister_ordinally, administration_show_url( :administration => @peerage.letters_patent.administration ) )}.".html_safe ) if @peerage.letters_patent.administration %>
+<%= content_tag( 'p', "Issued during the #{link_to( @peerage.letters_patent.administration.prime_minister, administration_show_url( :administration => @peerage.letters_patent.administration ) )} administration.".html_safe ) if @peerage.letters_patent.administration %>
 
 <%= content_tag( 'p', "Announced on #{link_to( @peerage.letters_patent.announcement.announced_on.strftime( '%-d %B %Y'), announcement_show_url( :announcement => @peerage.letters_patent.announcement ) )} as part of a #{link_to( @peerage.letters_patent.announcement.announcement_type.name, announcement_type_show_url( :announcement_type => @peerage.letters_patent.announcement.announcement_type ) )}.".html_safe ) if @peerage.letters_patent.announcement %>
 
