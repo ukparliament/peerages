@@ -25,6 +25,3 @@
 	<%= content_tag( 'p', "Annuity in The London Gazette, issue #{@law_lord.annuity_london_gazette_issue}, page #{@law_lord.annuity_london_gazette_page}." ) %>
 <% end -%>
 <%= content_tag( 'p', "Note: #{@law_lord.notes}" ) if @law_lord.notes %>
-	
-	<hr />
-	<%= @law_lord.inspect %>
