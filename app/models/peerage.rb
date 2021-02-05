@@ -6,6 +6,7 @@ class Peerage < ActiveRecord::Base
   belongs_to :announcement
   belongs_to :special_remainder
   belongs_to :letters_patent
+  belongs_to :letter
   has_many :law_lords, -> { order( :appointed_on ) }
   has_many :subsidiary_titles, -> { order( :title ) }
   has_many :peerage_holdings
@@ -63,6 +64,14 @@ class Peerage < ActiveRecord::Base
     full_title += ' of ' if self.of_title 
     full_title += title
     full_title
+  end
+  
+  def alpha_display_title
+    alpha_display_title = title
+    alpha_display_title += ', '
+    alpha_display_title += self.possible_rank_titles + ' '
+    alpha_display_title += ' of ' if self.of_title 
+    alpha_display_title
   end
   
   def gendered_display_title( gender )
