@@ -11,7 +11,8 @@ task :modify => [
   :normalise_special_remainders_from_subsidiary_titles,
   :normalise_letters_patent,
   :port_subsidiary_titles_to_peerages,
-  :link_letter_patent_to_peerages] do
+  :link_letter_patent_to_peerages,
+  :link_peerage_to_letters] do
 end
 
 task :collapse_title_of_into_peerage => :environment do
@@ -295,6 +296,15 @@ task :link_letter_patent_to_peerages => :environment do
   letters_patents.each do |letters_patent|
     letters_patent.person = letters_patent.peerages.first.peerage_holdings.first.person
     letters_patent.save
+  end
+end
+task :link_peerage_to_letters => :environment do
+  puts "linking peerages to letters"
+  peerages = Peerage.all
+  peerages.each do |peerage|
+    letter = Letter.all.where( 'letter = ?', peerage.alpha[0,1].upcase ).first
+    peerage.letter = letter
+    peerage.save
   end
 end
 
