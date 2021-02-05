@@ -10,41 +10,73 @@ class Peerage < ActiveRecord::Base
   has_many :subsidiary_titles, -> { order( :title ) }
   has_many :peerage_holdings
   
+  def gender_of_first_holder
+    self.letters_patent.person.gender
+  end
+  
+  def can_switch_gender?
+    can_switch_gender = false
+    # if the peerage is hered ...
+    # Array contains ids for peerage types of Hereditory Peerage, Hereditary peerage (already peer of Ireland), Hereditary peerage (already peer of Scotland), New hereditary peerage: not a promotion and Promotion are all hereditories
+    # NOTE: question over promotion here
+    if [2,3,4,7,8].include?( self.letters_patent.peerage_type_id )
+      # ... if the first holder was female
+      if self.gender_of_first_holder.label == 'Female'
+        can_switch_gender = true
+      # ... otherwise if the first holder was male
+      else
+        # ... if the peerage has a special remainder ...
+        if self.special_remainder
+          # ... if the special remainder is of the nature that the peerage can pass to females
+          # assumption here that special remainders with nature set out in patent may descend to a female
+          # assumption that limited inheritance peerages cannot
+          if [2,4,5].include?( self.special_remainder_id )
+            can_switch_gender = true
+          end
+        end
+      end
+    end
+    can_switch_gender
+  end
+  
+  def gendered_rank_label( gender )
+    GenderedRankLabel.all.where( 'gender_id = ?', gender ).where( 'rank_id = ?', self.rank.id ).first.label
+  end
+  
+  def opposite_gendered_rank_label( gender )
+    GenderedRankLabel.all.where( 'gender_id != ?', gender ).where( 'rank_id = ?', self.rank.id ).first.label
+  end
+  
   def possible_rank_titles
-    # if the peerage is hered
-      # if it is hered need to check if it has a special remainder that can pass to female
-        # need to show both titles?
-      # else
-        # show male title
-      # end
-      # any female hereds with peerage with no special remainder?
-      # if it's not hered
-        # base title on gender of holder
-      
-    possible_rank_titles = ''
-    self.rank.gendered_rank_labels.each do |grl|
-      possible_rank_titles += grl.label
+    # set the possible rank titles according to gender of first holder
+    possible_rank_titles = self.gendered_rank_label( self.gender_of_first_holder )
+    # if the peerage can switch gender
+    if self.can_switch_gender?
+      # ... add the opposite gendered rank title
+      possible_rank_titles += ' / ' + self.opposite_gendered_rank_label( self.gender_of_first_holder )
     end
     possible_rank_titles
+  end
+  
+  def display_title
+    full_title = self.possible_rank_titles + ' '
+    full_title += ' of ' if self.of_title 
+    full_title += title
+    full_title
+  end
+  
+  def gendered_display_title( gender )
+    full_title = self.gendered_rank_label( gender )
+    full_title += ' of ' if self.of_title 
+    full_title += ' ' + title
+    full_title
   end
   
   def full_title
     full_title = self.possible_rank_titles + ' '
     full_title += ' of ' if self.of_title 
     full_title += title
-    full_title += ' ' + self.of_place if self.of_place
+    full_title += ', ' + self.of_place if self.of_place
     full_title
-  end
-  
-  def gendered_full_title( gender )
-    gendered_full_title = self.gendered_rank_label( gender ) + ' '
-    gendered_full_title += ' of ' if self.of_title 
-    gendered_full_title += title
-    gendered_full_title += ' ' + self.of_place if self.of_place
-    gendered_full_title
-  end
-  
-  def gendered_rank_label( gender )
-    GenderedRankLabel.all.where( 'gender_id = ?', gender ).where( 'rank_id = ?', self.rank.id ).first.label
   end
 end
