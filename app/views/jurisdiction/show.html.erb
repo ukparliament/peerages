@@ -1,1 +1,4 @@
 <%= content_tag( 'h1', @jurisdiction.label ) %>
+<ol>
+	<%= render :partial => 'law_lord/law_lord_with_peerage', :collection => @jurisdiction.law_lords %>
+</ol>
