@@ -1,0 +1,2 @@
+module LawLordHelper
+end
