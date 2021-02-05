@@ -3,13 +3,13 @@ alter table subsidiary_titles add column of_title boolean default false;
 
 
 drop table if exists gendered_rank_labels;
+drop table if exists letters_patents;
 drop table if exists peerage_holdings;
 drop table if exists people;
 drop table if exists letters;
 drop table if exists genders;
 drop table if exists jurisdictions;
 drop table if exists special_remainders;
-drop table if exists letters_patents;
 
 create table genders (
 	id serial,
@@ -72,6 +72,8 @@ create table letters_patents (
 	id serial,
 	patent_on date not null,
 	patent_time int,
+	previous_title varchar(255),
+	previous_rank varchar(255),
 	administration_id int,
 	peerage_type_id int not null,
 	announcement_id int,
