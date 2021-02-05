@@ -17,9 +17,15 @@
 <% if @peerage.extinct_on %>
 	<%= content_tag( 'p', "Peerage extinct on #{@peerage.extinct_on.strftime( '%-d %B %Y')} with the #{@peerage.last_number.ordinalize} holder." ) %>
 <% end -%>
-	
 
 <%= content_tag( 'p', "Note: #{@peerage.notes}" ) if @peerage.notes %>
+
+<% unless @peerage.law_lords.empty? %>
+	<%= content_tag( 'h2', 'Law Lord appointments' ) %>
+	<ol>
+		<%= render :partial => 'law_lord/law_lord', :collection => @peerage.law_lords %>
+	</ol>
+<% end -%>
 
 <hr />
 
