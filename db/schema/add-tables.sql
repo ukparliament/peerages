@@ -90,4 +90,5 @@ alter table peerages add column special_remainder_id int;
 alter table peerages add column letters_patent_id int;
 alter table subsidiary_titles add column letters_patent_id int;
 alter table subsidiary_titles add column special_remainder_id int;
+alter table peerages add column letter_id int;
 
