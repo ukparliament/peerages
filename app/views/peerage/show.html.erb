@@ -1,4 +1,5 @@
-<%= content_tag( 'h1', @peerage.full_title ) %>
+<%= content_tag( 'h1', @peerage.display_title ) %>
+<%= content_tag( 'p', @peerage.full_title ) %>
 
 <%= content_tag( 'h2', link_to( "Letters patent issued on #{@peerage.letters_patent.patent_on.strftime( '%-d %B %Y')}", letters_patent_show_url( :letters_patent => @peerage.letters_patent ) ) ) %>
 
