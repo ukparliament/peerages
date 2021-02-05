@@ -14,25 +14,22 @@
 	<%= content_tag 'p', link_to( @peerage.special_remainder.description, special_remainder_show_url( :special_remainder => @peerage.special_remainder ) ) %>
 <% end -%>
 
+<% if @peerage.extinct_on %>
+	<%= content_tag( 'p', "Peerage extinct on #{@peerage.extinct_on.strftime( '%-d %B %Y')} with the #{@peerage.last_number.ordinalize} holder." ) %>
+<% end -%>
+	
+
 <%= content_tag( 'p', "Note: #{@peerage.notes}" ) if @peerage.notes %>
 
 <hr />
 
 <%= @peerage.inspect %>
-
-
 <br />
 
-previous_title: nil, previous_rank: nil, 
+
+extinct_on
+last_number
 
 
-
- 
-
-   extinct_on: nil,
-    last_number: nil, 
-	
-	
-	
-	administration_id: 60, 
-	peerage_type_id: 2, rank_id: 4, announcement_id: nil, of_title: true, special_remainder_id: nil, letters_patent_id: 2859
+previous_title
+previous_rank
