@@ -1,0 +1,16 @@
+<li>
+	<!-- appointment period -->
+	<% if law_lord_with_jurisdiction_and_peerage.retired_on -%>
+		<%= content_tag( 'h3', link_to( "#{law_lord_with_jurisdiction_and_peerage.peerage.display_title} #{law_lord_with_jurisdiction_and_peerage.appointed_on.strftime( '%-d %B %Y')} - #{law_lord_with_jurisdiction_and_peerage.retired_on.strftime( '%-d %B %Y' )}", law_lord_show_url( :law_lord => law_lord_with_jurisdiction_and_peerage ) ) ) %>
+	<% else -%>
+		<%= content_tag( 'h3', link_to( "#{law_lord_with_jurisdiction_and_peerage.peerage.display_title} #{law_lord_with_jurisdiction_and_peerage.appointed_on.strftime( '%-d %B %Y')} -", law_lord_show_url( :law_lord => law_lord_with_jurisdiction_and_peerage ) ) ) %>
+	<% end -%>
+	<%= content_tag( 'p', "Jurisdiction: #{link_to( law_lord_with_jurisdiction_and_peerage.jurisdiction.label, jurisdiction_show_url( :jurisdiction => law_lord_with_jurisdiction_and_peerage.jurisdiction ) )}".html_safe ) %>
+</li>
+
+
+
+
+
+
+
