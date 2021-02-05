@@ -1,4 +1,4 @@
-<%= content_tag( 'h1', @rank.degree ) %>
+<%= content_tag( 'h1', @rank.label ) %>
 
 <ol>
 	<%= render :partial => 'peerage/peerage', :collection => @rank.peerages %>
