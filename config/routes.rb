@@ -38,6 +38,9 @@ Rails.application.routes.draw do
   get 'letters-patent' => 'letters_patent#index', as: :letters_patent_list
   get 'letters-patent/:letters_patent' => 'letters_patent#show', as: :letters_patent_show
   
+  get 'law-lords' => 'law_lord#index', as: :lord_lord_list
+  get 'law-lords/:law_lord' => 'law_lord#show', as: :law_lord_show
+  
   
   
   
@@ -54,11 +57,6 @@ Rails.application.routes.draw do
   
   
   
-  get 'peerage-types/:peerage_type/peerages' => 'peerage_type#peerages', as: :peerage_type_peerages
-  
-  
-  get 'ranks/:rank/peerages' => 'rank#peerages', as: :rank_peerages
-  get 'ranks/:rank/subsidiary-titles' => 'rank#subsidiary_titles', as: :rank_subsidiary_titles
   
   
   get 'announcements/:announcement/peerages' => 'announcement#peerages', as: :announcement_peerages
