@@ -45,28 +45,9 @@ Rails.application.routes.draw do
   get 'law-lords' => 'law_lord#index', as: :law_lord_list
   get 'law-lords/:law_lord' => 'law_lord#show', as: :law_lord_show
   
-  
-  
-  
-  
-  
-
-  get 'administrations/:administration/peerages' => 'administration#peerages', as: :administration_peerages
-  
-  
-  
-  
-  
-
-  
-  
-  
-  
-  
-  get 'announcements/:announcement/peerages' => 'announcement#peerages', as: :announcement_peerages
-  
-  
-  get 'announcement-types/:announcement_type/announcements' => 'announcement_type#announcements', as: :announcement_type_announcements
+  get 'meta' => 'meta#index', as: :meta_list
+  get 'meta/about' => 'meta#about', as: :meta_about
+  get 'meta/schema' => 'meta#schema', as: :meta_schema
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
