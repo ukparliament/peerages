@@ -24,7 +24,7 @@
 	
 	<%= content_tag( 'li', "Assuming letters patent are what we think they are, should they hang off a peerage - as at present - or decorate a holding?" ) %>
 	
-	<%= content_tag( 'li', "#{link_to( 'Category 5 of special remainders', 'http://localhost:3000/special-remainders/5' )} implies peerages grouped have special remainders but is used to group peerages with subsidiary titles with special remainders. Should this category exist?" ) %>
+	<%= content_tag( 'li', "#{link_to( 'Category 5 of special remainders', special_remainder_show_url( :special_remainder => 5 ) )} implies peerages grouped have special remainders but is used to group peerages with subsidiary titles with special remainders. Should this category exist?".html_safe ) %>
 	
 	<%= content_tag( 'li', "Some peerages point to announcements of a type that are not present in the data. Can we create these?" ) %>
 </ol>
