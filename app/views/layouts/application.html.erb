@@ -53,6 +53,11 @@
 
 <footer>
 	<%= content_tag( 'p', "Based on data collated by #{link_to( 'David Beamish', 'https://twitter.com/clerkly' )} published at #{link_to( 'United Kingdom peerage creations 1801 to 2020', 'http://peerages.info/' )}.".html_safe ) %>
+	<%= link_to( 'Meta', meta_list_url ) %>
+	&middot;
+	<%= link_to( 'About', meta_about_url ) %>
+	&middot;
+	<%= link_to( 'Schema', meta_schema_url )  %>
 </footer>
 </body>
 </html>
