@@ -31,7 +31,7 @@ class Peerage < ActiveRecord::Base
           # ... if the special remainder is of the nature that the peerage can pass to females
           # assumption here that special remainders with nature set out in patent may descend to a female
           # assumption that limited inheritance peerages cannot
-          if [2,4,5].include?( self.special_remainder_id )
+          if [2,4].include?( self.special_remainder_id )
             can_switch_gender = true
           end
         end
