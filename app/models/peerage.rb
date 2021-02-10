@@ -85,7 +85,7 @@ class Peerage < ActiveRecord::Base
     full_title = self.possible_rank_titles + ' '
     full_title += ' of ' if self.of_title 
     full_title += title
-    full_title += ', ' + self.of_place if self.of_place
+    full_title += ', ' + self.territorial_designation if self.territorial_designation
     full_title
   end
 end

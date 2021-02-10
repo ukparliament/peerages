@@ -269,7 +269,7 @@ task :port_subsidiary_titles_to_peerages => :environment do
     # create a new peerage
     peerage = Peerage.new
     peerage.title = subsidiary_title.title
-    peerage.of_place = subsidiary_title.of_place
+    peerage.territorial_designation = subsidiary_title.territorial_designation
     peerage.of_title = subsidiary_title.of_title
     peerage.extinct_on = subsidiary_title.extinct_on
     peerage.last_number = subsidiary_title.last_number
