@@ -7,5 +7,8 @@ class LettersPatent < ActiveRecord::Base
   belongs_to :peerage_type
   belongs_to :announcement
   belongs_to :person
-  has_many :peerages
+  
+  def peerages
+    Peerage.all.select( 'p.*' ).joins( 'as p, ranks as r' ).where( 'letters_patent_id = ?', self.id).where( 'p.rank_id = r.id' ).order( 'r.degree' )
+  end
 end
