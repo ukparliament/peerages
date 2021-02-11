@@ -1,7 +1,7 @@
 class PeerageController < ApplicationController
   
   def index
-    @peerages = Peerage.all.order( 'patent_on' )
+    @peerages = Peerage.all.order( 'alpha' )
   end
   
   def show
