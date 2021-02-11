@@ -1,1 +1,11 @@
-<%= content_tag( 'li', link_to( peerage_alpha.alpha_display_title, peerage_show_url( :peerage => peerage_alpha ) ) ) %>
+<tr>
+	<%= content_tag( 'td', link_to( peerage_alpha.alpha_display_title, peerage_show_url( :peerage => peerage_alpha ) ) ) %>
+	<%= content_tag( 'td', link_to( peerage_alpha.letters_patent.patent_on.strftime( '%-d %B %Y'), letters_patent_show_url( :letters_patent => peerage_alpha.letters_patent ) ) ) %>
+	<td>
+		<% if peerage_alpha.extinct_on -%>
+			<%= peerage_alpha.extinct_on.strftime( '%-d %B %Y') %>
+		<% else -%>
+			-
+		<% end -%>
+	</td>
+</tr>
