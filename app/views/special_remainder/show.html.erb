@@ -1,5 +1,8 @@
 <%= content_tag( 'h1', @special_remainder.description ) %>
 
-<ol>
-	<%= render :partial => 'peerage/peerage_alpha', :collection => @special_remainder.peerages %>
-</ol>
+<table>
+	<%= render :partial => 'peerage/table_header' %>
+	<tbody>
+		<%= render :partial => 'peerage/peerage_alpha', :collection => @special_remainder.peerages %>
+	</tbody>
+</table>
