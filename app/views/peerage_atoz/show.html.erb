@@ -4,6 +4,9 @@
 
 <%= render :partial => 'atoz', :object => @letters %>
 
-<ol>
-	<%= render :partial => 'peerage/peerage_alpha', :collection => @letter.peerages %>
-</ol>
+<table>
+	<%= render :partial => 'peerage/table_header' %>
+	<tbody>
+		<%= render :partial => 'peerage/peerage_alpha', :collection => @letter.peerages %>
+	</tbody>
+</table>

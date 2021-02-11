@@ -2,4 +2,9 @@
 
 <%= render :partial => 'atoz', :object => @letters %>
 
-<%= render :partial => 'peerage/peerage', :collection => @peerages %>
+<table>
+	<%= render :partial => 'peerage/table_header' %>
+	<tbody>
+		<%= render :partial => 'peerage/peerage_alpha', :collection => @peerages %>
+	</tbody>
+</table>

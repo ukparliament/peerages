@@ -1,5 +1,8 @@
 <h1>Peerages</h1>
 
-<ol>
-	<%= render :partial => 'peerage', :collection => @peerages %>
-</ol>
+<table>
+	<%= render :partial => 'table_header' %>
+	<tbody>
+		<%= render :partial => 'peerage_alpha', :collection => @peerages %>
+	</tbody>
+</table>
