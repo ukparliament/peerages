@@ -23,6 +23,9 @@ Rails.application.routes.draw do
   get 'peerage-types' => 'peerage_type#index', as: :peerage_type_list
   get 'peerage-types/:peerage_type' => 'peerage_type#show', as: :peerage_type_show
   
+  get 'peerage-types/:peerage_type/a-z' => 'peerage_type_atoz#index', as: :peerage_type_atoz_list
+  get 'peerage-types/:peerage_type/a-z/:letter' => 'peerage_type_atoz#show', as: :peerage_type_atoz_show
+  
   get 'jurisdictions' => 'jurisdiction#index', as: :jurisdiction_list
   get 'jurisdictions/:jurisdiction' => 'jurisdiction#show', as: :jurisdiction_show
   
@@ -38,7 +41,6 @@ Rails.application.routes.draw do
   get 'peerages' => 'peerage#index', as: :peerage_list
   get 'peerages/:peerage' => 'peerage#show', as: :peerage_show
   
-
   get 'letters-patent' => 'letters_patent#index', as: :letters_patent_list
   get 'letters-patent/:letters_patent' => 'letters_patent#show', as: :letters_patent_show
   
