@@ -20,7 +20,7 @@ class Peerage < ActiveRecord::Base
     # if the peerage is hered ...
     # Array contains ids for peerage types of Hereditory Peerage, Hereditary peerage (already peer of Ireland), Hereditary peerage (already peer of Scotland), New hereditary peerage: not a promotion and Promotion are all hereditories
     # NOTE: question over promotion here
-    if [2,3,4,7,8].include?( self.letters_patent.peerage_type_id )
+    if [2,3,4,7,8].include?( self.peerage_type_id )
       # ... if the first holder was female
       if self.gender_of_first_holder.label == 'Female'
         can_switch_gender = true
