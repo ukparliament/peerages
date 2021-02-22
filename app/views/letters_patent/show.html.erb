@@ -1,6 +1,6 @@
 <%= content_tag( 'h1', "Letters patent issued on #{@letters_patent.patent_on.strftime( '%-d %B %Y')}" ) %>
 
-<%= content_tag( 'p', "To #{link_to( @letters_patent.person.display_name, person_show_url( :person => @letters_patent.person ) )} as #{link_to( @letters_patent.peerage_type.name, peerage_type_show_url( :peerage_type => @letters_patent.peerage_type ) )}.".html_safe ) %>
+<%= content_tag( 'p', "To #{link_to( @letters_patent.person.display_name, person_show_url( :person => @letters_patent.person ) )} .".html_safe ) %>
 
 <%= content_tag( 'p', "Issued during the #{link_to( @letters_patent.administration.prime_minister, administration_show_url( :administration => @letters_patent.administration ) )} administration.".html_safe ) if @letters_patent.administration %>
 
