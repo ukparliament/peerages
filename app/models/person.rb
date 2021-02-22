@@ -1,6 +1,5 @@
 class Person < ActiveRecord::Base
   
-  has_many :peerages, -> { order( :patent_on ) }
   belongs_to :letter
   belongs_to :gender
   has_many :peerage_holdings
@@ -29,5 +28,11 @@ class Person < ActiveRecord::Base
       date_of_death_display += self.date_of_death.strftime( '%-d %b %Y')
     end
     date_of_death_display
+  end
+  
+  def peerages
+    #Peerage.all.select.( 'p.*' ).joins( 'as p, peerage_holdings as ph' ).where( 'ph.peerage_id = p.id' )
+    #Peerage.all.select.( 'p.*' ).joins( 'as p' )
+    Peerage.all.select( 'p.*' ).joins( 'as p, peerage_holdings as ph, ranks as r' ).where( 'ph.peerage_id = p.id' ).where( 'ph.person_id = ?', self ).where( 'p.rank_id = r.id' ).order( 'r.degree' )
   end
 end
