@@ -1,5 +1,8 @@
 <%= content_tag( 'h1', @peerage_type.name ) %>
 
-<ol>
-	<%= render :partial => 'letters_patent/letters_patent', :collection => @peerage_type.letters_patents %>
-</ol>
+<table>
+	<%= render :partial => 'peerage/table_header' %>
+	<tbody>
+		<%= render :partial => 'peerage/peerage_alpha', :collection => @peerage_type.peerages %>
+	</tbody>
+</table>
