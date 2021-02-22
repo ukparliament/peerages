@@ -1,0 +1,2 @@
+module PeerageTypeAtozHelper
+end

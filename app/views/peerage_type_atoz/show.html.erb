@@ -1,0 +1,10 @@
+<%= content_tag( 'h1', @peerage_type.name ) %>
+
+<%= render :partial => 'atoz', :object => @letters %>
+
+<table>
+	<%= render :partial => 'peerage/table_header' %>
+	<tbody>
+		<%= render :partial => 'peerage/peerage_alpha', :collection => @peerage_type.peerages_with_letter( @letter ) %>
+	</tbody>
+</table>
