@@ -242,7 +242,6 @@ task :normalise_letters_patent => :environment do
     letters_patent.previous_rank = peerage.previous_rank
     letters_patent.previous_title = peerage.previous_title
     letters_patent.administration = peerage.administration
-    letters_patent.peerage_type = peerage.peerage_type
     letters_patent.announcement = peerage.announcement
     letters_patent.save
     peerage.letters_patent = letters_patent
@@ -277,6 +276,8 @@ task :port_subsidiary_titles_to_peerages => :environment do
     peerage.alpha = subsidiary_title.alpha
     peerage.rank_id = subsidiary_title.rank_id
     peerage.special_remainder_id = subsidiary_title.special_remainder_id
+    # Assign the same peerage type as the parent peerage
+    peerage.peerage_type = subsidiary_title.peerage.peerage_type
     peerage.letters_patent_id = subsidiary_title.letters_patent_id
     peerage.save
     
