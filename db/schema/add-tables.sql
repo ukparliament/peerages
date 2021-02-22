@@ -75,11 +75,9 @@ create table letters_patents (
 	previous_title varchar(255),
 	previous_rank varchar(255),
 	administration_id int,
-	peerage_type_id int not null,
 	announcement_id int,
 	person_id int,
 	constraint fk_administration foreign key (administration_id) references administrations(id),
-	constraint fk_peerage_type foreign key (peerage_type_id) references peerage_types(id),
 	constraint fk_announcement foreign key (announcement_id) references announcements(id),
 	constraint fk_person foreign key (person_id) references people(id),
 	primary key (id)
