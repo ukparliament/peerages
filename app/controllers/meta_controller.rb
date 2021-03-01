@@ -6,6 +6,9 @@ class MetaController < ApplicationController
   def about
   end
   
+  def iaq
+  end
+  
   def schema
   end
 end

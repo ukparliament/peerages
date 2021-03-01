@@ -1,0 +1,79 @@
+<%= content_tag( 'h1', 'Infrequently Asked Questions' ) %>
+<ol>
+	<li>
+		<%= content_tag( 'p', "The source data has peerages having subsidiary titles. This doesn't work for titles with different special remainders where the peerages might part company as the different titles move down different lines of inheritance. See peerages under #{link_to( 'this letters patent', 'http://peerages.herokuapp.com/letters-patent/2727' )} for example. peerages.info has 'a subsidiary peerage created by the same letters patent as a higher-ranking peerage'. Are parent and subsidiary peerages created by the same letters patent or different letters patent issued on the same day?".html_safe ) %>
+		<%= content_tag( 'p', "Peerages granted to the same person on the same day are issued in the same letters patent. The same person may be granted different peerages at different points in time. They may hold more than one peerage of the same rank. In this case they should be listed in rank order, then by date of letters patent, earliest first." ) %>
+	</li>
+	
+	<li>
+		<%= content_tag( 'p', "All subsidiary peerages have the same date for issue of letters patent as their parent peerage, except for the current #{link_to( 'Duke of Cambridge', peerage_show_url( :peerage => 2740 ) )} whose main peerage has a letters patent date of 26/05/2011, with two subsidiary titles - the #{link_to( 'Earl of Strathearn', peerage_show_url( :peerage => 3106 ) )} and #{link_to( 'Lord Carrickfergus', peerage_show_url( :peerage => 3099 ) )} - having a letters patent date of 29/04/2011. We have checked the London Gazette and found a single announcement. For now, we have assumed incorrect dates on the subsidiaries and combined them into the same letters patent as the 'parent' peerage. Is this a data entry error or can there be a gap between issuing of parent and subsidiary peerages?".html_safe ) %>
+		<%= content_tag( 'p', "We believe this was a data entry error. All three peerages should have had a letters patent date of 26/05/2011." ) %>
+	</li>
+	
+	<li>
+		<%= content_tag( 'p', "Is it possible for peerages of different types to be created in the same letters patent?" ) %>
+		<%= content_tag( 'p', "There is nothing to preclude this but no known examples. It is possible to imagine an hereditary peerage being created which would not allow for a seat in the Lords, alongside a life peerage which would. We have no moved peerage type back to be a property of peerage rather than the letters patent, so should be able to cope with this eventuality." ) %>
+	</li>
+	
+	<li>
+		<%= content_tag( 'p', "Is there ever an announcement upon inheritance of a peerage?" ) %>
+		<%= content_tag( 'p', "No." ) %>
+	</li>
+	
+	<li>
+		<%= content_tag( 'p', "#{link_to( 'Category 5 of special remainders', special_remainder_show_url( :special_remainder => 5 ) )} implies peerages grouped have special remainders but is used to group peerages with subsidiary titles with special remainders. Should this category exist?".html_safe ) %>
+		<%= content_tag( 'p', "#{link_to( 'Category 5 of special remainders', special_remainder_show_url( :special_remainder => 5 ) )} groups peerages sharing a letters patent with a second peerage having a special remainder, but the peerages grouped do not themselves have special remainders. Category 5 should be removed.".html_safe ) %>
+	</li>
+	
+	<li>
+		<%= content_tag( 'p', "Is there a better word than ordinality for the Xth Viscount Y?" ) %>
+		<%= content_tag( 'p', "No other term is in common use. Ordinality is fine." ) %>
+	</li>
+	
+	<li>
+		<%= content_tag( 'p', "Is there a word for the 'of' in Earl of X?" ) %>
+		<%= content_tag( 'p', "This usually distinguishes between Earl of Place and Earl Surname, but not exclusively. Continuing to call the field 'of_title' is fine." ) %>
+	</li>
+	
+	<li>
+		<%= content_tag( 'p', "Is it possible for a peer to change their name whilst holding a peerage?" ) %>
+		<%= content_tag( 'p', "We need to deal with this from a personal perspective but not in terms of the peerage title. Letters patent say the person shall, 'henceforth be known as'." ) %>
+	</li>
+	
+	<li>
+		<%= content_tag( 'p', "Besides death, how else might a peerage holding end?" ) %>
+		<%= content_tag( 'p', "Historically a peer might be declared attainted though this often coincided with a death penalty and the extinction of the peerage. Under the Peerage Act 1963, a peer might disclaim the peerage. This would have the effect of wiping out any record of that person holding the peerage, although the College of Arms still retains a record of the holding. Anthony Neil Wedgwood Benn is still regarded by the College of Arms as the 2nd Viscount Stansgate. The Title Deprivation Act 1917  deprived enemy aliens of peerages, allowing holders and their descendants to petition the Crown for reinstatement. In such cases the peerages were suspended and did not become extinct." ) %>
+	</li>
+	
+	<li>
+		<%= content_tag( 'p', "How should one title a peerage - as opposed to a peer holding a peerage - if that peerage can move between genders?" ) %>
+		<%= content_tag( 'p', "Title (Genderless rank) has been suggested and agreed with, for example: Curzon of Kedleston (Earldom)" ) %>
+	</li>
+	
+	<li>
+		<%= content_tag( 'p', "Are subsidiary peerages under the same letters patent also announced?" ) %>
+		<%= content_tag( 'p', "Yes. Subsidiary peerages under the same letters patent are announced together." ) %>
+	</li>
+	
+	also: writ of acceleration. brings heir into house at same as father. 
+</ol>
+
+<%= content_tag( 'h2', 'Unanswered' ) %>
+<ol>
+	<li>
+		<%= content_tag( 'p', "What is the number attribute on announcements?" ) %>
+	</li>
+	
+	<li>
+		<%= content_tag( 'p', "Some peerages point to announcements of a type that are not present in the data. Can we create these?" ) %>
+	</li>
+	
+	<li>
+		<%= content_tag( 'p', "Are there - genderless- labels for all ranks? If so, what are they?" ) %>
+	</li>
+	
+	<li>
+		<%= content_tag( 'p', "Do we need to model writs of acceleration and if so how?" ) %>
+		<%= content_tag( 'p', "Writs of acceleration allow a heir to sit in the House at the same time as the current holder of the peerage. They were granted by the Lord Chancellor, following a petition to queen?!?" ) %>
+	</li>
+</ol>

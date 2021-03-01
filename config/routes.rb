@@ -49,6 +49,7 @@ Rails.application.routes.draw do
   
   get 'meta' => 'meta#index', as: :meta_list
   get 'meta/about' => 'meta#about', as: :meta_about
+  get 'meta/iaq' => 'meta#iaq', as: :meta_iaq
   get 'meta/schema' => 'meta#schema', as: :meta_schema
 
   # Example of regular route:
