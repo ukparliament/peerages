@@ -14,20 +14,56 @@
 
 	<%= content_tag( 'p', "There are a number of questions which remain unanswered:" ) %>
 	<ol>
-		<%= content_tag( 'li', "The source data has peerages having subsidiary titles. This doesn't work for titles with different special remainders where the peerages might part company as the different titles move down different lines of inheritance. See peerages under #{link_to( 'this letters patent', 'http://peerages.herokuapp.com/letters-patent/2727' )} for example. peerages.info has 'a subsidiary peerage created by the same letters patent as a higher-ranking peerage'. Are parent and subsidiary peerages created by the same letters patent or different letters patent issued on the same day?".html_safe ) %>
-	
-		<%= content_tag( 'li', "All subsidiary peerages have the same date for issue of letters patent as their parent peerage, except for the current #{link_to( 'Duke of Cambridge', peerage_show_url( :peerage => 2740 ) )} whose main peerage has a letters patent date of 26/05/2011, with two subsidiary titles - the #{link_to( 'Earl of Strathearn', peerage_show_url( :peerage => 3106 ) )} and #{link_to( 'Lord Carrickfergus', peerage_show_url( :peerage => 3099 ) )} - having a letters patent date of 29/04/2011. We have checked the London Gazette and found a single announcement. For now, we have assumed incorrect dates on the subsidiaries and combined them into the same letters patent as the 'parent' peerage. Is this a data entry error or can there be a gap between issuing of parent and subsidiary peerages?".html_safe ) %>
-	
-		<%= content_tag( 'li', "What is the number attribute on announcements?" ) %>
-	
-		<%= content_tag( 'li', "Is it possible for peerages of different types to be created in the same letters patent?" ) %>
-	
-		<%= content_tag( 'li', "Is there ever an announcement upon inheritance of a peerage?" ) %>
-	
-		<%= content_tag( 'li', "Assuming letters patent are what we think they are, should they hang off a peerage - as at present - or decorate a holding?" ) %>
-	
-		<%= content_tag( 'li', "#{link_to( 'Category 5 of special remainders', special_remainder_show_url( :special_remainder => 5 ) )} implies peerages grouped have special remainders but is used to group peerages with subsidiary titles with special remainders. Should this category exist?".html_safe ) %>
-	
-		<%= content_tag( 'li', "Some peerages point to announcements of a type that are not present in the data. Can we create these?" ) %>
+		<li>
+			<%= content_tag( 'p', "The source data has peerages having subsidiary titles. This doesn't work for titles with different special remainders where the peerages might part company as the different titles move down different lines of inheritance. See peerages under #{link_to( 'this letters patent', 'http://peerages.herokuapp.com/letters-patent/2727' )} for example. peerages.info has 'a subsidiary peerage created by the same letters patent as a higher-ranking peerage'. Are parent and subsidiary peerages created by the same letters patent or different letters patent issued on the same day?".html_safe ) %>
+		</li>
+		<li>
+			<%= content_tag( 'p', "All subsidiary peerages have the same date for issue of letters patent as their parent peerage, except for the current #{link_to( 'Duke of Cambridge', peerage_show_url( :peerage => 2740 ) )} whose main peerage has a letters patent date of 26/05/2011, with two subsidiary titles - the #{link_to( 'Earl of Strathearn', peerage_show_url( :peerage => 3106 ) )} and #{link_to( 'Lord Carrickfergus', peerage_show_url( :peerage => 3099 ) )} - having a letters patent date of 29/04/2011. We have checked the London Gazette and found a single announcement. For now, we have assumed incorrect dates on the subsidiaries and combined them into the same letters patent as the 'parent' peerage. Is this a data entry error or can there be a gap between issuing of parent and subsidiary peerages?".html_safe ) %>
+		</li>
+		<li>
+			<%= content_tag( 'p', "What is the number attribute on announcements?" ) %>
+		</li>
+		<li>
+			<%= content_tag( 'p', "Is it possible for peerages of different types to be created in the same letters patent?" ) %>
+		</li>
+		<li>
+			<%= content_tag( 'p', "Is there ever an announcement upon inheritance of a peerage?" ) %>
+		</li>
+		<li>
+			<%= content_tag( 'p', "Assuming letters patent are what we think they are, should they hang off a peerage - as at present - or decorate a holding?" ) %>
+		</li>
+		<li>
+			<%= content_tag( 'p', "#{link_to( 'Category 5 of special remainders', special_remainder_show_url( :special_remainder => 5 ) )} implies peerages grouped have special remainders but is used to group peerages with subsidiary titles with special remainders. Should this category exist?".html_safe ) %>
+		</li>
+		<li>
+			<%= content_tag( 'p', "Some peerages point to announcements of a type that are not present in the data. Can we create these?" ) %>
+		</li>
+		<li>
+			<%= content_tag( 'p', "Is there a better word than ordinality for the Xth Viscount Y?" ) %>
+		</li>
+		<li>
+			<%= content_tag( 'p', "Is there a better word than ordinality for the Xth Viscount Y?" ) %>
+		</li>
+		<li>
+			<%= content_tag( 'p', "Is there a word for the 'of' in Earl of X?" ) %>
+		</li>
+		<li>
+			<%= content_tag( 'p', "Is it possible for a peer to change their name whilst holding a peerage?" ) %>
+		</li>
+		<li>
+			<%= content_tag( 'p', "Besides death, how else might a peerage holding end?" ) %>
+		</li>
+		<li>
+			<%= content_tag( 'p', "Are there - genderless- labels for all ranks? If so, what are they?" ) %>
+		</li>
+		<li>
+			<%= content_tag( 'p', "Is the peerage type of promotion taken to be hereditary?" ) %>
+		</li>
+		<li>
+			<%= content_tag( 'p', "Are subsidiary peerages under the same letters patent also announced?" ) %>
+		</li>
+		<li>
+			<%= content_tag( 'p', "Was it typical for hereditary peers to also get life peerages before the House of Lords Act 1999?" ) %>
+		</li>
 	</ol>
 </div>
