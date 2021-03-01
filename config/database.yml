@@ -4,10 +4,10 @@ development:
   database: peerages
   host: localhost
   pool: 5
-production:
-  <<: *default
-  host: <%= ENV[‘DB_HOST’] %>
-  port: 5432
-  database: <%= ENV[‘DB_DATABASE’] %>
-  username: <%= ENV[‘DB_USERNAME’] %>
-  password: <%= ENV[‘DB_PASSWORD’] %>
+#production:
+#  host: <%= ENV['DB_HOST'] %>
+#  port: 5432
+#  adapter: postgresql
+#  database: <%= ENV['DB_DATABASE'] %>
+#  username: <%= ENV['DB_USERNAME'] %>
+#  password: <%= ENV['DB_PASSWORD'] %>
