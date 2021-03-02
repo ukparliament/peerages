@@ -1,0 +1,7 @@
+<tr>
+	<%= content_tag( 'td', peerage_holding.ordinality.ordinalize ) %>
+	<%= content_tag( 'td', peerage_holding.person.surname ) %>
+	<%= content_tag( 'td', peerage_holding.person.forenames ) %>
+	<%= content_tag( 'td', peerage_holding.start_on.strftime( '%-d %B %Y' ) ) %>
+	<%= content_tag( 'td', peerage_holding.end_on.strftime( '%-d %B %Y' ) ) %>
+</tr>
