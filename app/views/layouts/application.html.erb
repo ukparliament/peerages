@@ -17,14 +17,42 @@
 <header>
 <nav>
 <strong><a href="/">Peerages</a></strong><br>
+<%= link_to( 'Peerages', peerage_atoz_show_url( :letter => 'a' ) ) %>
+&middot;
+<%= link_to( 'Peerage types', peerage_type_list_url ) %>
+&middot;
+<%= link_to( 'Ranks', rank_list_url )  %>
+&middot;
+<%= link_to( 'Announcement types', announcement_type_list_url )  %>
+&middot;
+<%= link_to( 'All announcements', announcement_list_url )  %>
+&middot;
+<%= link_to( 'People', person_atoz_show_url( :letter => 'a' ) ) %>
+&middot;
+<%= link_to( 'Administrations', administration_list_url )  %>
+&middot;
+<%= link_to( 'Special remainders', special_remainder_list_url )  %>
+&middot;
+<%= link_to( 'Law Lord appointments', law_lord_list_url )  %>
+&middot;
+<%= link_to( 'Law Lord jurisdictions', jurisdiction_list_url )  %>
 
 </nav>
 </header>
 
 <main>
-	<%= content_tag( 'p', "This website has #{link_to( 'moved home', 'https://api.parliament.uk/peerages' )}.".html_safe ) %>
+<%= yield %>
 </main>
 
-
+<footer>
+	<%= content_tag( 'p', "Based on data collated by #{link_to( 'David Beamish', 'https://twitter.com/clerkly' )} published at #{link_to( 'United Kingdom peerage creations 1801 to 2020', 'http://peerages.info/' )}.".html_safe ) %>
+	<%= link_to( 'Meta', meta_list_url ) %>
+	&middot;
+	<%= link_to( 'About', meta_about_url ) %>
+	&middot;
+	<%= link_to( 'Infrequently Asked Questions', meta_iaq_url ) %>
+	&middot;
+	<%= link_to( 'Schema', meta_schema_url )  %>
+</footer>
 </body>
 </html>
