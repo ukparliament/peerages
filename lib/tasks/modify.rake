@@ -13,8 +13,7 @@ task :modify => [
   :port_subsidiary_titles_to_peerages,
   :link_letter_patent_to_peerages,
   :link_peerage_to_letters,
-  :add_labels_to_ranks,
-  :add_end_dates_to_holdings_ended_under_titles_deprivation_act_1917] do
+  :add_labels_to_ranks] do
 end
 
 task :collapse_title_of_into_peerage => :environment do
@@ -339,31 +338,3 @@ task :add_labels_to_ranks => :environment do
     rank.save
   end
 end
-task :add_end_dates_to_holdings_ended_under_titles_deprivation_act_1917 => :environment do
-  puts "adding end dates to holdings ender under the Title Deprivation Act 1917"
-  # Duke of Albany
-  peerage = Peerage.find( 447 )
-  peerage_holding = peerage.peerage_holdings.first
-  peerage_holding.end_on = '1919-03-28'
-  peerage_holding.save
-  
-  # Earl of Clarence
-  peerage = Peerage.find( 3001 )
-  peerage_holding = peerage.peerage_holdings.first
-  peerage_holding.end_on = '1919-03-28'
-  peerage_holding.save
-  
-  # Lord Arklow
-  peerage = Peerage.find( 3027 )
-  peerage_holding = peerage.peerage_holdings.first
-  peerage_holding.end_on = '1919-03-28'
-  peerage_holding.save
-end
-
-
-
-
-
-
-
-
