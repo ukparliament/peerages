@@ -48,7 +48,8 @@
 </header>
 
 <main>
-<%= yield %>
+	<%= content_tag( 'p', "This website has #{link_to( 'move home', 'https://peerages.azurewebsites.net/' ).")%>
+<% yield %>
 </main>
 
 <footer>
