@@ -12,7 +12,9 @@ task :modify => [
   :normalise_letters_patent,
   :port_subsidiary_titles_to_peerages,
   :link_letter_patent_to_peerages,
-  :link_peerage_to_letters] do
+  :link_peerage_to_letters,
+  :add_labels_to_ranks,
+  :add_end_dates_to_holdings_ended_under_titles_deprivation_act_1917] do
 end
 
 task :collapse_title_of_into_peerage => :environment do
@@ -90,6 +92,11 @@ task :normalise_people => :environment do
       person.save
     end
     peerage_holding = PeerageHolding.new
+    # Given we're only dealing with first holders, set the ordinality to 1, the start date to the date of letters patent and the end date to the date of death of the person
+    peerage_holding.ordinality = 1
+    peerage_holding.start_on = peerage.patent_on
+    peerage_holding.end_on = peerage.date_of_death
+    
     # Move introduced on to holding because, although inheritees don't get introduced, they do if there's a special remainder
     peerage_holding.introduced_on = peerage.introduced_on
     peerage_holding.person = person
@@ -286,7 +293,10 @@ task :port_subsidiary_titles_to_peerages => :environment do
     peerage_holding = PeerageHolding.new
     peerage_holding.peerage = peerage
     peerage_holding.person = parent_peerage.peerage_holdings.first.person
-    # NOTE: Are subsidiary peerages also introduced? Assuming so here
+    # Given we're only dealing with first holders, set the ordinality to 1, the start date to the date of letters patent and the end date to the date of death of the person
+    peerage_holding.ordinality = 1
+    peerage_holding.start_on = parent_peerage.letters_patent.patent_on
+    peerage_holding.end_on = parent_peerage.date_of_death
     peerage_holding.introduced_on = parent_peerage.peerage_holdings.first.introduced_on
     peerage_holding.save
   end
@@ -308,7 +318,47 @@ task :link_peerage_to_letters => :environment do
     peerage.save
   end
 end
-
+task :add_labels_to_ranks => :environment do
+  puts "adding genderless labels to ranks"
+  ranks = Rank.all
+  ranks.each do |rank|
+    case rank.degree
+    when 0
+      rank.label = 'Princedom'
+    when 1
+      rank.label = 'Dukedom'
+    when 2
+      rank.label = 'Marquessate'
+    when 3
+      rank.label = 'Earldom'
+    when 4
+      rank.label = 'Viscountcy'
+    when 5
+      rank.label = 'Barony'
+    end
+    rank.save
+  end
+end
+task :add_end_dates_to_holdings_ended_under_titles_deprivation_act_1917 => :environment do
+  puts "adding end dates to holdings ender under the Title Deprivation Act 1917"
+  # Duke of Albany
+  peerage = Peerage.find( 447 )
+  peerage_holding = peerage.peerage_holdings.first
+  peerage_holding.end_on = '1919-03-28'
+  peerage_holding.save
+  
+  # Earl of Clarence
+  peerage = Peerage.find( 3001 )
+  peerage_holding = peerage.peerage_holdings.first
+  peerage_holding.end_on = '1919-03-28'
+  peerage_holding.save
+  
+  # Lord Arklow
+  peerage = Peerage.find( 3027 )
+  peerage_holding = peerage.peerage_holdings.first
+  peerage_holding.end_on = '1919-03-28'
+  peerage_holding.save
+end
 
 
 
