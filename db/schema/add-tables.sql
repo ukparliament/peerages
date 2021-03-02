@@ -40,6 +40,9 @@ create table people (
 );
 create table peerage_holdings (
 	id serial,
+	ordinality int not null,
+	start_on date not null,
+	end_on date,
 	person_id int not null,
 	peerage_id int not null,
 	introduced_on date default null,
