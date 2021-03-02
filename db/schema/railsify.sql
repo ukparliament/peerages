@@ -65,6 +65,7 @@ alter table ranks rename column "Rank" to code;
 alter table ranks rename column "FullRank" to name;
 alter table ranks rename column "Degree" to degree;
 alter table ranks rename column "Sex" to gender_char;
+alter table ranks add column "label" varchar(100);
 alter table ranks drop constraint "Ranks_pkey";
 alter table ranks add column id serial;
 alter table ranks add primary key (id);
