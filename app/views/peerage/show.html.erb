@@ -26,3 +26,19 @@
 		<%= render :partial => 'law_lord/law_lord', :collection => @peerage.law_lords %>
 	</ol>
 <% end -%>
+
+<%= content_tag( 'h2', 'Holders' ) %>
+<table>
+	<thead>
+		<tr>
+			<%= content_tag( 'td', 'Number' ) %>
+			<%= content_tag( 'td', 'Surname' ) %>
+			<%= content_tag( 'td', 'Forenames' ) %>
+			<%= content_tag( 'td', 'Held from' ) %>
+			<%= content_tag( 'td', 'Held to' ) %>
+		</tr>
+	</thead>
+	<tbody>
+		<%= render :partial => 'peerage_holding/peerage_holding', :collection => @peerage.peerage_holdings %>
+	</tbody>
+</table>
