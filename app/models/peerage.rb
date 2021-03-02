@@ -60,17 +60,18 @@ class Peerage < ActiveRecord::Base
   end
   
   def display_title
-    full_title = self.possible_rank_titles + ' '
-    full_title += ' of ' if self.of_title 
+    full_title = ''
+    full_title += 'of ' if self.of_title 
     full_title += title
+    full_title += " (" + self.rank.label + ")"
     full_title
   end
   
   def alpha_display_title
-    alpha_display_title = title
-    alpha_display_title += ', '
-    alpha_display_title += self.possible_rank_titles + ' '
-    alpha_display_title += ' of ' if self.of_title 
+    alpha_display_title = ''
+    alpha_display_title += 'of ' if self.of_title 
+    alpha_display_title += title
+    alpha_display_title += " (" + self.rank.label + ")"
     alpha_display_title
   end
   
@@ -82,10 +83,11 @@ class Peerage < ActiveRecord::Base
   end
   
   def full_title
-    full_title = self.possible_rank_titles + ' '
+    full_title = ''
     full_title += ' of ' if self.of_title 
     full_title += title
     full_title += ', ' + self.territorial_designation if self.territorial_designation
+    full_title += " (" + self.rank.label + ")"
     full_title
   end
 end
