@@ -14,10 +14,6 @@
 	<%= content_tag 'p', link_to( @peerage.special_remainder.description, special_remainder_show_url( :special_remainder => @peerage.special_remainder ) ) %>
 <% end -%>
 
-<% if @peerage.extinct_on %>
-	<%= content_tag( 'p', "Peerage extinct on #{@peerage.extinct_on.strftime( '%-d %B %Y')} with the #{@peerage.last_number.ordinalize} holder." ) %>
-<% end -%>
-
 <%= content_tag( 'p', "Note: #{@peerage.notes}" ) if @peerage.notes %>
 
 <% unless @peerage.law_lords.empty? %>
@@ -27,18 +23,24 @@
 	</ol>
 <% end -%>
 
-<%= content_tag( 'h2', 'Holders' ) %>
-<table>
-	<thead>
-		<tr>
-			<%= content_tag( 'td', 'Number' ) %>
-			<%= content_tag( 'td', 'Surname' ) %>
-			<%= content_tag( 'td', 'Forenames' ) %>
-			<%= content_tag( 'td', 'Held from' ) %>
-			<%= content_tag( 'td', 'Held to' ) %>
-		</tr>
-	</thead>
-	<tbody>
-		<%= render :partial => 'peerage_holding/peerage_holding', :collection => @peerage.peerage_holdings %>
-	</tbody>
-</table>
+<% if @peerage.is_hereditary? %>
+	<%= content_tag( 'h2', 'Holders' ) %>
+	<table>
+		<thead>
+			<tr>
+				<%= content_tag( 'td', 'Number' ) %>
+				<%= content_tag( 'td', 'Surname' ) %>
+				<%= content_tag( 'td', 'Forenames' ) %>
+				<%= content_tag( 'td', 'Held from' ) %>
+				<%= content_tag( 'td', 'Held to' ) %>
+			</tr>
+		</thead>
+		<tbody>
+			<%= render :partial => 'peerage_holding/peerage_holding', :collection => @peerage.peerage_holdings %>
+		</tbody>
+	</table>
+<% end -%>
+
+<% if @peerage.extinct_on %>
+	<%= content_tag( 'p', "Peerage extinct on #{@peerage.extinct_on.strftime( '%-d %B %Y')} with the #{@peerage.last_number.ordinalize} holder." ) %>
+<% end -%>
