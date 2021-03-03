@@ -11,6 +11,12 @@ class Peerage < ActiveRecord::Base
   has_many :subsidiary_titles, -> { order( :title ) }
   has_many :peerage_holdings
   
+  def is_hereditary?
+    is_hereditary = true
+    is_hereditary = false if [1,5,6].include?self.peerage_type_id
+    is_hereditary
+  end
+  
   def gender_of_first_holder
     self.letters_patent.person.gender
   end
