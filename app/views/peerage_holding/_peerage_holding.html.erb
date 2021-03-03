@@ -3,5 +3,11 @@
 	<%= content_tag( 'td', peerage_holding.person.surname ) %>
 	<%= content_tag( 'td', peerage_holding.person.forenames ) %>
 	<%= content_tag( 'td', peerage_holding.start_on.strftime( '%-d %B %Y' ) ) %>
-	<%= content_tag( 'td', peerage_holding.end_on.strftime( '%-d %B %Y' ) ) %>
+	<td>
+		<% if peerage_holding.end_on -%>
+			<%= peerage_holding.end_on.strftime( '%-d %B %Y' ) %>
+		<% else -%>
+			-
+		<% end -%>
+	</td>
 </tr>
