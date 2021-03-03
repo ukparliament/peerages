@@ -1,12 +1,8 @@
 <h1><%= @person.display_name %></h1>
 
 <!-- lifespan -->
-<% if @person.date_of_birth -%>
-	<% if @person.date_of_death -%>
-		<%= content_tag( 'p', "#{@person.forenames} #{@person.surname} was born on #{@person.date_of_birth.strftime( '%-d %B %Y')} and died on #{@person.date_of_death.strftime( '%-d %B %Y')}." ) %>
-	<% else -%>
-		<%= content_tag( 'p', "#{@person.forenames} #{@person.surname} was born on #{@person.date_of_birth.strftime( '%-d %B %Y')}." ) %>
-	<% end -%>
+<% if @person.date_of_birth and @person.date_of_death and  -%>
+	<%= content_tag( 'p', "#{@person.forenames} #{@person.surname} was born on #{@person.date_of_birth.strftime( '%-d %B %Y')} and died on #{@person.date_of_death.strftime( '%-d %B %Y')}." ) %>
 <% end -%>
 
 <%= content_tag( 'h2', 'Peerages' ) %>
