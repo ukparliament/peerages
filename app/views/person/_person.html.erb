@@ -1,7 +1,12 @@
 <tr>
 	<%= content_tag( 'td', link_to( person.surname, person_show_url( :person => person  ) ) ) %>
 	<%= content_tag( 'td', link_to( person.forenames, person_show_url( :person => person  ) ) ) %>
-	<%= content_tag( 'td', person.date_of_birth_display ) %>
-	<%= content_tag( 'td', person.date_of_death_display ) %>
+	<% if person.date_of_death -%>
+		<%= content_tag( 'td', person.date_of_birth_display ) %>
+		<%= content_tag( 'td', person.date_of_death_display ) %>
+	<% else -%>
+		<td>-</td>
+		<td>-</td>
+	<% end -%>
 	<%= content_tag( 'td', person.gender.label ) %>
 </tr>
