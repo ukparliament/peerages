@@ -19,3 +19,7 @@
 config/environment.rb
 config/secrets.yml
 /.idea
+config/secrets.yml
+/config/secrets.yml
+config/environment.rb
+/config/environment.rb
