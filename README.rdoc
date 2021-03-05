@@ -14,7 +14,7 @@
 
 ` psql peerages < db/dumps/2020-03-12.sql
 
-## Railsify database and add foreign keys
+## Railsify database, add foreign keys
 
 ` psql peerages < db/schema/railsify.sql
 
