@@ -16,3 +16,6 @@
 !/log/.keep
 /tmp
 .DS_Store
+config/environment.rb
+config/secrets.yml
+/.idea
