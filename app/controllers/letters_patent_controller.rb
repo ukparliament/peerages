@@ -1,7 +1,7 @@
 class LettersPatentController < ApplicationController
   
   def index
-    @letters_patent = LettersPatent.all
+    @letters_patent = LettersPatent.all.order( 'patent_on' )
   end
   
   def show
