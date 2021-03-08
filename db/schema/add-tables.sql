@@ -74,7 +74,7 @@ create table special_remainders (
 create table letters_patents (
 	id serial,
 	patent_on date not null,
-	patent_time int,
+	patent_time char(1),
 	previous_title varchar(255),
 	previous_rank varchar(255),
 	administration_id int,
