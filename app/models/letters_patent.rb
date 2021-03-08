@@ -11,4 +11,13 @@ class LettersPatent < ActiveRecord::Base
   def peerages
     Peerage.all.select( 'p.*' ).joins( 'as p, ranks as r' ).where( 'letters_patent_id = ?', self.id).where( 'p.rank_id = r.id' ).order( 'r.degree' )
   end
+  
+  def previous_full_title
+    if self.previous_rank
+      previous_title = self.previous_rank + ' ' + self.previous_title
+    else
+      previous_title = '-'
+    end
+    previous_title
+  end
 end
