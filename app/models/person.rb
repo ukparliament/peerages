@@ -15,7 +15,7 @@ class Person < ActiveRecord::Base
   
   def date_of_birth_display
     if self.date_of_birth
-      date_of_birth_display = self.date_of_birth.strftime( '%-d %b %Y')
+      date_of_birth_display = self.date_of_birth.strftime( '%-d %B %Y')
     else
       date_of_birth_display = 'Not known'
     end
@@ -25,7 +25,7 @@ class Person < ActiveRecord::Base
   def date_of_death_display
     date_of_death_display = ''
     if self.date_of_death
-      date_of_death_display += self.date_of_death.strftime( '%-d %b %Y')
+      date_of_death_display += self.date_of_death.strftime( '%-d %B %Y')
     end
     date_of_death_display
   end
