@@ -1,4 +1,19 @@
-<%= content_tag( 'h1', 'Letters Patent' ) %>
-<ol>
-	<%= render :partial => 'letters_patent', :collection => @letters_patent %>
-</ol>
+<%= content_tag( 'h1', 'Letters Parent' ) %>
+
+<table>
+	<thead>
+		<tr>
+			<%= content_tag( 'td', 'Issued on' ) %>
+			<%= content_tag( 'td', 'Administration' ) %>
+			<%= content_tag( 'td', 'Peerage type' ) %>
+			<%= content_tag( 'td', 'Peerage' ) %>
+			<%= content_tag( 'td', 'Issued to' ) %>
+			<%= content_tag( 'td', 'Date of death' ) %>
+			<%= content_tag( 'td', 'Previously' ) %>
+			<%= content_tag( 'td', 'Extinct on' ) %>
+		</tr>
+	</thead>
+	<tbody>
+		<%= render :partial => 'letters_patent_table', :collection => @letters_patent %>
+	</tbody>
+</table>
