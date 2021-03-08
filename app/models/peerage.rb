@@ -96,4 +96,13 @@ class Peerage < ActiveRecord::Base
     full_title += " (" + self.rank.label + ")"
     full_title
   end
+  
+  def display_extinction
+    if self.extinct_on
+      peerage_extinction = self.extinct_on.strftime( '%-d %B %Y') + ' with the ' + self.last_number.ordinalize + ' holder'
+    else
+      peerage_extinction = '-'
+    end
+    peerage_extinction
+  end
 end
