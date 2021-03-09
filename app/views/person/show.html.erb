@@ -11,7 +11,9 @@
 	<%= render :partial => 'peerage/peerage', :collection => @person.peerages %>
 </ol>
 
-<%= content_tag( 'h2', 'Letters Patent' ) %>
-<ol>
-	<%= render :partial => 'letters_patent/letters_patent', :collection => @person.letters_patents %>
-</ol>
+<% if @person.letters_patents.size > 0 %>
+	<%= content_tag( 'h2', 'Letters Patent' ) %>
+	<ol>
+		<%= render :partial => 'letters_patent/letters_patent', :collection => @person.letters_patents %>
+	</ol>
+<% end -%>
