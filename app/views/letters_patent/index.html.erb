@@ -1,4 +1,4 @@
-<%= content_tag( 'h1', 'Letters Parent' ) %>
+<%= content_tag( 'h1', 'Letters Patent' ) %>
 
 <%= content_tag( 'p', link_to( 'Download tab separated', letters_patent_list_url( :format => 'tsv' ) ) ) %>
 
@@ -6,6 +6,7 @@
 	<thead>
 		<tr>
 			<%= content_tag( 'td', 'Issued on' ) %>
+			<%= content_tag( 'td', 'Issued at' ) %>
 			<%= content_tag( 'td', 'Administration' ) %>
 			<%= content_tag( 'td', 'Peerage type' ) %>
 			<%= content_tag( 'td', 'Peerage' ) %>
