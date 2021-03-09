@@ -1,5 +1,6 @@
 <tr>
 	<%= content_tag( 'td', link_to( letters_patent_table.patent_on.strftime( '%-d %B %Y'), letters_patent_show_url( :letters_patent => letters_patent_table) ) ) %>
+	<%= content_tag( 'td', letters_patent_table.patent_time ) %>
 	<td>
 		<% if letters_patent_table.administration -%>
 			<%= link_to( letters_patent_table.administration.prime_minister, administration_show_url( letters_patent_table.administration ) ) %>
