@@ -1,5 +1,7 @@
 <%= content_tag( 'h1', 'Letters Parent' ) %>
 
+<%= content_tag( 'p', link_to( 'Download tab separated', letters_patent_list_url( :format => 'tsv' ) ) ) %>
+
 <table>
 	<thead>
 		<tr>
