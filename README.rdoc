@@ -29,3 +29,11 @@
 ## Populate newly modified database
 
 ` rake modify
+
+## Populate with subsequent holders
+
+Download data as CSV from https://docs.google.com/spreadsheets/d/1AYzx6AMYw5eGzl9iSgx0a9behOjfLFaUUvDtXEZUULY/edit?usp=sharing
+
+Remove top row
+
+` rake add_subsequent_holders
