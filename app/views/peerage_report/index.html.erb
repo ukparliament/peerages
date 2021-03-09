@@ -1,0 +1,14 @@
+<%= content_tag( 'h1', 'Peerage report' ) %>
+
+<table>
+	<thead>
+		<tr>
+			<%= content_tag( 'td', 'Peerage' ) %>
+			<%= content_tag( 'td', 'Number of holders' ) %>
+			<%= content_tag( 'td', 'Number of holders populated' ) %>
+		</tr>
+	</thead>
+	<tbody>
+		<%= render :partial => 'peerage', :collection => @peerages %>
+	</tbody>
+</table>
