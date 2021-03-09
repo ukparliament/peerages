@@ -2,6 +2,10 @@ class LettersPatentController < ApplicationController
   
   def index
     @letters_patent = LettersPatent.all.order( 'patent_on' )
+    respond_to do |format|
+      format.html
+      format.tsv
+    end
   end
   
   def show
