@@ -43,6 +43,9 @@ Rails.application.routes.draw do
   get 'peerages' => 'peerage#index', as: :peerage_list
   get 'peerages/:peerage' => 'peerage#show', as: :peerage_show
   
+  get 'peerage-holdings' => 'peerage_holding#index', as: :peerage_holding_list
+  get 'peerage-holdings/:peerage_holding' => 'peerage_holding#show', as: :peerage_holding_show
+  
   get 'letters-patent' => 'letters_patent#index', as: :letters_patent_list
   get 'letters-patent/:letters_patent' => 'letters_patent#show', as: :letters_patent_show
   
