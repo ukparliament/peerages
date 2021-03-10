@@ -1,0 +1,11 @@
+<%= content_tag( 'h1', "#{link_to( @peerage_holding.person.display_name, person_show_url( :person => @peerage_holding.person ) )}, #{@peerage_holding.ordinality.ordinalize} #{link_to( @peerage_holding.peerage.gendered_display_title(@peerage_holding.person.gender ), peerage_show_url( :peerage => @peerage_holding.peerage ) ) }".html_safe ) %>
+
+<% if @peerage_holding.end_on -%>
+	<%= content_tag( 'p', "From #{@peerage_holding.start_on.strftime( '%-d %B %Y')} to #{@peerage_holding.end_on.strftime( '%-d %B %Y')}." ) %>
+<% else =%>
+	<%= content_tag( 'p', "From #{@peerage_holding.start_on.strftime( '%-d %B %Y')}." ) %>
+<% end -%>
+
+<% if @peerage_holding.introduced_on -%>
+	<%= content_tag( 'p', "Introduced to the House of Lords on #{@peerage_holding.introduced_on.strftime( '%-d %B %Y')}." ) %>
+<% end -%>
