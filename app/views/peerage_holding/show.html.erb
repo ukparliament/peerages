@@ -9,3 +9,5 @@
 <% if @peerage_holding.introduced_on -%>
 	<%= content_tag( 'p', "Introduced to the House of Lords on #{@peerage_holding.introduced_on.strftime( '%-d %B %Y')}." ) %>
 <% end -%>
+
+<%= content_tag( 'p', @peerage_holding.notes ) if @peerage_holding.notes %>
