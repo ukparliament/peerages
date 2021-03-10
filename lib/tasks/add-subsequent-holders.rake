@@ -22,7 +22,6 @@ task :add_subsequent_holders => :environment do
     else
       person.gender_char = 'f'
     end
-    puts person.inspect
     person.save
     
     # Get the peerage of the holding.
@@ -35,6 +34,7 @@ task :add_subsequent_holders => :environment do
     peerage_holding.end_on = row[2]
     peerage_holding.person = person
     peerage_holding.peerage = peerage
+    peerage_holding.notes = row[9].strip if row[9]
     peerage_holding.save
   end
 end
