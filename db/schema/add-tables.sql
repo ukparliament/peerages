@@ -43,6 +43,7 @@ create table peerage_holdings (
 	ordinality int not null,
 	start_on date not null,
 	end_on date,
+	notes varchar(2000) null,
 	person_id int not null,
 	peerage_id int not null,
 	introduced_on date default null,
