@@ -13,7 +13,9 @@ task :modify => [
   :port_subsidiary_titles_to_peerages,
   :link_letter_patent_to_peerages,
   :link_peerage_to_letters,
-  :add_labels_to_ranks] do
+  :add_labels_to_ranks,
+  :extract_letters_patent_times,
+  :set_letters_patent_ordinality_in_day] do
 end
 
 task :collapse_title_of_into_peerage => :environment do
@@ -336,5 +338,150 @@ task :add_labels_to_ranks => :environment do
       rank.label = 'Barony'
     end
     rank.save
+  end
+end
+task :extract_letters_patent_times => :environment do
+  puts "extracting times (am / pm / hour) from letters_patents.patent_time"
+  letters_patents = LettersPatent.all.where( 'patent_time is not null' )
+  letters_patents.each do |letters_patent|
+    case letters_patent.patent_time
+    when 'a', 'A'
+      letters_patent_time = LettersPatentTime.all.where( 'time_code = ?', 'A' ).first
+      unless letters_patent_time
+        letters_patent_time = LettersPatentTime.new
+        letters_patent_time.time_code = 'A'
+        letters_patent_time.label = 'Morning'
+        letters_patent_time.save
+      end
+      letters_patent.letters_patent_time = letters_patent_time
+      letters_patent.save
+    when 'p', 'P'
+      letters_patent_time = LettersPatentTime.all.where( 'time_code = ?', 'P' ).first
+      unless letters_patent_time
+        letters_patent_time = LettersPatentTime.new
+        letters_patent_time.time_code = 'P'
+        letters_patent_time.label = 'Afternoon'
+        letters_patent_time.save
+      end
+      letters_patent.letters_patent_time = letters_patent_time
+      letters_patent.save
+    when 'q', 'Q'
+      letters_patent_time = LettersPatentTime.all.where( 'time_code = ?', 'Q' ).first
+      unless letters_patent_time
+        letters_patent_time = LettersPatentTime.new
+        letters_patent_time.time_code = 'Q'
+        letters_patent_time.label = '6 a.m.'
+        letters_patent_time.save
+      end
+      letters_patent.letters_patent_time = letters_patent_time
+      letters_patent.save
+    when 'r', 'R'
+      letters_patent_time = LettersPatentTime.all.where( 'time_code = ?', 'R' ).first
+      unless letters_patent_time
+        letters_patent_time = LettersPatentTime.new
+        letters_patent_time.time_code = 'R'
+        letters_patent_time.label = '9 a.m.'
+        letters_patent_time.save
+      end
+      letters_patent.letters_patent_time = letters_patent_time
+      letters_patent.save
+    when 's', 'S'
+      letters_patent_time = LettersPatentTime.all.where( 'time_code = ?', 'S' ).first
+      unless letters_patent_time
+        letters_patent_time = LettersPatentTime.new
+        letters_patent_time.time_code = 'S'
+        letters_patent_time.label = '12 noon'
+        letters_patent_time.save
+      end
+      letters_patent.letters_patent_time = letters_patent_time
+      letters_patent.save
+    when 't', 'T'
+      letters_patent_time = LettersPatentTime.all.where( 'time_code = ?', 'T' ).first
+      unless letters_patent_time
+        letters_patent_time = LettersPatentTime.new
+        letters_patent_time.time_code = 'T'
+        letters_patent_time.label = '1 p.m.'
+        letters_patent_time.save
+      end
+      letters_patent.letters_patent_time = letters_patent_time
+      letters_patent.save
+    when 'u', 'U'
+      letters_patent_time = LettersPatentTime.all.where( 'time_code = ?', 'U' ).first
+      unless letters_patent_time
+        letters_patent_time = LettersPatentTime.new
+        letters_patent_time.time_code = 'U'
+        letters_patent_time.label = '2 p.m.'
+        letters_patent_time.save
+      end
+      letters_patent.letters_patent_time = letters_patent_time
+      letters_patent.save
+    when 'v', 'V'
+      letters_patent_time = LettersPatentTime.all.where( 'time_code = ?', 'V' ).first
+      unless letters_patent_time
+        letters_patent_time = LettersPatentTime.new
+        letters_patent_time.time_code = 'V'
+        letters_patent_time.label = '3 p.m.'
+        letters_patent_time.save
+      end
+      letters_patent.letters_patent_time = letters_patent_time
+      letters_patent.save
+    when 'w', 'W'
+      letters_patent_time = LettersPatentTime.all.where( 'time_code = ?', 'W' ).first
+      unless letters_patent_time
+        letters_patent_time = LettersPatentTime.new
+        letters_patent_time.time_code = 'W'
+        letters_patent_time.label = '6 p.m.'
+        letters_patent_time.save
+      end
+      letters_patent.letters_patent_time = letters_patent_time
+      letters_patent.save
+    when 'x', 'X'
+      letters_patent_time = LettersPatentTime.all.where( 'time_code = ?', 'X' ).first
+      unless letters_patent_time
+        letters_patent_time = LettersPatentTime.new
+        letters_patent_time.time_code = 'X'
+        letters_patent_time.label = '9 p.m.'
+        letters_patent_time.save
+      end
+      letters_patent.letters_patent_time = letters_patent_time
+      letters_patent.save
+    when 'y', 'Y'
+      letters_patent_time = LettersPatentTime.all.where( 'time_code = ?', 'Y' ).first
+      unless letters_patent_time
+        letters_patent_time = LettersPatentTime.new
+        letters_patent_time.time_code = 'Y'
+        letters_patent_time.label = '11 p.m.'
+        letters_patent_time.save
+      end
+      letters_patent.letters_patent_time = letters_patent_time
+      letters_patent.save
+    end
+  end
+end
+task :set_letters_patent_ordinality_in_day => :environment do
+  puts "setting the ordinality of letters patent issued on the same day"
+  
+  # Get a list of distinct dates with letters patent issued.
+  letters_patent_dates = LettersPatent.all.select( 'distinct( patent_on) ' ).order( 'patent_on' )
+  
+  # Loop through all dates and ...
+  letters_patent_dates.each do |letters_patent_date|
+    
+    # ... set the starting ordinality for that day to 0.
+    ordinality_on_date = 0
+    
+    # ... find the letters patent for that date.
+    letters_patents = LettersPatent.all.where( 'patent_on = ?', letters_patent_date.patent_on ).order( 'patent_time' )
+    
+    # ... loop through the letters patent on a date and ...
+    letters_patents.each do |letters_patent|
+      
+      # ... increment the ordinality.
+      ordinality_on_date += 1
+      
+      # ... save the letters patent
+      letters_patent.ordinality_on_date = ordinality_on_date
+      letters_patent.save
+    end
   end
 end
