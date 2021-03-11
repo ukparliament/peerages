@@ -4,6 +4,7 @@ alter table subsidiary_titles add column of_title boolean default false;
 
 drop table if exists gendered_rank_labels;
 drop table if exists letters_patents;
+drop table if exists letters_patent_times;
 drop table if exists peerage_holdings;
 drop table if exists people;
 drop table if exists letters;
@@ -72,18 +73,27 @@ create table special_remainders (
 	description varchar(500) not null,
 	primary key (id)
 );
+create table letters_patent_times (
+	id serial,
+	time_code char(1) not null,
+	label varchar(20) not null,
+	primary key (id)
+);
 create table letters_patents (
 	id serial,
 	patent_on date not null,
 	patent_time char(1),
 	previous_title varchar(255),
 	previous_rank varchar(255),
+	ordinality_on_date int,
 	administration_id int,
 	announcement_id int,
+	letters_patent_time_id int,
 	person_id int,
 	constraint fk_administration foreign key (administration_id) references administrations(id),
 	constraint fk_announcement foreign key (announcement_id) references announcements(id),
 	constraint fk_person foreign key (person_id) references people(id),
+	constraint fk_letters_patent_time foreign key (letters_patent_time_id) references letters_patent_times(id),
 	primary key (id)
 );
 
