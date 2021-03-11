@@ -1,7 +1,7 @@
 class LettersPatentController < ApplicationController
   
   def index
-    @letters_patent = LettersPatent.all.order( 'patent_on' )
+    @letters_patent = LettersPatent.all.order( 'patent_on' ).order( 'ordinality_on_date' )
     respond_to do |format|
       format.html
       format.tsv
