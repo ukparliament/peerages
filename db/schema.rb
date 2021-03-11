@@ -79,18 +79,30 @@ ActiveRecord::Schema.define(version: 0) do
     t.string "url_key", limit: 1,   null: false
   end
 
+  create_table "letters_patent_times", force: :cascade do |t|
+    t.string "time_code", limit: 1,  null: false
+    t.string "label",     limit: 20, null: false
+  end
+
   create_table "letters_patents", force: :cascade do |t|
-    t.date    "patent_on",         null: false
-    t.integer "patent_time"
+    t.date    "patent_on",                          null: false
+    t.string  "patent_time",            limit: 1
+    t.string  "previous_title",         limit: 255
+    t.string  "previous_rank",          limit: 255
+    t.integer "ordinality_on_date"
     t.integer "administration_id"
-    t.integer "peerage_type_id",   null: false
     t.integer "announcement_id"
+    t.integer "letters_patent_time_id"
     t.integer "person_id"
   end
 
   create_table "peerage_holdings", force: :cascade do |t|
-    t.integer "person_id",     null: false
-    t.integer "peerage_id",    null: false
+    t.integer "ordinality",                 null: false
+    t.date    "start_on",                   null: false
+    t.date    "end_on"
+    t.string  "notes",         limit: 2000
+    t.integer "person_id",                  null: false
+    t.integer "peerage_id",                 null: false
     t.date    "introduced_on"
   end
 
@@ -105,7 +117,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.text    "peerage_type_name"
     t.text    "sr"
     t.text    "gender"
-    t.text    "of_place"
+    t.text    "territorial_designation"
     t.text    "surname"
     t.text    "previous_title"
     t.text    "previous_rank"
@@ -126,9 +138,10 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "peerage_type_id"
     t.integer "rank_id"
     t.integer "announcement_id"
-    t.boolean "of_title",               default: false
+    t.boolean "of_title",                default: false
     t.integer "special_remainder_id"
     t.integer "letters_patent_id"
+    t.integer "letter_id"
   end
 
   create_table "people", force: :cascade do |t|
@@ -142,10 +155,11 @@ ActiveRecord::Schema.define(version: 0) do
   end
 
   create_table "ranks", force: :cascade do |t|
-    t.text    "code",        null: false
+    t.text    "code",                    null: false
     t.text    "name"
     t.integer "degree"
     t.text    "gender_char"
+    t.string  "label",       limit: 100
   end
 
   create_table "special_remainders", force: :cascade do |t|
@@ -158,7 +172,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.text    "rank_code"
     t.text    "subsidiary_title_name"
     t.text    "sr"
-    t.text    "of_place"
+    t.text    "territorial_designation"
     t.date    "extinct_on"
     t.integer "last_number"
     t.text    "notes"
@@ -167,7 +181,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.date    "patent_on"
     t.text    "patent_time"
     t.integer "rank_id"
-    t.boolean "of_title",              default: false
+    t.boolean "of_title",                default: false
     t.integer "letters_patent_id"
     t.integer "special_remainder_id"
   end
@@ -178,7 +192,7 @@ ActiveRecord::Schema.define(version: 0) do
   add_foreign_key "law_lords", "peerages", name: "peerage"
   add_foreign_key "letters_patents", "administrations", name: "fk_administration"
   add_foreign_key "letters_patents", "announcements", name: "fk_announcement"
-  add_foreign_key "letters_patents", "peerage_types", name: "fk_peerage_type"
+  add_foreign_key "letters_patents", "letters_patent_times", name: "fk_letters_patent_time"
   add_foreign_key "letters_patents", "people", name: "fk_person"
   add_foreign_key "peerage_holdings", "peerages", name: "fk_peerage"
   add_foreign_key "peerage_holdings", "people", name: "fk_person"
