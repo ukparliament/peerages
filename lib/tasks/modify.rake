@@ -15,6 +15,7 @@ task :modify => [
   :link_peerage_to_letters,
   :add_labels_to_ranks,
   :extract_letters_patent_times,
+  :downcase_letter_patent_at_time,
   :set_letters_patent_ordinality_in_day] do
 end
 
@@ -456,6 +457,16 @@ task :extract_letters_patent_times => :environment do
       letters_patent.letters_patent_time = letters_patent_time
       letters_patent.save
     end
+  end
+end
+task :downcase_letter_patent_at_time => :environment do
+  puts "downcasing patent at time on letters patent"
+  # patent at uses numbers to denote rank and mixed case letters to denote time / precedence.
+  # we believe upper and lower case letters are equivalent so downcasing to allow better sorting.
+  letters_patents = LettersPatent.all.where( 'patent_time is not null' )
+  letters_patents.each do |letters_patent|
+    letters_patent.patent_time.downcase!
+    letters_patent.save
   end
 end
 task :set_letters_patent_ordinality_in_day => :environment do
