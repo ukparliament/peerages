@@ -1,25 +1,29 @@
 <tr>
 	<%= content_tag( 'td', link_to( letters_patent_table.patent_on.strftime( '%-d %B %Y'), letters_patent_show_url( :letters_patent => letters_patent_table) ) ) %>
-	<%= content_tag( 'td', letters_patent_table.patent_time ) %>
-	<%= content_tag( 'td', letters_patent_table.ordinality_on_date ) %>
 	<td>
-		<% if letters_patent_table.letters_patent_time -%>
-			<%= letters_patent_table.letters_patent_time.label %>
+		<% if letters_patent_table.letters_patent_time_inline -%>
+			<%= letters_patent_table.letters_patent_time_inline %>
 		<% else -%>
 			-
 		<% end -%>
 	</td>
 	<td>
-		<% if letters_patent_table.administration -%>
-			<%= link_to( letters_patent_table.administration.prime_minister, administration_show_url( letters_patent_table.administration ) ) %>
+		<% if letters_patent_table.administration_id -%>
+			<%= link_to( letters_patent_table.prime_minister_inline, administration_show_url( letters_patent_table.administration_id ) ) %>
 		<% else -%>
 			-
 		<% end -%>
 	</td>
 	<%= content_tag( 'td', link_to( letters_patent_table.peerages.first.peerage_type.name, peerage_type_show_url( :peerage_type => letters_patent_table.peerages.first.peerage_type ) ) ) %>
 	<%= content_tag( 'td', link_to( letters_patent_table.peerages.first.full_title, peerage_show_url( :peerage => letters_patent_table.peerages.first ) ) ) %>
-	<%= content_tag( 'td', link_to( letters_patent_table.person.display_name, person_show_url( :person => letters_patent_table.person ) ) ) %>
-	<%= content_tag( 'td', letters_patent_table.person.date_of_death_display ) %>
+	<%= content_tag( 'td', link_to( "#{letters_patent_table.person_forenames_inline} #{letters_patent_table.person_surname_inline}", person_show_url( :person => letters_patent_table.person_id ) ) ) %>
+	<td>
+		<% if letters_patent_table.person_date_of_death_inline %>
+			<%= letters_patent_table.person_date_of_death_inline.strftime( '%-d %B %Y') %>
+		<% else -%>
+			-
+		<% end -%>
+	</td>
 	<%= content_tag( 'td', letters_patent_table.previous_full_title ) %>
 	<%= content_tag( 'td', letters_patent_table.peerages.first.display_extinction ) %>
 </tr>
