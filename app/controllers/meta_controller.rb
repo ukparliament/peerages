@@ -11,4 +11,7 @@ class MetaController < ApplicationController
   
   def schema
   end
+  
+  def suspected_data_errors
+  end
 end
