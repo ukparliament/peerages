@@ -56,6 +56,7 @@ Rails.application.routes.draw do
   get 'meta/about' => 'meta#about', as: :meta_about
   get 'meta/iaq' => 'meta#iaq', as: :meta_iaq
   get 'meta/schema' => 'meta#schema', as: :meta_schema
+  get 'meta/suspected-data-errors' => 'meta#suspected_data_errors', as: :meta_suspected_data_errors
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
