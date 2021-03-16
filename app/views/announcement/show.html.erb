@@ -9,6 +9,7 @@
 <% end -%>
 <%= content_tag( 'p', @announcement.notes )if @announcement.notes %>
 
+<%= content_tag( 'h2', 'Letters Patent' ) %>
 <table>
 	<%= render :partial => 'letters_patent/table_header' %>
 	<tbody>
