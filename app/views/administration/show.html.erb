@@ -2,6 +2,9 @@
 
 <%= content_tag( 'p', @administration.date_range) %>
 
-<ol>
-	<%= render :partial => 'letters_patent/letters_patent', :collection => @administration.letters_patents %>
-</ol>
+<table>
+	<%= render :partial => 'letters_patent/table_header'%>
+	<tbody>
+		<%= render :partial => 'letters_patent/letters_patent_table', :collection => @administration.letters_patents %>
+	</tbody>
+</table>
