@@ -9,8 +9,11 @@
 <% end -%>
 <%= content_tag( 'p', @announcement.notes )if @announcement.notes %>
 
-<ol>
-	<%= render :partial => 'letters_patent/letters_patent', :collection => @announcement.letters_patents %>
-</ol>
+<table>
+	<%= render :partial => 'letters_patent/table_header' %>
+	<tbody>
+		<%= render :partial => 'letters_patent/letters_patent_table', :collection => @announcement.letters_patents %>
+	</tbody>
+</table>
 
 
