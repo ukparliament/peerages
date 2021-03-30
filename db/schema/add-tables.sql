@@ -42,7 +42,7 @@ create table people (
 create table peerage_holdings (
 	id serial,
 	ordinality int not null,
-	start_on date not null,
+	start_on date,
 	end_on date,
 	notes varchar(2000) null,
 	person_id int not null,
