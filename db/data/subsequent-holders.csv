@@ -6,11 +6,11 @@
 882,1968-11-27,2003-06-27,4,Gerald Arthur James,Balfour,1925-12-23,2003-06-27,Male,
 882,2003-06-27,,5,Roderick Francis Arthur,Balfour,1948-12-09,,Male,
 542,1908-07-08,1916-09-30,2,Sholto Douglas,Campbell,1839-06-28,1916-09-30,Male,
-542,1916-09-30,1918-03-11,3,Barrington Bulkeley Douglas,Campbell-Douglas,1845-02-18,1918-03-11,Male,
-542,1918-03-11,1929-11-14,4,Archibald,Douglas-Campbell,1870-04-25,1929-11-14,Male,
-542,1929-11-14,1937-03-03,5,Barrington Sholto,Douglas-Campbell,1877-07-15,1937-03-03,Male,
-542,1937-03-03,1940-02-07,6,Leopold Colin Henry Douglas,Campbell,1881-03-05,1940-02-07,Male,
-542,1940-02-07,1940-09-14,7,Philip Archibald Douglas,Campbell,1919-02-19,1940-09-14,Male,
+542,1916-09-30,1918-03-13,3,Barrington Bulkeley Douglas,Campbell,1845-02-18,1918-03-13,Male,
+542,1918-03-13,1929-11-14,4,Archibald,Campbell,1870-04-25,1929-11-14,Male,
+542,1929-11-14,1937-03-03,5,Barrington Sholto,Campbell,1877-07-15,1937-03-03,Male,
+542,1937-03-03,1940-02-08,6,Leopold Colin Henry Douglas,Campbell,1881-03-05,1940-02-08,Male,
+542,1940-02-08,1940-09-14,7,Philip Archibald Douglas,Campbell,1919-02-19,1940-09-14,Male,
 324,1868-05-07,1886-01-03,2,William,Brougham,1795-09-26,1886-01-03,Male,
 324,1886-01-03,1927-05-24,3,Henry Charles,Brougham,1836-09-02,1927-05-24,Male,
 324,1927-05-24,1967-06-20,4,Victor Henry Peter,Brougham,1909-10-23,1967-06-20,Male,
@@ -37,3 +37,22 @@
 1122,2014-03-14,,3,Stephen Michael Wedgwood,Benn,1951-08-21,,Male,
 1168,2001-12-31,2020-08-01,3,Anthony Ulick David Dundas,Grigg,1934-01-12,2020-08-01,Male,
 1168,2020-08-01,,4,Edward Sebastian,Grigg,1965-12-18,,Male,
+705,1934-01-23,1953-05-23,2,Henry Duncan,McLaren,1879-04-16,1953-05-23,Male,
+705,1953-05-23,2003-02-04,3,Charles Melville,McLaren,1913-04-16,2003-02-04,Male,
+705,2003-02-04,,4,Henry Charles,McLaren,1948-05-26,,Male,Not on Peerage Roll
+394,1895-02-25,1929-02-20,2,Henry Campbell,Bruce,1851-06-19,1929-02-20,Male,
+394,1929-02-20,1957-10-04,3,Clarence Napier,Bruce,1885-08-02,1957-10-04,Male,
+394,1957-10-04,,4,Morys George Lyndhurst,Bruce,1919-06-16,,Male,Check date of death
+394,,,5,Alaster John Lyndhurst,Bruce,1947-05-02,,Male,Add date of succession
+753,1934-03-07,1965-01-06,2,George,Gordon,1879-01-20,1965-01-06,Male,On Peerages a-z list date of Patent is wrong should be 04-01-1916
+753,1965-01-06,1972-04-16,3,Dudley Gladstone,Gordon,1883-05-06,1972-04-16,Male,
+753,1972-04-16,1974-09-13,4,David George Ian Alexander,Gordon,1908-01-21,1974-09-13,Male,
+753,1974-09-13,,5,Archibald Victor Dudley,Gordon,1913-07-09,,Male,Check date of death
+753,,2002-08-19,6,Alastair Ninian John,Gordon,1920-07-20,2002-08-19,Male,Add date of succession
+753,2002-08-19,2020-03-12,7,Alexander George,Gordon,1955-03-31,2020-03-12,Male,
+753,2020-03-12,,8,George Ian Alastair,Gordon,1983-05-04,,Male,
+414,1915-12-02,1927-10-13,2,Reginald William Bransby,Nevill,1853-03-04,1927-10-13,Male,
+414,1927-10-13,1938-01-10,3,Henry Gilbert Ralph,Nevill,1854-09-02,1938-01-10,Male,
+414,1938-01-10,1954-03-30,4,Guy Temple Montacute,Nevill,1883-07-15,1954-03-30,Male,
+414,1954-03-30,2000-02-23,5,John Henry Guy,Nevill,1914-11-08,2000-02-23,Male,
+414,2000-02-23,,6,Christopher George Charles,Nevill,1955-04-23,,Male,
