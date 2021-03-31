@@ -153,6 +153,13 @@ alter table peerages drop column law_lord_id;
 alter table law_lords add column peerage_id int;
 alter table law_lords add constraint peerage foreign key (peerage_id) references peerages(id);
 
+/* new column on rank to identify ranks of type peerage */
+/* added because 'prince' is not a peerage rank but we wish to retain the data, whilst hiding from the rank listing */
+alter table ranks add column is_peerage_rank boolean default true;
+
+/* new column on peerages to store a wikidata id */
+alter table peerages add column wikidata_id varchar(20);
+
 /* Make the id on the peerages table into an auto incrementing serial */
 create sequence peerages_id_seq minvalue 2935;
 alter table peerages alter id set default nextval('peerages_id_seq');
