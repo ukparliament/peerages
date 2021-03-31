@@ -16,7 +16,8 @@ task :modify => [
   :add_labels_to_ranks,
   :extract_letters_patent_times,
   :downcase_letter_patent_at_time,
-  :set_letters_patent_ordinality_in_day] do
+  :set_letters_patent_ordinality_in_day,
+  :deprecate_princes] do
 end
 
 task :collapse_title_of_into_peerage => :environment do
@@ -326,7 +327,7 @@ task :add_labels_to_ranks => :environment do
   ranks.each do |rank|
     case rank.degree
     when 0
-      rank.label = 'Princedom'
+      rank.label = 'Prince'
     when 1
       rank.label = 'Dukedom'
     when 2
@@ -493,6 +494,16 @@ task :set_letters_patent_ordinality_in_day => :environment do
       # ... save the letters patent
       letters_patent.ordinality_on_date = ordinality_on_date
       letters_patent.save
+    end
+  end
+end
+task :deprecate_princes => :environment do
+  puts "marking prince as a non peerage rank"
+  ranks = Rank.all
+  ranks.each do |rank|
+    if rank.degree == 0
+      rank.is_peerage_rank = false
+      rank.save
     end
   end
 end
