@@ -37,3 +37,11 @@ Download data as CSV from https://docs.google.com/spreadsheets/d/1AYzx6AMYw5eGzl
 Remove top row
 
 ` rake add_subsequent_holders
+
+## Populate identifiers on people and peerages
+
+Download sheets 2 and 3 as CSV from https://docs.google.com/spreadsheets/d/1AYzx6AMYw5eGzl9iSgx0a9behOjfLFaUUvDtXEZUULY/edit?usp=sharing
+
+Remove top rows
+
+` rake add_identifiers
