@@ -35,6 +35,9 @@ create table people (
 	date_of_death date,
 	letter_id int,
 	gender_id int,
+	wikidata_id varchar(20),
+	mnis_id varchar(20),
+	rush_id varchar(20),
 	constraint fk_letter foreign key (letter_id) references letters(id),
 	constraint fk_gender foreign key (gender_id) references genders(id),
 	primary key (id)
