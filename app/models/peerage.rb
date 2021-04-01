@@ -105,4 +105,12 @@ class Peerage < ActiveRecord::Base
     end
     peerage_extinction
   end
+  
+  def has_external_identifiers?
+    self.wikidata_id
+  end
+  
+  def wikidata_url
+    "https://www.wikidata.org/wiki/#{self.wikidata_id}"
+  end
 end

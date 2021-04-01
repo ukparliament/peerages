@@ -35,4 +35,20 @@ class Person < ActiveRecord::Base
     #Peerage.all.select.( 'p.*' ).joins( 'as p' )
     Peerage.all.select( 'p.*' ).joins( 'as p, peerage_holdings as ph, ranks as r' ).where( 'ph.peerage_id = p.id' ).where( 'ph.person_id = ?', self ).where( 'p.rank_id = r.id' ).order( 'r.degree' )
   end
+  
+  def has_external_identifiers?
+    self.wikidata_id || self.mnis_id || self.rush_id
+  end
+  
+  def wikidata_url
+    "https://www.wikidata.org/wiki/#{self.wikidata_id}"
+  end
+  
+  def mnis_url
+    "https://members.parliament.uk/member/#{self.mnis_id}/contact"
+  end
+  
+  def rush_url
+    "https://membersafter1832.historyofparliamentonline.org/members/#{self.rush_id}"
+  end
 end
