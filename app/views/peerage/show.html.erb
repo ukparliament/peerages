@@ -44,3 +44,8 @@
 <% if @peerage.extinct_on %>
 	<%= content_tag( 'p', "Peerage extinct on #{@peerage.extinct_on.strftime( '%-d %B %Y')} with the #{@peerage.last_number.ordinalize} holder." ) %>
 <% end -%>
+
+<% if @peerage.has_external_identifiers? %>
+	<%= content_tag( 'h2', 'External identifiers' ) %>
+	<%= content_tag( 'p', "Wikidata: #{link_to( @peerage.wikidata_id, @peerage.wikidata_url)}".html_safe ) if @peerage.wikidata_id %>
+<% end -%>

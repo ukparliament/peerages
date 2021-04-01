@@ -17,3 +17,10 @@
 		<%= render :partial => 'letters_patent/letters_patent', :collection => @person.letters_patents %>
 	</ol>
 <% end -%>
+
+<% if @person.has_external_identifiers? %>
+	<%= content_tag( 'h2', 'External identifiers' ) %>
+	<%= content_tag( 'p', "Wikidata: #{link_to( @person.wikidata_id, @person.wikidata_url)}".html_safe ) if @person.wikidata_id %>
+	<%= content_tag( 'p', "MNIS: #{link_to( @person.mnis_id, @person.mnis_url)}".html_safe ) if @person.mnis_id %>
+	<%= content_tag( 'p', "Rush: #{link_to( @person.rush_id, @person.rush_url)}".html_safe ) if @person.rush_id %>
+<% end -%>
