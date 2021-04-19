@@ -41,12 +41,6 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer  "announcement_type_id"
   end
 
-  create_table "gendered_rank_labels", force: :cascade do |t|
-    t.string  "label",     limit: 100, null: false
-    t.integer "rank_id",               null: false
-    t.integer "gender_id",             null: false
-  end
-
   create_table "genders", force: :cascade do |t|
     t.string "label",  limit: 10, null: false
     t.string "letter", limit: 1,  null: false
@@ -55,6 +49,17 @@ ActiveRecord::Schema.define(version: 0) do
   create_table "jurisdictions", force: :cascade do |t|
     t.string "code",  limit: 10,  null: false
     t.string "label", limit: 100, null: false
+  end
+
+  create_table "kingdom_ranks", force: :cascade do |t|
+    t.integer "rank_id",    null: false
+    t.integer "kingdom_id", null: false
+  end
+
+  create_table "kingdoms", force: :cascade do |t|
+    t.string "name",     limit: 255, null: false
+    t.date   "start_on"
+    t.date   "end_on"
   end
 
   create_table "law_lords", force: :cascade do |t|
@@ -94,11 +99,12 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "announcement_id"
     t.integer "letters_patent_time_id"
     t.integer "person_id"
+    t.integer "kingdom_id"
   end
 
   create_table "peerage_holdings", force: :cascade do |t|
     t.integer "ordinality",                 null: false
-    t.date    "start_on",                   null: false
+    t.date    "start_on"
     t.date    "end_on"
     t.string  "notes",         limit: 2000
     t.integer "person_id",                  null: false
@@ -138,9 +144,11 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "peerage_type_id"
     t.integer "rank_id"
     t.integer "announcement_id"
-    t.boolean "of_title",                default: false
+    t.string  "wikidata_id",             limit: 20
+    t.boolean "of_title",                           default: false
     t.integer "special_remainder_id"
     t.integer "letters_patent_id"
+    t.integer "kingdom_id"
     t.integer "letter_id"
   end
 
@@ -152,14 +160,24 @@ ActiveRecord::Schema.define(version: 0) do
     t.date    "date_of_death"
     t.integer "letter_id"
     t.integer "gender_id"
+    t.string  "wikidata_id",   limit: 20
+    t.string  "mnis_id",       limit: 20
+    t.string  "rush_id",       limit: 20
+  end
+
+  create_table "rank_labels", force: :cascade do |t|
+    t.string  "label",     limit: 100, null: false
+    t.integer "rank_id",               null: false
+    t.integer "gender_id",             null: false
   end
 
   create_table "ranks", force: :cascade do |t|
-    t.text    "code",                    null: false
+    t.text    "code",                                       null: false
     t.text    "name"
     t.integer "degree"
     t.text    "gender_char"
-    t.string  "label",       limit: 100
+    t.string  "label",           limit: 100
+    t.boolean "is_peerage_rank",             default: true
   end
 
   create_table "special_remainders", force: :cascade do |t|
@@ -187,11 +205,12 @@ ActiveRecord::Schema.define(version: 0) do
   end
 
   add_foreign_key "announcements", "announcement_types", name: "announcement_type"
-  add_foreign_key "gendered_rank_labels", "genders", name: "fk_gender"
-  add_foreign_key "gendered_rank_labels", "ranks", name: "fk_rank"
+  add_foreign_key "kingdom_ranks", "kingdoms", name: "fk_kingdom"
+  add_foreign_key "kingdom_ranks", "ranks", name: "fk_rank"
   add_foreign_key "law_lords", "peerages", name: "peerage"
   add_foreign_key "letters_patents", "administrations", name: "fk_administration"
   add_foreign_key "letters_patents", "announcements", name: "fk_announcement"
+  add_foreign_key "letters_patents", "kingdoms", name: "fk_kingdom"
   add_foreign_key "letters_patents", "letters_patent_times", name: "fk_letters_patent_time"
   add_foreign_key "letters_patents", "people", name: "fk_person"
   add_foreign_key "peerage_holdings", "peerages", name: "fk_peerage"
@@ -202,6 +221,8 @@ ActiveRecord::Schema.define(version: 0) do
   add_foreign_key "peerages", "ranks", name: "rank"
   add_foreign_key "people", "genders", name: "fk_gender"
   add_foreign_key "people", "letters", name: "fk_letter"
+  add_foreign_key "rank_labels", "genders", name: "fk_gender"
+  add_foreign_key "rank_labels", "ranks", name: "fk_rank"
   add_foreign_key "subsidiary_titles", "peerages", name: "peerage"
   add_foreign_key "subsidiary_titles", "ranks", name: "rank"
 end
