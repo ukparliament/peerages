@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class GenderedRankLabelTest < ActiveSupport::TestCase
+class RankLabelTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
