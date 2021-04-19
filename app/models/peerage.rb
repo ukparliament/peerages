@@ -6,6 +6,7 @@ class Peerage < ActiveRecord::Base
   belongs_to :announcement
   belongs_to :special_remainder
   belongs_to :letters_patent
+  belongs_to :kingdom
   belongs_to :letter
   has_many :law_lords, -> { order( :appointed_on ) }
   has_many :subsidiary_titles, -> { order( :title ) }
@@ -47,11 +48,11 @@ class Peerage < ActiveRecord::Base
   end
   
   def gendered_rank_label( gender )
-    GenderedRankLabel.all.where( 'gender_id = ?', gender ).where( 'rank_id = ?', self.rank.id ).first.label
+    RankLabel.all.where( 'gender_id = ?', gender ).where( 'rank_id = ?', self.rank.id ).first.label
   end
   
   def opposite_gendered_rank_label( gender )
-    GenderedRankLabel.all.where( 'gender_id != ?', gender ).where( 'rank_id = ?', self.rank.id ).first.label
+    RankLabel.all.where( 'gender_id != ?', gender ).where( 'rank_id = ?', self.rank.id ).first.label
   end
   
   def possible_rank_titles
