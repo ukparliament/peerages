@@ -52,6 +52,9 @@ Rails.application.routes.draw do
   get 'law-lords' => 'law_lord#index', as: :law_lord_list
   get 'law-lords/:law_lord' => 'law_lord#show', as: :law_lord_show
   
+  get 'kingdoms' => 'kingdom#index', as: :kingdom_list
+  get 'kingdoms/:kingdom' => 'kingdom#show', as: :kingdom_show
+  
   get 'meta' => 'meta#index', as: :meta_list
   get 'meta/about' => 'meta#about', as: :meta_about
   get 'meta/iaq' => 'meta#iaq', as: :meta_iaq
