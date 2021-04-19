@@ -1,0 +1,2 @@
+class KingdomController < ApplicationController
+end
