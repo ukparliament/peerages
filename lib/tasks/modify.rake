@@ -1,10 +1,13 @@
+require 'csv'
+
 task :modify => [
+  :populate_kingdoms,
   :collapse_title_of_into_peerage,
   :normalise_people,
   :populate_letters,
   :normalise_letters,
   :normalise_genders,
-  :populate_gendered_rank_labels,
+  :populate_rank_labels,
   :collapse_ranks_across_genders,
   :normalise_jurisdictions_from_law_lords,
   :normalise_special_remainders_from_peerages,
@@ -17,9 +20,21 @@ task :modify => [
   :extract_letters_patent_times,
   :downcase_letter_patent_at_time,
   :set_letters_patent_ordinality_in_day,
-  :deprecate_princes] do
+  :deprecate_princes,
+  :link_peerages_to_kingdom,
+  :link_letters_patent_to_kingdom] do
 end
 
+task :populate_kingdoms => :environment do
+  puts "populating kingdoms"
+  CSV.foreach( 'db/data/kingdoms.csv' ) do |row|
+    kingdom = Kingdom.new
+    kingdom.name = row[0].strip
+    kingdom.start_on = row[1]
+    kingdom.end_on = row[2]
+    kingdom.save
+  end
+end
 task :collapse_title_of_into_peerage => :environment do
   puts "collapsing the of of the rank back to the peerages"
   ranks = Rank.all
@@ -142,16 +157,16 @@ task :normalise_genders => :environment do
     person.save
   end
 end
-task :populate_gendered_rank_labels => :environment do
-  puts "populating gendered rank labels"
+task :populate_rank_labels => :environment do
+  puts "populating rank labels"
   ranks = Rank.all
   ranks.each do |rank|
     gender = Gender.all.where( 'letter = ?', rank.gender_char.downcase ).first
-    gendered_rank_label = GenderedRankLabel.new
-    gendered_rank_label.label = rank.name
-    gendered_rank_label.gender = gender
-    gendered_rank_label.rank = rank
-    gendered_rank_label.save
+    rank_label = RankLabel.new
+    rank_label.label = rank.name
+    rank_label.gender = gender
+    rank_label.rank = rank
+    rank_label.save
   end
 end
 task :collapse_ranks_across_genders => :environment do
@@ -184,7 +199,7 @@ task :collapse_ranks_across_genders => :environment do
       gender = Gender.all.where( 'label = ?', 'Female' ).first
       
       # Find the female gendered rank label
-      female_rank_label = GenderedRankLabel.all.where( 'rank_id = ?', rank.id ).where( 'gender_id = ?', gender.id ).first
+      female_rank_label = RankLabel.all.where( 'rank_id = ?', rank.id ).where( 'gender_id = ?', gender.id ).first
       
       # Point the female gendered rank label at the male rank
       female_rank_label.rank = male_gender_rank
@@ -505,5 +520,25 @@ task :deprecate_princes => :environment do
       rank.is_peerage_rank = false
       rank.save
     end
+  end
+end
+task :link_peerages_to_kingdom => :environment do
+  puts "linking peerages to kingdom"
+  # All David's peerages in the UK peerage.
+  kingdom = Kingdom.all.where( 'name = ?', 'United Kingdom' ).first
+  peerages = Peerage.all
+  peerages.each do |peerage|
+    peerage.kingdom = kingdom
+    peerage.save
+  end
+end
+task :link_letters_patent_to_kingdom => :environment do
+  puts "linking letters_patent to kingdom"
+  # All David's peerages in the UK peerage.
+  kingdom = Kingdom.all.where( 'name = ?', 'United Kingdom' ).first
+  letters_patents = LettersPatent.all
+  letters_patents.each do |letters_patent|
+    letters_patent.kingdom = kingdom
+    letters_patent.save
   end
 end
