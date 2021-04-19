@@ -2,7 +2,8 @@ alter table peerages add column of_title boolean default false;
 alter table subsidiary_titles add column of_title boolean default false;
 
 
-drop table if exists gendered_rank_labels;
+drop table if exists kingdom_ranks;
+drop table if exists rank_labels;
 drop table if exists letters_patents;
 drop table if exists letters_patent_times;
 drop table if exists peerage_holdings;
@@ -11,7 +12,15 @@ drop table if exists letters;
 drop table if exists genders;
 drop table if exists jurisdictions;
 drop table if exists special_remainders;
+drop table if exists kingdoms;
 
+create table kingdoms (
+	id serial,
+	name varchar(255) not null,
+	start_on date,
+	end_on date,
+	primary key (id)
+);
 create table genders (
 	id serial,
 	label varchar(10) not null,
@@ -55,7 +64,7 @@ create table peerage_holdings (
 	constraint fk_peerage foreign key (peerage_id) references peerages(id),
 	primary key (id)
 );
-create table gendered_rank_labels (
+create table rank_labels (
 	id serial,
 	label varchar(100) not null,
 	rank_id int not null,
@@ -93,16 +102,27 @@ create table letters_patents (
 	announcement_id int,
 	letters_patent_time_id int,
 	person_id int,
+	kingdom_id int,
 	constraint fk_administration foreign key (administration_id) references administrations(id),
 	constraint fk_announcement foreign key (announcement_id) references announcements(id),
 	constraint fk_person foreign key (person_id) references people(id),
 	constraint fk_letters_patent_time foreign key (letters_patent_time_id) references letters_patent_times(id),
+	constraint fk_kingdom foreign key (kingdom_id) references kingdoms(id),
+	primary key (id)
+);
+create table kingdom_ranks (
+	id serial,
+	rank_id int not null,
+	kingdom_id int not null,
+	constraint fk_rank foreign key (rank_id) references ranks(id),
+	constraint fk_kingdom foreign key (kingdom_id) references kingdoms(id),
 	primary key (id)
 );
 
 alter table law_lords add column jurisdiction_id int;
 alter table peerages add column special_remainder_id int;
 alter table peerages add column letters_patent_id int;
+alter table peerages add column kingdom_id int;
 alter table subsidiary_titles add column letters_patent_id int;
 alter table subsidiary_titles add column special_remainder_id int;
 alter table peerages add column letter_id int;
