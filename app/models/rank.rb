@@ -18,12 +18,11 @@ class Rank < ActiveRecord::Base
     label = self.label
     # Only list kingdoms if the rank doesn't apply to all of them.
     if self.kingdoms.size < 5
-      label += ' ('
+      label += ' - '
       self.kingdoms.each do |kingdom|
         label += kingdom.name
         label += ', ' unless kingdom == self.kingdoms.last
       end
-      label += ')'
     end
     label
   end
