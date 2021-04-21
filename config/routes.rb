@@ -55,6 +55,11 @@ Rails.application.routes.draw do
   get 'kingdoms' => 'kingdom#index', as: :kingdom_list
   get 'kingdoms/:kingdom' => 'kingdom#show', as: :kingdom_show
   
+  get 'kingdoms/:kingdom/peerages' => 'kingdom_peerage#index', as: :kingdom_peerage_list
+  
+  get 'kingdoms/:kingdom/peerages/a-z' => 'kingdom_peerage_atoz#index', as: :kingdom_peerage_atoz_list
+  get 'kingdoms/:kingdom/peerages/a-z/:letter' => 'kingdom_peerage_atoz#show', as: :kingdom_peerage_atoz_show
+  
   get 'meta' => 'meta#index', as: :meta_list
   get 'meta/about' => 'meta#about', as: :meta_about
   get 'meta/iaq' => 'meta#iaq', as: :meta_iaq
