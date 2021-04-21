@@ -22,7 +22,9 @@ task :modify => [
   :set_letters_patent_ordinality_in_day,
   :deprecate_princes,
   :link_peerages_to_kingdom,
-  :link_letters_patent_to_kingdom] do
+  :link_letters_patent_to_kingdom,
+  :link_ranks_to_kingdoms,
+  :add_lordship_rank] do
 end
 
 task :populate_kingdoms => :environment do
@@ -541,4 +543,44 @@ task :link_letters_patent_to_kingdom => :environment do
     letters_patent.kingdom = kingdom
     letters_patent.save
   end
+end
+task :link_ranks_to_kingdoms => :environment do
+  puts "linking ranks to kingdoms"
+  ranks = Rank.all
+  kingdoms = Kingdom.all
+  ranks.each do |rank|
+    kingdoms.each do |kingdom|
+      # unless this is a barony in scotland...
+      unless rank.degree == 5 and kingdom.id == 2
+        kingdom_rank = KingdomRank.new
+        kingdom_rank.kingdom = kingdom
+        kingdom_rank.rank = rank
+        kingdom_rank.save
+      end
+    end
+  end
+end
+task :add_lordships => :environment do
+  puts "adding lordship rank for scotland, rank labels for scotland and tie to Kingdom of Scotland"
+  rank = Rank.new
+  rank.degree = 5
+  rank.label = 'Lordship'
+  rank.is_peerage_rank = true
+  rank.code = "something has to be here"
+  rank.save
+  # create new rank labels for male lordship
+  rank_label = RankLabel.new
+  rank_label.label = 'Lord'
+  rank_label.rank = rank
+  rank_label.gender_id = 1
+  # create new rank labels for female lordship
+  rank_label = RankLabel.new
+  rank_label.label = 'Lady'
+  rank_label.rank = rank
+  rank_label.gender_id = 2
+  rank_label.save
+  kingdom_rank = KingdomRank.new
+  kingdom_rank.rank = rank
+  kingdom_rank.kingdom_id = 2
+  kingdom_rank.save
 end
