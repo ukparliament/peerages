@@ -4,6 +4,14 @@
 
 <p>All subsidiary peerages have the same date for issue of letters patent as their parent peerage, except for the current Duke of Cambridge whose main peerage has a letters patent date of 26/05/2011, with two subsidiary titles - the Earl of Strathearn and Lord Carrickfergus - having a letters patent date of 29/04/2011. We have checked the London Gazette and found a single announcement. For now, we have assumed incorrect dates on the subsidiaries and combined them into the same letters patent as the 'parent' peerage.</p>
 
+<%= content_tag( 'h2', 'Person details' ) %>
+
+<p><%= link_to( 'John Campbell', person_show_url( :person => 195 ) ) %>, created <%= link_to( 'Marquess of Breadalbane', peerage_show_url( :peerage => 192 ) ) %> on 12 September 1831, has no date of birth. Likely same person as <%= link_to( 'John Campbell', person_show_url( :person => 42 ) ) %>,, created <%= link_to( 'Lord Breadalbane', peerage_show_url( :peerage => 53 ) ) %> on 13 November 1806, who has date of birth 30 March 1762. Suggest adding this date of birth to the later entry.</p>
+
+<%= content_tag( 'h2', 'Incorrect patent dates' ) %>
+
+<p><%= link_to( 'Letters patent 2712', letters_patent_show_url( :letters_patent => 2712 ) ) %> (creating Marquess of Aberdeen and Temair) has 15 May 1915. It should be 4 January 1916.</p>
+
 <%= content_tag( 'h2', 'Missing patent times' ) %>
 
 <h3>1805-11-20</h3>
