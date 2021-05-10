@@ -10,6 +10,15 @@ class Administration < ActiveRecord::Base
     prime_minister.gsub(/ \((.*)\)/) {|s| ', ' + s[2].to_i.ordinalize + ' administration'}
   end
   
+  def prime_minister_reverse_ordinally
+    if prime_minister.include?( '(' )
+      pm = prime_minister.gsub(/ \((.*)\)/) {|s| ', ' + s[2].to_i.ordinalize}
+    else
+      pm = prime_minister
+    end
+    pm + ' administration'
+  end
+  
   def start_date_display
     if self.start_date
       start_date_display = self.start_date.strftime( '%-d %b %Y')
