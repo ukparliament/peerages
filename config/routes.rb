@@ -52,11 +52,14 @@ Rails.application.routes.draw do
   get 'law-lords' => 'law_lord#index', as: :law_lord_list
   get 'law-lords/:law_lord' => 'law_lord#show', as: :law_lord_show
   
-  get 'kingdoms' => 'kingdom#index', as: :kingdom_list
-  get 'kingdoms/:kingdom' => 'kingdom#show', as: :kingdom_show
-  
   get 'monarchs' => 'monarch#index', as: :monarch_list
   get 'monarchs/:monarch' => 'monarch#show', as: :monarch_show
+  
+  get 'reigns' => 'reign#index', as: :reign_list
+  get 'reigns/:reign' => 'reign#show', as: :reign_show
+  
+  get 'kingdoms' => 'kingdom#index', as: :kingdom_list
+  get 'kingdoms/:kingdom' => 'kingdom#show', as: :kingdom_show
   
   get 'kingdoms/:kingdom/peerages' => 'kingdom_peerage#index', as: :kingdom_peerage_list
   
