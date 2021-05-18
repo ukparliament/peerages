@@ -1,0 +1,3 @@
+<p>
+	<%= link_to( reign.monarch_name, monarch_show_url( :monarch => reign.monarch_id ) ) %> monarch of the <%= link_to( reign.kingdom_name, kingdom_show_url( :kingdom => reign.kingdom_id ) ) %> from <%= link_to( reign.date_range, reign_show_url( :reign => reign) ) %>.
+</p>

@@ -1,0 +1,11 @@
+<h1>
+	<%= link_to( @reign.monarch.name, monarch_show_url( :monarch => @reign.monarch_id ) ) %> monarch of the <%= link_to(@reign.kingdom.name, kingdom_show_url( :kingdom => @reign.kingdom_id ) ) %>
+</h1>
+<%= content_tag( 'p', "#{@reign.date_range}." ) %>
+
+<%= content_tag( 'h2', 'Letters Patent' ) %>
+<table>
+	<%= render :partial => 'letters_patent/table_header' %>
+	<tbody>
+		<%= render :partial => 'letters_patent/letters_patent_table', :collection => @reign.letters_patents %>
+</table>
