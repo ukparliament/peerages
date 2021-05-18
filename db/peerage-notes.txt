@@ -37,25 +37,6 @@ Is subsidiary title associated with peerage? USUALLY. LORD CURZON PROMOTED TO EA
 
 
 
- 
- 
- 2. Both the peerage and the subsidiary titles tables have a field called 'time'. This is one character, mixed case alphanumeric.  My notes say, "seniority. time of letters patent ????????? numbers represent rank???? code for time. code for place on list." What makes no sense to me now. Can you tell us what this field means and how it's expected to be used.
- The purpose of the "time" field is to enable sorting in chronological order. If two or more peerages of the same rank are created on one day then steps are taken to establish the relevant seniority. In recent times creations have generally been limited to two per day, and the letters patent state that they have been sealed in the "forenoon" or "afternoon". I identify those as "A" and "P" (short for "a.m." and "p.m"). In November 1999, when hereditary peers left the House of Lords, a number of them were given life peerages, and in the interests of speed there were multiple creations on one day and the letters patent showed the time. My encoding is as follows:
- Q =  6 a.m.
- R = 9 a.m.
- S = 12 noon
- T = 1 p.m.
- U = 2 p.m.
- V = 3 p.m.
- W = 6 p.m.
- X = 9 p.m.
- Y = 11 p.m.
- There is no problem with creating two peerages of different ranks on the same day, but to ensure consistent sorting I have encoded the degree of the peerage as a number: Duke 1, Marquess 2, Earl 3, Viscount 4, Baron 5.
-
-
-
-
-
  4. There's an oddity with announcements and announcement types. Or at least in our interpretation of it. There are 14 peers with an announcement type code of 'L'. But there doesn't appear to be an announcement type code of 'L' in the announcement types table. Lord Boothby is one example.
  Sorry. I have added "L" to the list. When the Life Peerages Act 1958 came into force there was an initial list of appointments which does not neatly fit into any other category. The L (short for "Life Peerages Act") relates to that list.
  
