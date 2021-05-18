@@ -55,6 +55,9 @@ Rails.application.routes.draw do
   get 'kingdoms' => 'kingdom#index', as: :kingdom_list
   get 'kingdoms/:kingdom' => 'kingdom#show', as: :kingdom_show
   
+  get 'monarchs' => 'monarch#index', as: :monarch_list
+  get 'monarchs/:monarch' => 'monarch#show', as: :monarch_show
+  
   get 'kingdoms/:kingdom/peerages' => 'kingdom_peerage#index', as: :kingdom_peerage_list
   
   get 'kingdoms/:kingdom/peerages/a-z' => 'kingdom_peerage_atoz#index', as: :kingdom_peerage_atoz_list
