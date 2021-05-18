@@ -2,6 +2,8 @@
 
 <%= content_tag( 'p', "As part of a #{link_to( @announcement.announcement_type.name, announcement_type_show_url( :announcement_type => @announcement.announcement_type ) )}.".html_safe ) %>
 
+<%= content_tag( 'p', "Announced during the #{link_to( @announcement.administration.prime_minister_reverse_ordinally, administration_show_url( :administration => @announcement.administration ) )}.".html_safe ) if @announcement.administration %>
+
 <% if @announcement.in_gazette -%>
 	<%= content_tag( 'p', "Published in the London Gazette." ) %>
 <% else -%>
