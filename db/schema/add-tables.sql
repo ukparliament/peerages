@@ -5,6 +5,7 @@ alter table subsidiary_titles add column of_title boolean default false;
 drop table if exists kingdom_ranks;
 drop table if exists rank_labels;
 drop table if exists letters_patents;
+drop table if exists reigns;
 drop table if exists letters_patent_times;
 drop table if exists peerage_holdings;
 drop table if exists people;
@@ -15,16 +16,27 @@ drop table if exists special_remainders;
 drop table if exists kingdoms;
 drop table if exists monarchs;
 
-create table monarchs (
-	id serial,
-	name varchar(255) not null,
-	primary key (id)
-);
+
 create table kingdoms (
 	id serial,
 	name varchar(255) not null,
 	start_on date,
 	end_on date,
+	primary key (id)
+);
+create table monarchs (
+	id serial,
+	name varchar(255) not null,
+	primary key (id)
+);
+create table reigns (
+	id serial,
+	start_on date,
+	end_on date,
+	kingdom_id int not null,
+	monarch_id int not null,
+	constraint fk_kingdom foreign key (kingdom_id) references kingdoms(id),
+	constraint fk_monarch foreign key (monarch_id) references monarchs(id),
 	primary key (id)
 );
 create table genders (
@@ -109,11 +121,13 @@ create table letters_patents (
 	letters_patent_time_id int,
 	person_id int,
 	kingdom_id int,
+	reign_id int,
 	constraint fk_administration foreign key (administration_id) references administrations(id),
 	constraint fk_announcement foreign key (announcement_id) references announcements(id),
 	constraint fk_person foreign key (person_id) references people(id),
 	constraint fk_letters_patent_time foreign key (letters_patent_time_id) references letters_patent_times(id),
 	constraint fk_kingdom foreign key (kingdom_id) references kingdoms(id),
+	constraint fk_reign foreign key (reign_id) references reigns(id),
 	primary key (id)
 );
 create table kingdom_ranks (
