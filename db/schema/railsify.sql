@@ -160,6 +160,9 @@ alter table ranks add column is_peerage_rank boolean default true;
 /* new column on peerages to store a wikidata id */
 alter table peerages add column wikidata_id varchar(20);
 
+/* new column on announcements to store administration_id */
+alter table announcements add column administration_id int;
+
 /* Make the id on the peerages table into an auto incrementing serial */
 create sequence peerages_id_seq minvalue 2935;
 alter table peerages alter id set default nextval('peerages_id_seq');
