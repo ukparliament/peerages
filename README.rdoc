@@ -40,8 +40,16 @@ Remove top row
 
 ## Populate identifiers on people and peerages
 
-Download sheets 2 and 3 as CSV from https://docs.google.com/spreadsheets/d/1AYzx6AMYw5eGzl9iSgx0a9behOjfLFaUUvDtXEZUULY/edit?usp=sharing
+Download sheets 6 and 7 as CSV from https://docs.google.com/spreadsheets/d/1AYzx6AMYw5eGzl9iSgx0a9behOjfLFaUUvDtXEZUULY/edit?usp=sharing
 
 Remove top rows
 
 ` rake add_identifiers
+
+## Populate monarchs
+
+Download sheet 4 as CSV from https://docs.google.com/spreadsheets/d/1AYzx6AMYw5eGzl9iSgx0a9behOjfLFaUUvDtXEZUULY/edit?usp=sharing
+
+Remove top row
+
+` rake add_monarchs
