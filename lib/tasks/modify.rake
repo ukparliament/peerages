@@ -13,6 +13,7 @@ task :modify => [
   :normalise_special_remainders_from_peerages,
   :normalise_special_remainders_from_subsidiary_titles,
   :normalise_letters_patent,
+  :link_announcements_to_administration,
   :port_subsidiary_titles_to_peerages,
   :link_letter_patent_to_peerages,
   :link_peerage_to_letters,
@@ -24,7 +25,7 @@ task :modify => [
   :link_peerages_to_kingdom,
   :link_letters_patent_to_kingdom,
   :link_ranks_to_kingdoms,
-  :add_lordship_rank] do
+  :add_lordships] do
 end
 
 task :populate_kingdoms => :environment do
@@ -285,6 +286,16 @@ task :normalise_letters_patent => :environment do
   subsidiary_titles.each do |subsidiary_title|
     subsidiary_title.letters_patent = subsidiary_title.peerage.letters_patent
     subsidiary_title.save
+  end
+end
+task :link_announcements_to_administration => :environment do
+  puts "linking announcements to administrations"
+  announcements = Announcement.all
+  announcements.each do |announcement|
+    unless announcement.letters_patent.empty?
+      announcement.administration = announcement.letters_patent.first.administration
+      announcement.save
+    end
   end
 end
 task :port_subsidiary_titles_to_peerages => :environment do
