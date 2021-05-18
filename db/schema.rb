@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer  "number"
     t.text     "notes"
     t.integer  "announcement_type_id"
+    t.integer  "administration_id"
   end
 
   create_table "genders", force: :cascade do |t|
@@ -100,6 +101,10 @@ ActiveRecord::Schema.define(version: 0) do
     t.integer "letters_patent_time_id"
     t.integer "person_id"
     t.integer "kingdom_id"
+  end
+
+  create_table "monarchs", force: :cascade do |t|
+    t.string "name", limit: 255, null: false
   end
 
   create_table "peerage_holdings", force: :cascade do |t|
