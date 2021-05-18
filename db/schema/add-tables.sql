@@ -13,7 +13,13 @@ drop table if exists genders;
 drop table if exists jurisdictions;
 drop table if exists special_remainders;
 drop table if exists kingdoms;
+drop table if exists monarchs;
 
+create table monarchs (
+	id serial,
+	name varchar(255) not null,
+	primary key (id)
+);
 create table kingdoms (
 	id serial,
 	name varchar(255) not null,
