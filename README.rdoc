@@ -61,3 +61,7 @@ Download sheet 5 as CSV from https://docs.google.com/spreadsheets/d/1AYzx6AMYw5e
 Remove top row
 
 ` rake add_reigns
+
+## Associate letters patent with reigns
+
+` rake associate_letters_patent_with_reigns
