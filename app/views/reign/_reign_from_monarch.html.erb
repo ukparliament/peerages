@@ -1,0 +1,3 @@
+<p>
+	Monarch of the <%= link_to( reign_from_monarch.kingdom_name, kingdom_show_url( :kingdom => reign_from_monarch.kingdom_id ) ) %> from <%= reign_from_monarch.start_on.strftime( '%-d %B %Y') %><% if reign_from_monarch.end_on -%> until <%= reign_from_monarch.end_on.strftime( '%-d %B %Y') %>.<% else -%>.<% end -%>
+</p>
