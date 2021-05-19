@@ -23,4 +23,12 @@ class LettersPatent < ActiveRecord::Base
     end
     previous_title
   end
+  
+  def prime_minister_reverse_ordinally
+    pm = prime_minister_inline.gsub(/(.*)\((.*)\)/) {|s| $2.to_i.ordinalize + " " +  $1 + " administration"}
+    if pm == prime_minister_inline
+      pm = prime_minister_inline + ' administration'
+    end
+    pm
+  end
 end
