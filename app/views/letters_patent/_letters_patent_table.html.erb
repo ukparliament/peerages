@@ -9,7 +9,7 @@
 	</td>
 	<td>
 		<% if letters_patent_table.administration_id -%>
-			<%= link_to( letters_patent_table.prime_minister_inline, administration_show_url( letters_patent_table.administration_id ) ) %>
+			<%= link_to( letters_patent_table.prime_minister_reverse_ordinally, administration_show_url( letters_patent_table.administration_id ) ) %>
 		<% else -%>
 			-
 		<% end -%>
