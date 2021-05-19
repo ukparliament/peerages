@@ -12,14 +12,11 @@ class Administration < ActiveRecord::Base
   end
   
   def prime_minister_reverse_ordinally
-    #if prime_minister.include?( '(' )
-      #pm = prime_minister.gsub(/ \((.*)\)/) {|s| ', ' + s[2].to_i.ordinalize}
-      #else
-      #pm = prime_minister
-      #end
-    #pm + ' administration'
-    #prime_minister.gsub(/ (.*)\s\((\d*)\)/) {|s| ', ' + s[2].to_i.ordinalize + ' administration'}
-    prime_minister.gsub(/(.*)\((.*)\)/) {|s| $2.to_i.ordinalize + " " +  $1 + " administration"}
+    pm = prime_minister.gsub(/(.*)\((.*)\)/) {|s| $2.to_i.ordinalize + " " +  $1 + " administration"}
+    if pm == prime_minister
+      pm = prime_minister + ' administration'
+    end
+    pm
   end
   
   def start_date_display
