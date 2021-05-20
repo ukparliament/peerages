@@ -23,7 +23,7 @@ class Kingdom < ActiveRecord::Base
   end
   
   def ranks
-    Rank.all.select( 'r.*').joins( 'as r, kingdom_ranks as kr' ).where( 'kr.kingdom_id = ?', self ).where( 'kr.rank_id = r.id' )
+    Rank.all.select( 'r.*').joins( 'as r, kingdom_ranks as kr' ).where( 'kr.kingdom_id = ?', self ).where( 'kr.rank_id = r.id' ).where( 'is_peerage_rank is true' ).order( 'degree' )
   end
   
   def peerages_by_rank( rank )
