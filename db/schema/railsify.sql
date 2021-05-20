@@ -88,6 +88,7 @@ alter table announcements rename column "Gazette page" to gazette_page_number;
 alter table announcements rename column "Number" to number;
 alter table announcements rename column "Details" to notes;
 alter table announcements add column announcement_type_id int;
+alter table announcements add column gazette_url varchar(255);
 alter table announcements add constraint announcement_type foreign key (announcement_type_id) references announcement_types(id);
 alter table announcements drop constraint "Lists_pkey";
 alter table announcements add column id serial;
