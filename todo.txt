@@ -1,6 +1,16 @@
+display notes on people
+display citations on letters_patent
+
+link peerages to kindgom
+link letters patent to kingdom
+
+
+
+
 michael to list ranks under kingdoms
 
 michael to list monarchs (via reigns) under kingdoms
 
 michael to list letters patent under kingdoms
 
+same person twice in spreadsheets????
