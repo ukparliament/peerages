@@ -1,16 +1,6 @@
-move administration from letters patent to announcement
-
-add reigns
-
-work out how we populate reigns and monarchs
-
-ned to get start - end dates of administrations to michael and david
-
-michael to link letters patent in kingdom to reign in kingdom where patent_on >= reign.start_on and patent_on <= reign.end_on
-
 michael to list ranks under kingdoms
 
 michael to list monarchs (via reigns) under kingdoms
 
-michael to import ned sainty sheet
-- ensure peerages get added to letters a-z
+michael to list letters patent under kingdoms
+
