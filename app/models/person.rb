@@ -6,7 +6,12 @@ class Person < ActiveRecord::Base
   has_many :letters_patents, -> { order( :patent_on ) }
   
   def display_name
-    "#{self.forenames} #{self.surname}"
+    display_name = ''
+    display_name += self.prefix + ' ' if self.prefix
+    display_name += self.forenames + ' ' if self.forenames
+    display_name += self.surname + ' ' if self.surname
+    display_name += self.suffix + ' ' if self.suffix
+    display_name
   end
   
   def list_display
@@ -31,8 +36,6 @@ class Person < ActiveRecord::Base
   end
   
   def peerages
-    #Peerage.all.select.( 'p.*' ).joins( 'as p, peerage_holdings as ph' ).where( 'ph.peerage_id = p.id' )
-    #Peerage.all.select.( 'p.*' ).joins( 'as p' )
     Peerage.all.select( 'p.*' ).joins( 'as p, peerage_holdings as ph, ranks as r' ).where( 'ph.peerage_id = p.id' ).where( 'ph.person_id = ?', self ).where( 'p.rank_id = r.id' ).order( 'r.degree' )
   end
   
