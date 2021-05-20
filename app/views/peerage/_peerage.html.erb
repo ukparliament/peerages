@@ -1,1 +1,1 @@
-<%= content_tag( 'li', link_to( peerage.display_title, peerage_show_url( :peerage => peerage ) ) ) %>
+<%= content_tag( 'li', "#{link_to( peerage.display_title, peerage_show_url( :peerage => peerage ) )} in the Peerage of the #{link_to( peerage.kingdom.name, kingdom_show_url( :kingdom => peerage.kingdom ) )}".html_safe ) %>
