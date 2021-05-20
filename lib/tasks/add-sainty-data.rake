@@ -66,7 +66,7 @@ task :add_sainty_data => :environment do
     rank = Rank.find_by_label( row[8].strip )
     
     # Find the letter.
-    letter = Letter.all.where( 'letter = ?', row[9][0,1].upcase ).first
+    #letter = Letter.all.where( 'letter = ?', row[9][0,1].upcase ).first
     
     # Find the peerage type.
     peerage_type = PeerageType.find_by_name( row[12] )
