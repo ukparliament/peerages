@@ -55,11 +55,14 @@ create table letters (
 );
 create table people (
 	id serial,
+	prefix varchar(20),
 	forenames varchar(200) not null,
-	surname varchar(100) not null,
+	surname varchar(100),
+	suffix varchar(20),
 	gender_char char(1) not null,
 	date_of_birth date,
 	date_of_death date,
+	notes text,
 	letter_id int,
 	gender_id int,
 	wikidata_id varchar(20),
@@ -116,6 +119,7 @@ create table letters_patents (
 	previous_title varchar(255),
 	previous_rank varchar(255),
 	ordinality_on_date int,
+	citations text,
 	administration_id int,
 	announcement_id int,
 	letters_patent_time_id int,
