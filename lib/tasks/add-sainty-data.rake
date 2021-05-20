@@ -22,6 +22,7 @@ task :add_sainty_data => :environment do
         letter = Letter.all.where( 'letter = ?', row[4][0,1].upcase ).first
       end
       
+      # Create a new person.
       person = Person.new
       person.prefix = row[2].strip if row[2]
       person.forenames = row[3].strip if row[3]
@@ -31,7 +32,7 @@ task :add_sainty_data => :environment do
       person.gender = gender
       person.letter = letter if letter
       # This can't be null
-      if row[9] = 'Male'
+      if row[6] == 'Male'
         person.gender_char = 'm'
       else
         person.gender_char = 'f'
@@ -41,6 +42,7 @@ task :add_sainty_data => :environment do
     
     # Find the reign.
     reign = Reign.all.where( 'kingdom_id = ?', kingdom ).where( 'start_on <= ?', row[13].strip ).where( 'end_on >= ? or end_on is null', row[13].strip ).first
+    
     # Create the letters patent.
     letters_patent = LettersPatent.new
     letters_patent.patent_on = row[13].strip
@@ -66,7 +68,7 @@ task :add_sainty_data => :environment do
     rank = Rank.find_by_label( row[8].strip )
     
     # Find the letter.
-    #letter = Letter.all.where( 'letter = ?', row[9][0,1].upcase ).first
+    letter = Letter.all.where( 'letter = ?', row[9][0,1].upcase ).first
     
     # Find the peerage type.
     peerage_type = PeerageType.find_by_name( row[12] )
@@ -74,7 +76,6 @@ task :add_sainty_data => :environment do
     # Create the peerage.
     peerage = Peerage.new
     peerage.of_title = false # NOTE: this data is not present in Sainty.
-    puts row[9] #wtf
     peerage.title = row[9].strip
     peerage.notes = row[11].strip if row[11]
     peerage.alpha = row[9][0, 10].upcase
@@ -85,5 +86,13 @@ task :add_sainty_data => :environment do
     peerage.letter = letter
     peerage.kingdom = kingdom
     peerage.save
+    
+    # Create the peerage holding.
+    peerage_holding = PeerageHolding.new
+    peerage_holding.ordinality = 1
+    peerage_holding.start_on = row[13].strip
+    peerage_holding.peerage = peerage
+    peerage_holding.person = person
+    peerage_holding.save
   end
 end
