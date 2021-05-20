@@ -1,2 +1,6 @@
 <%= content_tag( 'h1', @kingdom.name ) %>
 <%= content_tag( 'p', @kingdom.dates ) %>
+
+<ol>
+	<%= content_tag( 'li', link_to( 'Peerages by title', kingdom_peerage_atoz_show_url( :letter => 'a' ) ) )%>
+</ol>
