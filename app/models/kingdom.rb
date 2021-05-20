@@ -21,4 +21,12 @@ class Kingdom < ActiveRecord::Base
   def peerages_by_letter( letter )
     Peerage.all.where( 'letter_id = ?', letter.id ).where( 'kingdom_id = ?', self.id ).order( 'title' )
   end
+  
+  def ranks
+    Rank.all.select( 'r.*').joins( 'as r, kingdom_ranks as kr' ).where( 'kr.kingdom_id = ?', self ).where( 'kr.rank_id = r.id' )
+  end
+  
+  def peerages_by_rank( rank )
+    Peerage.all.where( 'kingdom_id = ?', self ).where( 'rank_id =  ?', rank ).order( 'alpha' )
+  end
 end
