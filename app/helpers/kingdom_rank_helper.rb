@@ -1,0 +1,2 @@
+module KingdomRankHelper
+end

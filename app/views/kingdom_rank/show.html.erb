@@ -1,0 +1,8 @@
+<%= content_tag( 'h1', "#{@rank.label.pluralize} in the Peerage of the #{@kingdom.name}" ) %>
+
+<table>
+	<%= render :partial => 'peerage/table_header' %>
+	<tbody>
+		<%= render :partial => 'peerage/peerage_alpha', :collection => @peerages %>
+	</tbody>
+</table>

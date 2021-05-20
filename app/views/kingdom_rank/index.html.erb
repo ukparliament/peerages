@@ -1,0 +1,4 @@
+<%= content_tag( 'h1', "Ranks in the Peerage of the #{@kingdom.name}" ) %>
+<ol>
+	<%= render :partial => 'kingdom_rank', :collection => @ranks %>
+</ol>
