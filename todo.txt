@@ -1,16 +1,17 @@
 display notes on people
 display citations on letters_patent
 
-link peerages to kindgom
-link letters patent to kingdom
+
+
+
+performance of letters patent listing and queries
+
+does removing link from letters patent to admins break letters patent list
+peerage page?
 
 
 
 
-michael to list ranks under kingdoms
 
-michael to list monarchs (via reigns) under kingdoms
-
-michael to list letters patent under kingdoms
 
 same person twice in spreadsheets????
