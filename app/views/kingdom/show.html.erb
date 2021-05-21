@@ -2,6 +2,7 @@
 <%= content_tag( 'p', @kingdom.dates ) %>
 
 <ol>
+	<%= content_tag( 'li', link_to( 'Reigns', kingdom_reign_list_url ) )%>
 	<%= content_tag( 'li', link_to( 'Peerage titles', kingdom_peerage_atoz_show_url( :letter => 'a' ) ) )%>
 	<%= content_tag( 'li', link_to( 'Ranks', kingdom_rank_list_url ) )%>
 </ol>
