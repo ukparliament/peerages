@@ -2,6 +2,12 @@
 
 <%= content_tag( 'p', "To #{link_to( @letters_patent.person.display_name, person_show_url( :person => @letters_patent.person ) )} .".html_safe ) %>
 
+<% if @letters_patent.reign -%>
+	<%= content_tag( 'p', "A peerage of the #{link_to( @letters_patent.kingdom.name, kingdom_show_url( :kingdom => @letters_patent.kingdom ) )}, during the #{link_to( "reign of #{@letters_patent.reign.monarch.name}", reign_show_url( :reign => @letters_patent.reign ) )}.".html_safe ) %>
+<% else -%>
+	<%= content_tag( 'p', "A peerage of the #{link_to( @letters_patent.kingdom.name, kingdom_show_url( :kingdom => @letters_patent.kingdom ) )}.".html_safe ) %>
+<% end -%>
+
 <%= content_tag( 'p', "Issued during the #{link_to( @letters_patent.administration.prime_minister, administration_show_url( :administration => @letters_patent.administration ) )} administration.".html_safe ) if @letters_patent.administration %>
 
 <%= content_tag( 'p', "Announced on #{link_to( @letters_patent.announcement.announced_on.strftime( '%-d %B %Y'), announcement_show_url( :announcement => @letters_patent.announcement ) )} as part of a #{link_to( @letters_patent.announcement.announcement_type.name, announcement_type_show_url( :announcement_type => @letters_patent.announcement.announcement_type ) )}.".html_safe ) if @letters_patent.announcement %>
