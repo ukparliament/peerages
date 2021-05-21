@@ -1,7 +1,7 @@
 class KingdomController < ApplicationController
   
   def index
-    @kingdoms = Kingdom.all.order( 'end_on, start_on')
+    @kingdoms = Kingdom.all.order( 'end_on desc, start_on desc' )
   end
   
   def show
