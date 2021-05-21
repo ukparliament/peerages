@@ -71,6 +71,8 @@ Rails.application.routes.draw do
   
   get 'kingdoms/:kingdom/reigns' => 'kingdom_reign#index', as: :kingdom_reign_list
   
+  get 'kingdoms/:kingdom/letters-patent' => 'kingdom_letters_patent#index', as: :kingdom_letters_patent_list
+  
   get 'meta' => 'meta#index', as: :meta_list
   get 'meta/about' => 'meta#about', as: :meta_about
   get 'meta/iaq' => 'meta#iaq', as: :meta_iaq
