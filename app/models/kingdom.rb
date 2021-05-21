@@ -18,6 +18,10 @@ class Kingdom < ActiveRecord::Base
     dates
   end
   
+  def reigns
+    Reign.all.select( 'r.*, m.name as monarch_name' ).joins( 'as r, monarchs as m' ).where( 'r.monarch_id = m.id' ).where( 'kingdom_id = ?', self ).order( 'r.start_on desc' )
+  end
+  
   def peerages_by_letter( letter )
     Peerage.all.where( 'letter_id = ?', letter.id ).where( 'kingdom_id = ?', self.id ).order( 'title' )
   end
