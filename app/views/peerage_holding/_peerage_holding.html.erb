@@ -2,7 +2,7 @@
 	<%= content_tag( 'td', link_to( peerage_holding.ordinality.ordinalize, peerage_holding_show_url( :peerage_holding => peerage_holding ) ) ) %>
 	<td>
 		<% if peerage_holding.person.surname -%>
-			<%= content_tag( 'td', link_to( peerage_holding.person.surname, person_show_url( :person => peerage_holding.person ) ) ) %>
+			<%= link_to( peerage_holding.person.surname, person_show_url( :person => peerage_holding.person ) ) %>
 		<% else -%>
 			-
 		<% end -%>
