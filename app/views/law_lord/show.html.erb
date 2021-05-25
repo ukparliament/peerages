@@ -13,7 +13,7 @@
 	<% if @law_lord.appointment_london_gazette_page -%>
 		<%= content_tag( 'p', "Appointment in The London Gazette, issue #{@law_lord.appointment_london_gazette_issue}, page #{@law_lord.appointment_london_gazette_page}." ) %>
 	<% else -%>
-		<%= content_tag( 'p', "Appointment in The London Gazette, issue #{law_lord.appointment_london_gazette_issue}." ) %>
+		<%= content_tag( 'p', "Appointment in The London Gazette, issue #{@law_lord.appointment_london_gazette_issue}." ) %>
 	<% end -%>
 <% end -%>
 <%= content_tag( 'p', "Old office: #{@law_lord.old_office}." ) if @law_lord.old_office %>
