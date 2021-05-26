@@ -49,8 +49,8 @@ Rails.application.routes.draw do
   get 'letters-patent' => 'letters_patent#index', as: :letters_patent_list
   get 'letters-patent/:letters_patent' => 'letters_patent#show', as: :letters_patent_show
   
-  get 'law-lords' => 'law_lord#index', as: :law_lord_list
-  get 'law-lords/:law_lord' => 'law_lord#show', as: :law_lord_show
+  get 'law-lord-incumbencies' => 'law_lord_incumbency#index', as: :law_lord_incumbency_list
+  get 'law-lord-incumbencies/:law_lord_incumbency' => 'law_lord_incumbency#show', as: :law_lord_incumbency_show
   
   get 'monarchs' => 'monarch#index', as: :monarch_list
   get 'monarchs/:monarch' => 'monarch#show', as: :monarch_show
