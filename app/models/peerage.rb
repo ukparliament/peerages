@@ -8,7 +8,7 @@ class Peerage < ActiveRecord::Base
   belongs_to :letters_patent
   belongs_to :kingdom
   belongs_to :letter
-  has_many :law_lords, -> { order( :appointed_on ) }
+  has_many :law_lord_incumbencies, -> { order( :appointed_on ) }
   has_many :subsidiary_titles, -> { order( :title ) }
   has_many :peerage_holdings
   
