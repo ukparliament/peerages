@@ -33,6 +33,6 @@ class LettersPatent < ActiveRecord::Base
   end
   
   def previous_kingdom
-    Kingdom.find( self.previous_kingdom_id )
+    Kingdom.find( self.previous_kingdom_id ) if self.previous_kingdom_id
   end
 end
