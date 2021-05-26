@@ -25,7 +25,11 @@ task :modify => [
   :link_peerages_to_kingdom,
   :link_letters_patent_to_kingdom,
   :link_ranks_to_kingdoms,
-  :add_lordships] do
+  :add_lordships,
+  :normalise_previous_kingdoms,
+  :normalise_previous_of_title,
+  :remove_dots_from_previous_ranks,
+  :expand_previous_titles] do
 end
 
 task :populate_kingdoms => :environment do
@@ -594,4 +598,81 @@ task :add_lordships => :environment do
   kingdom_rank.rank = rank
   kingdom_rank.kingdom_id = 2
   kingdom_rank.save
+end
+task :normalise_previous_kingdoms => :environment do
+  puts "normalising previous kingdom from previous rank"
+  letters_patents = LettersPatent.all
+  letters_patents.each do |letters_patent|
+    if letters_patent.previous_rank and letters_patent.previous_rank.include?( "(S)" )
+      letters_patent.previous_kingdom_id = 2
+      letters_patent.previous_rank = letters_patent.previous_rank.gsub( "(S)", "")
+      letters_patent.save
+    elsif letters_patent.previous_rank and letters_patent.previous_rank.include?( "(I)" )
+      letters_patent.previous_kingdom_id = 3
+      letters_patent.previous_rank = letters_patent.previous_rank.gsub( "(I)", "")
+      letters_patent.save
+    end
+  end
+end
+task :normalise_previous_of_title => :environment do
+  puts "normalising previous of title from previous rank"
+  letters_patents = LettersPatent.all
+  letters_patents.each do |letters_patent|
+    if letters_patent.previous_rank and letters_patent.previous_rank.include?( " of" )
+      letters_patent.previous_of_title = true
+      letters_patent.previous_rank = letters_patent.previous_rank.gsub( " of", "")
+      letters_patent.save
+    end
+  end
+end
+task :remove_dots_from_previous_ranks => :environment do
+  puts "removing dots from previous rank"
+  letters_patents = LettersPatent.all
+  letters_patents.each do |letters_patent|
+    if letters_patent.previous_rank and letters_patent.previous_rank.include?( "." )
+      letters_patent.previous_rank = letters_patent.previous_rank.gsub( ".", "")
+      letters_patent.save
+    end
+  end
+end
+task :expand_previous_titles => :environment do
+  puts "expanding previous titles"
+  letters_patents = LettersPatent.all
+  letters_patents.each do |letters_patent|
+    if letters_patent.previous_rank and letters_patent.previous_rank.include?( "Viscountess" )
+      # do nothing. this is to stop expanding Viscountess to Viscountiscountess when looking for V below.
+    elsif letters_patent.previous_rank and letters_patent.previous_rank.include?( "Lady" )
+      # do nothing. this is to stop expanding Lady to Lordady when looking for L below.
+    elsif letters_patent.previous_rank and letters_patent.previous_rank.include?( "Dss" )
+      letters_patent.previous_rank = letters_patent.previous_rank.gsub( "Dss", "Duchess" )
+      letters_patent.save
+    elsif letters_patent.previous_rank and letters_patent.previous_rank.include?( "Mss" )
+      letters_patent.previous_rank = letters_patent.previous_rank.gsub( "Mss", "Marchioness" )
+      letters_patent.save
+    elsif letters_patent.previous_rank and letters_patent.previous_rank.include?( "B" )
+      letters_patent.previous_rank = letters_patent.previous_rank.gsub( "B", "Baroness" )
+      letters_patent.save
+    elsif letters_patent.previous_rank and letters_patent.previous_rank.include?( "C" )
+      letters_patent.previous_rank = letters_patent.previous_rank.gsub( "C", "Countess" )
+      letters_patent.save
+    elsif letters_patent.previous_rank and letters_patent.previous_rank.include?( "D" )
+      letters_patent.previous_rank = letters_patent.previous_rank.gsub( "D", "Duke" )
+      letters_patent.save
+    elsif letters_patent.previous_rank and letters_patent.previous_rank.include?( "E" )
+      letters_patent.previous_rank = letters_patent.previous_rank.gsub( "E", "Earl" )
+      letters_patent.save
+    elsif letters_patent.previous_rank and letters_patent.previous_rank.include?( "L" )
+      letters_patent.previous_rank = letters_patent.previous_rank.gsub( "L", "Lord" )
+      letters_patent.save
+    elsif letters_patent.previous_rank and letters_patent.previous_rank.include?( "M" )
+      letters_patent.previous_rank = letters_patent.previous_rank.gsub( "M", "Marquess" )
+      letters_patent.save
+    elsif letters_patent.previous_rank and letters_patent.previous_rank.include?( "P" )
+      letters_patent.previous_rank = letters_patent.previous_rank.gsub( "P", "Prince" )
+      letters_patent.save
+    elsif letters_patent.previous_rank and letters_patent.previous_rank.include?( "V" )
+      letters_patent.previous_rank = letters_patent.previous_rank.gsub( "V", "Viscount" )
+      letters_patent.save
+    end
+  end
 end
