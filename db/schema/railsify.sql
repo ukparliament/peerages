@@ -1,7 +1,7 @@
 /* table renames */
 alter table "Administrations" rename to administrations;
 alter table "Announcement" rename to announcement_types;
-alter table "LawLords" rename to law_lords;
+alter table "LawLords" rename to law_lord_incumbencies;
 alter table "Lists" rename to announcements;
 alter table "Peerages" rename to peerages;
 alter table "Ranks" rename to ranks;
@@ -94,24 +94,24 @@ alter table announcements drop constraint "Lists_pkey";
 alter table announcements add column id serial;
 alter table announcements add primary key (id);
 
-/* law lords table */
-alter table law_lords rename column "IDNum" to old_id;
-alter table law_lords rename column "Appointed" to appointed_on;  
-alter table law_lords alter column appointed_on type date;
-alter table law_lords rename column "Retired" to retired_on; 
-alter table law_lords alter column retired_on type date;
-alter table law_lords rename column "Notes" to notes;
-alter table law_lords rename column "Jurisdiction" to jurisdiction_code;
-alter table law_lords rename column "OldOffice" to old_office;
-alter table law_lords rename column "AnnuityFrom" to annuity_from;
-alter table law_lords alter column annuity_from type date;
-alter table law_lords rename column "AnnuityLGIssue" to annuity_london_gazette_issue;
-alter table law_lords rename column "AnnuityLGPage" to annuity_london_gazette_page;
-alter table law_lords rename column "AppointmentLGIssue" to appointment_london_gazette_issue;
-alter table law_lords rename column "AppointmentLGPage" to appointment_london_gazette_page;
-alter table law_lords drop constraint "LawLords_pkey";
-alter table law_lords add column id serial;
-alter table law_lords add primary key (id);
+/* law lord incumbencies table */
+alter table law_lord_incumbencies rename column "IDNum" to old_id;
+alter table law_lord_incumbencies rename column "Appointed" to appointed_on;  
+alter table law_lord_incumbencies alter column appointed_on type date;
+alter table law_lord_incumbencies rename column "Retired" to end_on; 
+alter table law_lord_incumbencies alter column end_on type date;
+alter table law_lord_incumbencies rename column "Notes" to notes;
+alter table law_lord_incumbencies rename column "Jurisdiction" to jurisdiction_code;
+alter table law_lord_incumbencies rename column "OldOffice" to old_office;
+alter table law_lord_incumbencies rename column "AnnuityFrom" to annuity_from;
+alter table law_lord_incumbencies alter column annuity_from type date;
+alter table law_lord_incumbencies rename column "AnnuityLGIssue" to annuity_london_gazette_issue;
+alter table law_lord_incumbencies rename column "AnnuityLGPage" to annuity_london_gazette_page;
+alter table law_lord_incumbencies rename column "AppointmentLGIssue" to appointment_london_gazette_issue;
+alter table law_lord_incumbencies rename column "AppointmentLGPage" to appointment_london_gazette_page;
+alter table law_lord_incumbencies drop constraint "LawLords_pkey";
+alter table law_lord_incumbencies add column id serial;
+alter table law_lord_incumbencies add primary key (id);
 
 /* subsidiary titles table */
 alter table subsidiary_titles rename column "IDNum" to id;
@@ -145,14 +145,10 @@ alter table peerages add column rank_id int;
 alter table peerages add constraint rank foreign key (rank_id) references ranks(id);
 alter table peerages add column announcement_id int;
 alter table peerages add constraint announcement foreign key (announcement_id) references announcements(id);
-alter table peerages add column law_lord_id int;
-alter table peerages add constraint law_lord foreign key (law_lord_id) references law_lords(id);
-
-alter table peerages drop column law_lord_id;
 
 /* foreign keys from law lords table */
-alter table law_lords add column peerage_id int;
-alter table law_lords add constraint peerage foreign key (peerage_id) references peerages(id);
+alter table law_lord_incumbencies add column peerage_id int;
+alter table law_lord_incumbencies add constraint peerage foreign key (peerage_id) references peerages(id);
 
 /* new column on rank to identify ranks of type peerage */
 /* added because 'prince' is not a peerage rank but we wish to retain the data, whilst hiding from the rank listing */
