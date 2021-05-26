@@ -17,10 +17,10 @@
 
 <%= content_tag( 'p', "Note: #{@peerage.notes}" ) if @peerage.notes %>
 
-<% unless @peerage.law_lords.empty? %>
-	<%= content_tag( 'h2', 'Law Lord appointments' ) %>
+<% unless @peerage.law_lord_incumbencies.empty? %>
+	<%= content_tag( 'h2', 'Law Lord incumbencies' ) %>
 	<ol>
-		<%= render :partial => 'law_lord/law_lord', :collection => @peerage.law_lords %>
+		<%= render :partial => 'law_lord_incumbency/law_lord_incumbency', :collection => @peerage.law_lord_incumbencies %>
 	</ol>
 <% end -%>
 
