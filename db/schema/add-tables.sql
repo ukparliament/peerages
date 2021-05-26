@@ -146,7 +146,7 @@ create table kingdom_ranks (
 	primary key (id)
 );
 
-alter table law_lords add column jurisdiction_id int;
+alter table law_lord_incumbencies add column jurisdiction_id int;
 alter table peerages add column special_remainder_id int;
 alter table peerages add column letters_patent_id int;
 alter table peerages add column kingdom_id int;
