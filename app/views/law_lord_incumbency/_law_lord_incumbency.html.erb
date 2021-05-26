@@ -1,0 +1,8 @@
+<li>
+	<!-- appointment period -->
+	<% if law_lord_incumbency.end_on -%>
+		<%= content_tag( 'h3', link_to( "#{law_lord_incumbency.appointed_on.strftime( '%-d %B %Y')} - #{law_lord_incumbency.end_on.strftime( '%-d %B %Y' )}", law_lord_incumbency_show_url( :law_lord_incumbency => law_lord_incumbency ) ) ) %>
+	<% else -%>
+		<%= content_tag( 'h3', link_to( "#{law_lord_incumbency.appointed_on.strftime( '%-d %B %Y')} -", law_lord_incumbency_show_url( :law_lord_incumbency => law_lord_incumbency ) ) ) %>
+	<% end -%>
+</li>
