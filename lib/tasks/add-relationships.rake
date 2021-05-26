@@ -5,7 +5,7 @@ task :add_relationships => [
   :link_peerages_to_rank,
   :link_announcements_to_announcement_types,
   :link_peerages_to_announcement,
-  :link_law_lords_to_peerage,
+  :link_law_lord_incumbencies_to_peerage,
   :link_subsidiary_titles_to_rank] do
 end
 
@@ -110,13 +110,13 @@ task :link_peerages_to_announcement => :environment do
     end
   end
 end
-task :link_law_lords_to_peerage => :environment do
-  puts "linking law lords to peerages"
-  law_lords = LawLord.all
-  law_lords.each do |law_lord|
-    peerage = Peerage.all.where( id: law_lord.old_id ).first
-    law_lord.peerage = peerage
-    law_lord.save
+task :link_law_lord_incumbencies_to_peerage => :environment do
+  puts "linking law lord incumbencies to peerages"
+  law_lord_incumbencies = LawLordIncumbency.all
+  law_lord_incumbencies.each do |law_lord_incumbency|
+    peerage = Peerage.all.where( id: law_lord_incumbency.old_id ).first
+    law_lord_incumbency.peerage = peerage
+    law_lord_incumbency.save
   end
 end
 task :link_subsidiary_titles_to_rank => :environment do
