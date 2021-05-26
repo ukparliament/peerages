@@ -5,6 +5,8 @@
 	<%= content_tag( 'p', "#{@person.forenames} #{@person.surname} was born on #{@person.date_of_birth.strftime( '%-d %B %Y')} and died on #{@person.date_of_death.strftime( '%-d %B %Y')}." ) %>
 <% end -%>
 
+<%= "#{@person.notes}." if @person.notes %>
+
 <%= content_tag( 'h2', 'Peerages' ) %>
 
 <ol>
