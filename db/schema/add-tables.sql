@@ -116,6 +116,7 @@ create table letters_patents (
 	id serial,
 	patent_on date not null,
 	patent_time char(1),
+	previous_of_title boolean default false,
 	previous_title varchar(255),
 	previous_rank varchar(255),
 	ordinality_on_date int,
@@ -125,12 +126,14 @@ create table letters_patents (
 	letters_patent_time_id int,
 	person_id int,
 	kingdom_id int,
+	previous_kingdom_id int,
 	reign_id int,
 	constraint fk_administration foreign key (administration_id) references administrations(id),
 	constraint fk_announcement foreign key (announcement_id) references announcements(id),
 	constraint fk_person foreign key (person_id) references people(id),
 	constraint fk_letters_patent_time foreign key (letters_patent_time_id) references letters_patent_times(id),
 	constraint fk_kingdom foreign key (kingdom_id) references kingdoms(id),
+	constraint fk_previous_kingdom foreign key (previous_kingdom_id) references kingdoms(id),
 	constraint fk_reign foreign key (reign_id) references reigns(id),
 	primary key (id)
 );
