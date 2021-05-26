@@ -31,4 +31,8 @@ class LettersPatent < ActiveRecord::Base
     end
     pm
   end
+  
+  def previous_kingdom
+    Kingdom.find( self.previous_kingdom_id )
+  end
 end
