@@ -1,16 +1,10 @@
-display notes on people
-display citations on letters_patent
-
-
+full previous title on letters patent listings
 
 
 performance of letters patent listing and queries
 
 does removing link from letters patent to admins break letters patent list
 peerage page?
-
-
-
 
 
 
