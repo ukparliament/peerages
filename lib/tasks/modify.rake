@@ -9,7 +9,7 @@ task :modify => [
   :normalise_genders,
   :populate_rank_labels,
   :collapse_ranks_across_genders,
-  :normalise_jurisdictions_from_law_lords,
+  :normalise_jurisdictions_from_law_lord_incumbencies,
   :normalise_special_remainders_from_peerages,
   :normalise_special_remainders_from_subsidiary_titles,
   :normalise_letters_patent,
@@ -217,22 +217,22 @@ task :collapse_ranks_across_genders => :environment do
     end
   end
 end
-task :normalise_jurisdictions_from_law_lords => :environment do
-  puts "normalising jurisdictions from law lords"
-  law_lords = LawLord.all
-  law_lords.each do |law_lord|
-    jurisdiction = Jurisdiction.all.where( 'code = ?', law_lord.jurisdiction_code ).first
+task :normalise_jurisdictions_from_law_lord_incumbencies => :environment do
+  puts "normalising jurisdictions from law lord incumbencies"
+  law_lord_incumbencies = LawLordIncumbency.all
+  law_lord_incumbencies.each do |law_lord_incumbency|
+    jurisdiction = Jurisdiction.all.where( 'code = ?', law_lord_incumbency.jurisdiction_code ).first
     unless jurisdiction
       jurisdiction = Jurisdiction.new
-      jurisdiction.code = law_lord.jurisdiction_code
-      jurisdiction.label = 'England and Wales' if law_lord.jurisdiction_code == 'E&W'
-      jurisdiction.label = 'Ireland' if law_lord.jurisdiction_code == 'I'
-      jurisdiction.label = 'Scotland' if law_lord.jurisdiction_code == 'S'
-      jurisdiction.label = 'Northern Ireland' if law_lord.jurisdiction_code == 'NI'
+      jurisdiction.code = law_lord_incumbency.jurisdiction_code
+      jurisdiction.label = 'England and Wales' if law_lord_incumbency.jurisdiction_code == 'E&W'
+      jurisdiction.label = 'Ireland' if law_lord_incumbency.jurisdiction_code == 'I'
+      jurisdiction.label = 'Scotland' if law_lord_incumbency.jurisdiction_code == 'S'
+      jurisdiction.label = 'Northern Ireland' if law_lord_incumbency.jurisdiction_code == 'NI'
       jurisdiction.save
     end
-    law_lord.jurisdiction = jurisdiction
-    law_lord.save
+    law_lord_incumbency.jurisdiction = jurisdiction
+    law_lord_incumbency.save
   end
 end
 task :normalise_special_remainders_from_peerages => :environment do
