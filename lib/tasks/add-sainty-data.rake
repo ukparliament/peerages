@@ -5,7 +5,7 @@ task :add_sainty_data => :environment do
   CSV.foreach( 'db/data/sainty.csv' ) do |row|
     
     # Find the kingdom
-    kingdom = Kingdom.find_by_name( "Kingdom of #{row[0].strip}" )
+    kingdom = Kingdom.find_by_name( row[0].strip )
     
     # If this is a holding by a person already existing in the database ...
     if row[1]
@@ -46,19 +46,29 @@ task :add_sainty_data => :environment do
     # Create the letters patent.
     letters_patent = LettersPatent.new
     letters_patent.patent_on = row[13].strip
-    # If there's a previous rank ...
-    if row[15]
-      letters_patent.previous_rank = row[15].strip
-    end
-    # If there's a previous title ...
-    if row[16]
-      if row[17] == 'TRUE'
-        letters_patent.previous_title = 'of ' + row[16].strip
-      elsif row[17] == 'FALSE'
-        letters_patent.previous_title = row[16].strip
-      end
-    end
     letters_patent.citations = row[14].strip
+    
+    # If there's a previous title ...
+    if row[17]
+      
+      # ... if there's a previous Kingdom ...
+      if row[18]
+        previous_kingdom = Kingdom.find_by_name( row[18].strip )
+        letters_patent.previous_kingdom_id = previous_kingdom.id
+      end
+      
+      # Find the previous rank ...
+      previous_rank = Rank.all.where( 'label = ?', row[15].strip ).first
+      
+      # ... and the previous rank label ...
+      rank_label = RankLabel.all.where( 'gender_id = ?', gender.id ).where( 'rank_id = ?', previous_rank.id ).first
+      
+      # ... and store as previous_rank.
+      letters_patent.previous_rank = rank_label.label
+      
+      letters_patent.previous_of_title = row[16]
+      letters_patent.previous_title = row[17]
+    end
     letters_patent.person = person
     letters_patent.kingdom = kingdom
     letters_patent.reign = reign if reign
@@ -96,3 +106,5 @@ task :add_sainty_data => :environment do
     peerage_holding.save
   end
 end
+
+
