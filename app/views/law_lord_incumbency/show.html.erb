@@ -1,9 +1,9 @@
+<!-- appointment period -->
 <h1>
-	<!-- appointment period -->
 	<% if @law_lord_incumbency.end_on -%>
-		<%= content_tag( 'h3', "#{link_to( @law_lord_incumbency.peerage.display_title, peerage_show_url( :peerage => @law_lord_incumbency.peerage ) )}  (#{@law_lord_incumbency.appointed_on.strftime( '%-d %B %Y')} - #{@law_lord_incumbency.end_on.strftime( '%-d %B %Y')})".html_safe ) %>
+		<%= "#{link_to( @law_lord_incumbency.peerage.display_title, peerage_show_url( :peerage => @law_lord_incumbency.peerage ) )}  (#{@law_lord_incumbency.appointed_on.strftime( '%-d %B %Y')} - #{@law_lord_incumbency.end_on.strftime( '%-d %B %Y')})".html_safe %>
 	<% else -%>
-		<%= content_tag( 'h3', "#{link_to( @law_lord_incumbency.peerage.display_title, peerage_show_url( :peerage => @law_lord_incumbency.peerage ) )}  (#{@law_lord_incumbency.appointed_on.strftime( '%-d %B %Y')} - )".html_safe ) %>
+		<%= "#{link_to( @law_lord_incumbency.peerage.display_title, peerage_show_url( :peerage => @law_lord_incumbency.peerage ) )}  (#{@law_lord_incumbency.appointed_on.strftime( '%-d %B %Y')} - )".html_safe %>
 	<% end -%>
 </h1>
 	
