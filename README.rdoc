@@ -73,3 +73,7 @@ Download sheets 6 and 7 as CSV from https://docs.google.com/spreadsheets/d/1AYzx
 Remove top rows
 
 ` rake add_identifiers
+
+## Drop unused columns
+
+` psql peerages < db/schema/drop-unused-colums.sql
