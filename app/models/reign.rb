@@ -4,8 +4,7 @@ class Reign < ActiveRecord::Base
   belongs_to :monarch
   
   def letters_patents
-    LettersPatent.find_by_sql
-      (
+    LettersPatent.find_by_sql(
         "
           SELECT 
             lp.*,
@@ -104,7 +103,7 @@ class Reign < ActiveRecord::Base
           ) person_join
           ON person_join.person_id = lp.person_id
           
-          WHERE lp.kingdom_id = #{self.id}
+          WHERE lp.reign_id = #{self.id}
         
           ORDER BY lp.patent_on, lp.ordinality_on_date;
         "
