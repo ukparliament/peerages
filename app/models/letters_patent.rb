@@ -35,4 +35,32 @@ class LettersPatent < ActiveRecord::Base
   def previous_kingdom
     Kingdom.find( self.previous_kingdom_id ) if self.previous_kingdom_id
   end
+  
+  def peerage_full_title
+    peerage_full_title = ''
+    peerage_full_title += 'of ' if self.peerage_of_title_inline
+    peerage_full_title += self.peerage_title_inline if self.peerage_title_inline
+    peerage_full_title += ' (' + self.rank_label_inline + ')' if self.rank_label_inline
+    peerage_full_title
+  end
+  
+  def person_full_name
+    person_full_name = ''
+    person_full_name += self.person_prefix_inline + ' ' if self.person_prefix_inline
+    person_full_name += self.person_forenames_inline if self.person_forenames_inline
+    person_full_name += ' ' + self.person_surname_inline if self.person_surname_inline
+    person_full_name += ', ' + self.person_suffix_inline + ' ' if self.person_suffix_inline
+    person_full_name
+  end
+  
+  def peerage_extinction_label
+    peerage_extinction_label = ''
+    if self.peerage_extinct_on_inline
+      peerage_extinction_label = self.peerage_extinct_on_inline.strftime( '%-d %B %Y')
+      peerage_extinction_label += ' (with the ' + self.peerage_last_number_inline.ordinalize + ' holder)'
+    else
+      peerage_extinction_label = '-'
+    end
+    peerage_extinction_label
+  end
 end
