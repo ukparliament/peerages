@@ -7,5 +7,13 @@ class ReignController < ApplicationController
   def show
     reign = params[:reign]
     @reign = Reign.find( reign )
+    @letters_patent = @reign.letters_patents
+
+    respond_to do |format|
+      format.html
+      format.tsv {
+        render :template => 'letters_patent/index'
+      }
+    end
   end
 end
