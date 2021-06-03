@@ -29,7 +29,8 @@ task :modify => [
   :normalise_previous_kingdoms,
   :normalise_previous_of_title,
   :remove_dots_from_previous_ranks,
-  :expand_previous_titles] do
+  :expand_previous_titles,
+  :remove_incorrect_special_remainder] do
 end
 
 task :populate_kingdoms => :environment do
@@ -675,4 +676,16 @@ task :expand_previous_titles => :environment do
       letters_patent.save
     end
   end
+end
+task :remove_incorrect_special_remainder => :environment do
+  puts "removing the incorrect special remainder"
+  # This is for peerages that do not have a special remainder but share a letters patent with a peerage that does. David is happy to remove.
+  peerages = Peerage.all.where( 'special_remainder_id = 4' )
+  peerages.each do |peerage|
+    peerage.special_remainder_id = nil
+    peerage.save
+  end
+  special_remainder = SpecialRemainder.find( 4 )
+  special_remainder.destroy
+  
 end
