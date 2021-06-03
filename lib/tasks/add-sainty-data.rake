@@ -37,8 +37,6 @@ task :add_sainty_data => :environment do
       person.save
     end
     
-    #ID,Kingdom,Person ID,Prefix,Forenames,Surname,Suffix,Gender,Person notes,Letters patent date (yyyy-mm-dd),Patent reference (semi-colon separated),Previous rank,Previous of_title,Previous title,Previous kingdom
-    
     # Find the kingdom
     kingdom = Kingdom.find_by_name( letters_patent_row[1].strip )
     
