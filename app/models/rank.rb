@@ -1,6 +1,6 @@
 class Rank < ActiveRecord::Base
   
-  has_many :peerages, -> { order( :alpha ) }
+  has_many :peerages, -> { order( :title ) }
   has_many :subsidiary_titles, -> { order( :patent_on ) }
   has_many :gendered_rank_labels
   has_many :kingdom_ranks
