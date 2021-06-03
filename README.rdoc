@@ -50,6 +50,10 @@ Remove top row
 
 ` rake associate_letters_patent_with_reigns
 
+## Drop unused columns
+
+` psql peerages < db/schema/drop-unused-colums.sql
+
 ## Populate with subsequent holders
 
 Download data as CSV from https://docs.google.com/spreadsheets/d/1AYzx6AMYw5eGzl9iSgx0a9behOjfLFaUUvDtXEZUULY/edit?usp=sharing
@@ -74,6 +78,3 @@ Remove top rows
 
 ` rake add_identifiers
 
-## Drop unused columns
-
-` psql peerages < db/schema/drop-unused-colums.sql
