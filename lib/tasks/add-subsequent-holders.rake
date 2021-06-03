@@ -25,12 +25,6 @@ task :add_subsequent_holders => :environment do
       person.date_of_death = row[8] if row[8]
       person.gender = gender
       person.letter = letter
-      # This can't be null
-      if row[9] = 'Male'
-        person.gender_char = 'm'
-      else
-        person.gender_char = 'f'
-      end
       person.save
     end
     
