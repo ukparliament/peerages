@@ -35,8 +35,6 @@ Rails.application.routes.draw do
   get 'announcements' => 'announcement#index', as: :announcement_list
   get 'announcements/:announcement' => 'announcement#show', as: :announcement_show
   
-  get 'peerages/report' => 'peerage_report#index', as: :peerage_report_list
-  
   get 'peerages/a-z' => 'peerage_atoz#index', as: :peerage_atoz_list
   get 'peerages/a-z/:letter' => 'peerage_atoz#show', as: :peerage_atoz_show
   
@@ -78,6 +76,7 @@ Rails.application.routes.draw do
   get 'meta/iaq' => 'meta#iaq', as: :meta_iaq
   get 'meta/schema' => 'meta#schema', as: :meta_schema
   get 'meta/suspected-data-errors' => 'meta#suspected_data_errors', as: :meta_suspected_data_errors
+  get 'meta/report' => 'meta#report', as: :meta_report
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
