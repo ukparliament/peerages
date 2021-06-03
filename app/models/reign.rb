@@ -45,7 +45,7 @@ class Reign < ActiveRecord::Base
           ) kingdom_join
           ON kingdom_join.kingdom_id = lp.kingdom_id
         
-          JOIN (
+          LEFT JOIN (
             SELECT 
               m.name as monarch_name,
               r.id as reign_id
