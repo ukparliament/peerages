@@ -28,12 +28,6 @@ task :add_sainty_data => :environment do
       person.notes = letters_patent_row[8].strip if letters_patent_row[8]
       person.gender = gender
       person.letter = letter if letter
-      # This can't be null
-      if letters_patent_row[7] == 'Male'
-        person.gender_char = 'm'
-      else
-        person.gender_char = 'f'
-      end
       person.save
     end
     
