@@ -1,2 +1,7 @@
+Check that alpha has been removed completely
 
-same person twice in spreadsheets????
+Check - same person twice in spreadsheets????
+
+Sort CSV download
+
+Add CSV download to letters patent per kingdom
