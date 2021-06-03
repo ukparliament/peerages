@@ -1,38 +1,35 @@
 require 'csv'
 
 task :add_sainty_data => :environment do
-  puts "adding non-uk peerages from sainty"
-  CSV.foreach( 'db/data/sainty.csv' ) do |row|
-    
-    # Find the kingdom
-    kingdom = Kingdom.find_by_name( row[0].strip )
-    
+  puts "adding letters patent from sainty"
+  CSV.foreach( 'db/data/sainty-letters-patent.csv' ) do |letters_patent_row|
+      
     # If this is a holding by a person already existing in the database ...
-    if row[1]
-      
+    if letters_patent_row[2]
+    
       # ... we find the person.
-      person = Person.find( row[1].strip)
-      
+      person = Person.find( letters_patent_row[2].strip)
+    
     # Otherwise, if this is a new person
     else
-      
+    
       # Get the gender and letter for the person.
-      gender = Gender.all.where( 'label = ?', row[6] ).first
-      if row[4]
-        letter = Letter.all.where( 'letter = ?', row[4][0,1].upcase ).first
+      gender = Gender.all.where( 'label = ?', letters_patent_row[7] ).first
+      if letters_patent_row[5]
+        letter = Letter.all.where( 'letter = ?', letters_patent_row[5][0,1].upcase ).first
       end
-      
+    
       # Create a new person.
       person = Person.new
-      person.prefix = row[2].strip if row[2]
-      person.forenames = row[3].strip if row[3]
-      person.surname = row[4].strip if row[4]
-      person.suffix = row[5].strip if row[5]
-      person.notes = row[7].strip if row[7]
+      person.prefix = letters_patent_row[3].strip if letters_patent_row[3]
+      person.forenames = letters_patent_row[4].strip if letters_patent_row[4]
+      person.surname = letters_patent_row[5].strip if letters_patent_row[5]
+      person.suffix = letters_patent_row[6].strip if letters_patent_row[6]
+      person.notes = letters_patent_row[8].strip if letters_patent_row[8]
       person.gender = gender
       person.letter = letter if letter
       # This can't be null
-      if row[6] == 'Male'
+      if letters_patent_row[7] == 'Male'
         person.gender_char = 'm'
       else
         person.gender_char = 'f'
@@ -40,71 +37,81 @@ task :add_sainty_data => :environment do
       person.save
     end
     
+    #ID,Kingdom,Person ID,Prefix,Forenames,Surname,Suffix,Gender,Person notes,Letters patent date (yyyy-mm-dd),Patent reference (semi-colon separated),Previous rank,Previous of_title,Previous title,Previous kingdom
+    
+    # Find the kingdom
+    kingdom = Kingdom.find_by_name( letters_patent_row[1].strip )
+    
     # Find the reign.
-    reign = Reign.all.where( 'kingdom_id = ?', kingdom ).where( 'start_on <= ?', row[13].strip ).where( 'end_on >= ? or end_on is null', row[13].strip ).first
+    reign = Reign.all.where( 'kingdom_id = ?', kingdom ).where( 'start_on <= ?', letters_patent_row[9].strip ).where( 'end_on >= ? or end_on is null', letters_patent_row[9].strip ).first
     
     # Create the letters patent.
     letters_patent = LettersPatent.new
-    letters_patent.patent_on = row[13].strip
-    letters_patent.citations = row[14].strip
-    
+    letters_patent.patent_on = letters_patent_row[9].strip
+    letters_patent.citations = letters_patent_row[10].strip
+  
     # If there's a previous title ...
-    if row[17]
-      
+    if letters_patent_row[13]
+    
       # ... if there's a previous Kingdom ...
-      if row[18]
-        previous_kingdom = Kingdom.find_by_name( row[18].strip )
+      if letters_patent_row[14]
+        previous_kingdom = Kingdom.find_by_name( letters_patent_row[14].strip )
         letters_patent.previous_kingdom_id = previous_kingdom.id
       end
-      
+    
       # Find the previous rank ...
-      previous_rank = Rank.all.where( 'label = ?', row[15].strip ).first
-      
+      previous_rank = Rank.all.where( 'label = ?', letters_patent_row[11].strip ).first
+    
       # ... and the previous rank label ...
       rank_label = RankLabel.all.where( 'gender_id = ?', gender.id ).where( 'rank_id = ?', previous_rank.id ).first
-      
+    
       # ... and store as previous_rank.
       letters_patent.previous_rank = rank_label.label
-      
-      letters_patent.previous_of_title = row[16]
-      letters_patent.previous_title = row[17]
+    
+      letters_patent.previous_of_title = letters_patent_row[12]
+      letters_patent.previous_title = letters_patent_row[13]
     end
     letters_patent.person = person
     letters_patent.kingdom = kingdom
     letters_patent.reign = reign if reign
     letters_patent.save
     
-    # Find the rank.
-    rank = Rank.find_by_label( row[8].strip )
-    
-    # Find the letter.
-    letter = Letter.all.where( 'letter = ?', row[9][0,1].upcase ).first
-    
-    # Find the peerage type.
-    peerage_type = PeerageType.find_by_name( row[12] )
-    
-    # Create the peerage.
-    peerage = Peerage.new
-    peerage.of_title = false # NOTE: this data is not present in Sainty.
-    peerage.title = row[9].strip
-    peerage.notes = row[11].strip if row[11]
-    peerage.alpha = row[9][0, 10].upcase
-    peerage.rank = rank
-    peerage.peerage_type = peerage_type
-    peerage.special_remainder_id = row[10] if row[10]
-    peerage.letters_patent = letters_patent
-    peerage.letter = letter
-    peerage.kingdom = kingdom
-    peerage.save
-    
-    # Create the peerage holding.
-    peerage_holding = PeerageHolding.new
-    peerage_holding.ordinality = 1
-    peerage_holding.start_on = row[13].strip
-    peerage_holding.peerage = peerage
-    peerage_holding.person = person
-    peerage_holding.save
+    # Loop through all the Sainty peerages ...
+    CSV.foreach( 'db/data/sainty-peerages.csv' ) do |peerage_row|
+      
+      # ... and if this is a peerage associated with the Letters Patent ...
+      if letters_patent_row[0] == peerage_row[5]
+        
+        # ... find the rank.
+        rank = Rank.find_by_label( peerage_row[0].strip )
+  
+        #  ... find the letter.
+        letter = Letter.all.where( 'letter = ?', peerage_row[1][0,1].upcase ).first
+  
+        # Find the peerage type.
+        peerage_type = PeerageType.find_by_name( peerage_row[4] )
+  
+        # Create the peerage.
+        peerage = Peerage.new
+        peerage.of_title = false # NOTE: this data is not present in Sainty.
+        peerage.title = peerage_row[1].strip
+        peerage.notes = peerage_row[3].strip if peerage_row[11]
+        peerage.rank = rank
+        peerage.peerage_type = peerage_type
+        peerage.special_remainder_id = peerage_row[2] if peerage_row[2]
+        peerage.letters_patent = letters_patent
+        peerage.letter = letter
+        peerage.kingdom = kingdom
+        peerage.save
+        
+        # Create the peerage holding.
+        peerage_holding = PeerageHolding.new
+        peerage_holding.ordinality = 1
+        peerage_holding.start_on = letters_patent_row[9].strip
+        peerage_holding.peerage = peerage
+        peerage_holding.person = person
+        peerage_holding.save
+      end
+    end
   end
 end
-
-
