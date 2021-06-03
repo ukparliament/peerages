@@ -46,3 +46,4 @@ alter table peerages drop column introduced_on;
 alter table peerages drop column administration_name;
 alter table peerages drop column administration_id;
 alter table peerages drop column announcement_id;
+alter table peerages drop column alpha;
