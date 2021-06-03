@@ -1,6 +1,6 @@
 class Kingdom < ActiveRecord::Base
   
-  has_many :peerages, -> { order( :alpha ) }
+  has_many :peerages, -> { order( :title ) }
   
   def name_with_dates
     name_with_dates = self.name
@@ -31,7 +31,7 @@ class Kingdom < ActiveRecord::Base
   end
   
   def peerages_by_rank( rank )
-    Peerage.all.where( 'kingdom_id = ?', self ).where( 'rank_id =  ?', rank ).order( 'alpha' )
+    Peerage.all.where( 'kingdom_id = ?', self ).where( 'rank_id =  ?', rank ).order( 'title' )
   end
   
   def letters_patent
