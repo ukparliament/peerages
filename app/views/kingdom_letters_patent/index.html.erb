@@ -1,7 +1,10 @@
 <%= content_tag( 'h1', "Letters Patent issued in the Peerage of the #{@kingdom.name}" ) %>
+
+<%= content_tag( 'p', link_to( 'Download tab separated', kingdom_letters_patent_list_url( :format => 'tsv' ) ) ) %>
+
 <table>
 	<%= render :partial => 'letters_patent/table_header' %>
 	<tbody>
-		<%= render :partial => 'letters_patent/letters_patent_table', :collection => @letters_patents %>
+		<%= render :partial => 'letters_patent/letters_patent_table', :collection => @letters_patent %>
 	</tbody>
 </table>
