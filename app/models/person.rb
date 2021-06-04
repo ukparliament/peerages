@@ -7,10 +7,8 @@ class Person < ActiveRecord::Base
   
   def display_name
     display_name = ''
-    display_name += self.prefix + ' ' if self.prefix
     display_name += self.forenames if self.forenames
     display_name += ' ' + self.surname if self.surname
-    display_name += ', ' + self.suffix + ' ' if self.suffix
     display_name
   end
   
