@@ -29,10 +29,8 @@ class Reign < ActiveRecord::Base
             peerage_join.peerage_type_id_inline AS peerage_type_id_inline,
             peerage_join.peerage_type_name_inline AS peerage_type_name_inline,
           
-            person_join.person_prefix AS person_prefix_inline,
             person_join.person_forenames AS person_forenames_inline,
             person_join.person_surname AS person_surname_inline,
-            person_join.person_suffix AS person_suffix_inline,
             person_join.person_date_of_death AS person_date_of_death_inline
           
           FROM letters_patents lp
@@ -94,10 +92,8 @@ class Reign < ActiveRecord::Base
           JOIN (
             SELECT
               p.id AS person_id,
-              p.prefix as person_prefix,
               p.forenames as person_forenames,
               p.surname as person_surname,
-              p.suffix as person_suffix,
               p.date_of_death as person_date_of_death
               from people p
           ) person_join
