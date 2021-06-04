@@ -55,10 +55,8 @@ create table letters (
 );
 create table people (
 	id serial,
-	prefix varchar(20),
 	forenames varchar(200) not null,
 	surname varchar(100),
-	suffix varchar(20),
 	gender_char char(1) not null,
 	date_of_birth date,
 	date_of_death date,
@@ -116,6 +114,8 @@ create table letters_patents (
 	id serial,
 	patent_on date not null,
 	patent_time char(1),
+	person_prefix varchar(20),
+	person_suffix varchar(20),
 	previous_of_title boolean default false,
 	previous_title varchar(255),
 	previous_rank varchar(255),
