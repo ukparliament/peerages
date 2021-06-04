@@ -44,12 +44,13 @@ class LettersPatent < ActiveRecord::Base
     peerage_full_title
   end
   
+  # adapt to take prefix and suffix off lp record and combine with name names from person model from inline query
   def person_full_name
     person_full_name = ''
-    person_full_name += self.person_prefix_inline + ' ' if self.person_prefix_inline
+    person_full_name += self.person_prefix + ' ' if self.person_prefix
     person_full_name += self.person_forenames_inline if self.person_forenames_inline
     person_full_name += ' ' + self.person_surname_inline if self.person_surname_inline
-    person_full_name += ', ' + self.person_suffix_inline + ' ' if self.person_suffix_inline
+    person_full_name += ', ' + self.person_suffix + ' ' if self.person_suffix
     person_full_name
   end
   
