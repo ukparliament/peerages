@@ -78,3 +78,7 @@ Remove top rows
 
 ` rake add_identifiers
 
+## Populate peerage holding end dates from dates of death
+
+` rake populate_holding_end_dates
+
