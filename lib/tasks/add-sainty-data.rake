@@ -21,10 +21,8 @@ task :add_sainty_data => :environment do
     
       # Create a new person.
       person = Person.new
-      person.prefix = letters_patent_row[3].strip if letters_patent_row[3]
       person.forenames = letters_patent_row[4].strip if letters_patent_row[4]
       person.surname = letters_patent_row[5].strip if letters_patent_row[5]
-      person.suffix = letters_patent_row[6].strip if letters_patent_row[6]
       person.notes = letters_patent_row[8].strip if letters_patent_row[8]
       person.gender = gender
       person.letter = letter if letter
@@ -41,6 +39,8 @@ task :add_sainty_data => :environment do
     letters_patent = LettersPatent.new
     letters_patent.patent_on = letters_patent_row[9].strip
     letters_patent.citations = letters_patent_row[10].strip
+    letters_patent.person_prefix = letters_patent_row[3].strip if letters_patent_row[3]
+    letters_patent.person_suffix = letters_patent_row[6].strip if letters_patent_row[6]
   
     # If there's a previous title ...
     if letters_patent_row[13]
