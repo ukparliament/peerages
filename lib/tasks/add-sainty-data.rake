@@ -3,6 +3,10 @@ require 'csv'
 task :add_sainty_data => :environment do
   puts "adding letters patent from sainty"
   CSV.foreach( 'db/data/sainty-letters-patent.csv' ) do |letters_patent_row|
+    
+    # Get the gender for the person.
+    # This is outside of person creation because we may need it to get a previous gendered rank label.
+    gender = Gender.all.where( 'label = ?', letters_patent_row[7].strip ).first
       
     # If this is a holding by a person already existing in the database ...
     if letters_patent_row[2]
@@ -13,8 +17,8 @@ task :add_sainty_data => :environment do
     # Otherwise, if this is a new person
     else
     
-      # Get the gender and letter for the person.
-      gender = Gender.all.where( 'label = ?', letters_patent_row[7] ).first
+      # Get the letter for the person.
+      gender = Gender.all.where( 'label = ?', letters_patent_row[7].strip ).first
       if letters_patent_row[5]
         letter = Letter.all.where( 'letter = ?', letters_patent_row[5][0,1].upcase ).first
       end
@@ -53,7 +57,7 @@ task :add_sainty_data => :environment do
     
       # Find the previous rank ...
       previous_rank = Rank.all.where( 'label = ?', letters_patent_row[11].strip ).first
-    
+      
       # ... and the previous rank label ...
       rank_label = RankLabel.all.where( 'gender_id = ?', gender.id ).where( 'rank_id = ?', previous_rank.id ).first
     
