@@ -82,3 +82,7 @@ Remove top rows
 
 ` rake populate_holding_end_dates
 
+## Drop unused tables
+
+` psql peerages < db/schema/drop-unused-tables.sql
+
