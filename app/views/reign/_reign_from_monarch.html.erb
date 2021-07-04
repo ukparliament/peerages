@@ -1,3 +1,5 @@
-<p>
-	Monarch of the <%= link_to( reign_from_monarch.kingdom_name, kingdom_show_url( :kingdom => reign_from_monarch.kingdom_id ) ) %> from <%= link_to( reign_from_monarch.date_range, reign_show_url( :reign => reign_from_monarch ) ) %>.
-</p>
+<% if reign_from_monarch.monarchs.size == 1 %>
+	<p>Monarch of the <%= link_to( reign_from_monarch.kingdom.name, kingdom_show_url( :kingdom => reign_from_monarch.kingdom_id ) ) %> from <%= link_to( reign_from_monarch.date_range, reign_show_url( :reign => reign_from_monarch ) ) %>.</p>
+<% else -%>
+	<p>Monarch of the <%= link_to( reign_from_monarch.kingdom.name, kingdom_show_url( :kingdom => reign_from_monarch.kingdom_id ) ) %> from <%= link_to( reign_from_monarch.date_range, reign_show_url( :reign => reign_from_monarch ) ) %> with <%= link_to( reign_from_monarch.reign_shared_with( @monarch ).name, monarch_show_url( :monarch => reign_from_monarch.reign_shared_with( @monarch ) ) ) %>.</p>
+<% end -%>
