@@ -1,7 +1,7 @@
 class ReignController < ApplicationController
   
   def index
-    @reigns = Reign.all.select( 'r.*, m.name as monarch_name, k.name as kingdom_name' ).joins( 'as r, monarchs as m, kingdoms as k').where( 'r.monarch_id = m.id' ).where( 'r.kingdom_id = k.id' ).order( 'r.start_on desc' )
+    @reigns = Reign.all.select( 'r.*, k.name as kingdom_name' ).joins( 'as r, kingdoms as k' ).where( 'r.kingdom_id = k.id' ).order( 'r.start_on desc' )
   end
   
   def show
