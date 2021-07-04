@@ -1,5 +1,9 @@
 <h1>
-	<%= link_to( @reign.monarch.name, monarch_show_url( :monarch => @reign.monarch_id ) ) %> monarch of the <%= link_to(@reign.kingdom.name, kingdom_show_url( :kingdom => @reign.kingdom_id ) ) %>
+	<% if @reign.monarchs.size == 1 %>
+		<%= link_to( @reign.monarchs.first.name, monarch_show_url( :monarch => @reign.monarchs.first ) ) %> monarch of the <%= link_to(@reign.kingdom.name, kingdom_show_url( :kingdom => @reign.kingdom_id ) ) %>
+	<% else -%>
+		<%= link_to( @reign.monarchs.first.name, monarch_show_url( :monarch => @reign.monarchs.first ) ) %> and <%= link_to( @reign.monarchs.last.name, monarch_show_url( :monarch => @reign.monarchs.last ) ) %> monarchs of the <%= link_to(@reign.kingdom.name, kingdom_show_url( :kingdom => @reign.kingdom_id ) ) %>
+	<% end -%>
 </h1>
 <%= content_tag( 'p', "#{@reign.date_range}." ) %>
 
