@@ -1,6 +1,6 @@
 class Monarch < ActiveRecord::Base
   
   def reigns
-    Reign.all.select( 'r.*, k.name as kingdom_name' ).joins( 'as r, kingdoms as k' ).where( 'r.kingdom_id = k.id' ).where( 'r.monarch_id = ?', self ).order( 'r.start_on' )
+    Reign.all.select( 'r.*' ).joins( 'as r, reigning_monarchs as rm, kingdoms as k' ).where( 'r.id = rm.reign_id' ).where( 'rm.monarch_id = ?', self ).where( 'r.kingdom_id = k.id' ).order( 'r.start_on' )
   end
 end
