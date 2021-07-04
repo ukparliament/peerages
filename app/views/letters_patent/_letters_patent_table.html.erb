@@ -1,8 +1,8 @@
 <tr>
 	<%= content_tag( 'td', link_to( letters_patent_table.kingdom_name_inline, kingdom_show_url( :kingdom => letters_patent_table.kingdom_id_inline ) ) ) %>
 	<td>
-		<% if letters_patent_table.monarch_name_inline -%>
-			<%= link_to( letters_patent_table.monarch_name_inline, reign_show_url( :reign => letters_patent_table.reign_id_inline ) ) %>
+		<% if letters_patent_table.reign_title_inline -%>
+			<%= link_to( letters_patent_table.reign_title_inline, reign_show_url( :reign => letters_patent_table.reign_id_inline ) ) %>
 		<% else -%>
 			-
 		<% end -%>
