@@ -1,3 +1,9 @@
-<p>
-	<%= link_to( reign.monarch_name, monarch_show_url( :monarch => reign.monarch_id ) ) %> monarch of the <%= link_to( reign.kingdom_name, kingdom_show_url( :kingdom => reign.kingdom_id ) ) %> from <%= link_to( reign.date_range, reign_show_url( :reign => reign) ) %>.
-</p>
+<% if reign.monarchs.size == 1 %>
+	<p>
+		<%= link_to( reign.monarchs.first.name, monarch_show_url( :monarch => reign.monarchs.first ) ) %> monarch of the <%= link_to( reign.kingdom_name, kingdom_show_url( :kingdom => reign.kingdom_id ) ) %> from <%= link_to( reign.date_range, reign_show_url( :reign => reign ) ) %>.
+	</p>
+<% elsif reign.monarchs.size == 2 %>
+	<p>
+		<%= link_to( reign.monarchs.first.name, monarch_show_url( :monarch => reign.monarchs.first ) ) %> and <%= link_to( reign.monarchs.second.name, monarch_show_url( :monarch => reign.monarchs.second ) ) %> monarchs of the <%= link_to( reign.kingdom_name, kingdom_show_url( :kingdom => reign.kingdom_id ) ) %> from <%= link_to( reign.date_range, reign_show_url( :reign => reign ) ) %>.
+	</p>
+<% end -%>
