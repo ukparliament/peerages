@@ -9,7 +9,7 @@ class LettersPatentController < ApplicationController
           kingdom_join.kingdom_id AS kingdom_id_inline,
           kingdom_join.kingdom_name AS kingdom_name_inline,
           
-          reign_join.monarch_name AS monarch_name_inline,
+          reign_join.reign_title AS reign_title_inline,
           reign_join.reign_id AS reign_id_inline,
           
           letters_patent_time_join.letters_patent_time_label AS letters_patent_time_inline,
@@ -42,10 +42,9 @@ class LettersPatentController < ApplicationController
         
         LEFT JOIN (
           SELECT 
-            m.name as monarch_name,
+            r.title as reign_title,
             r.id as reign_id
-          FROM reigns r, monarchs m
-          WHERE r.monarch_id = m.id
+          FROM reigns r
         ) reign_join
         ON reign_join.reign_id = lp.reign_id
           
