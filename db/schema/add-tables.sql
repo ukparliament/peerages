@@ -2,6 +2,7 @@ alter table peerages add column of_title boolean default false;
 alter table subsidiary_titles add column of_title boolean default false;
 
 
+drop table if exists reigning_monarchs;
 drop table if exists kingdom_ranks;
 drop table if exists rank_labels;
 drop table if exists letters_patents;
@@ -31,11 +32,18 @@ create table monarchs (
 );
 create table reigns (
 	id serial,
+	title varchar(255) not null,
 	start_on date,
 	end_on date,
 	kingdom_id int not null,
-	monarch_id int not null,
 	constraint fk_kingdom foreign key (kingdom_id) references kingdoms(id),
+	primary key (id)
+);
+create table reigning_monarchs (
+	id serial,
+	reign_id int not null,
+	monarch_id int not null,
+	constraint fk_reign foreign key (reign_id) references reigns(id),
 	constraint fk_monarch foreign key (monarch_id) references monarchs(id),
 	primary key (id)
 );
