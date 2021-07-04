@@ -1,19 +1,37 @@
-Elizabeth II,1952-02-06,,United Kingdom
-George VI,1936-12-11,1952-02-06,United Kingdom
-Edward VIII,1936-01-20,1936-12-11,United Kingdom
-George V,1910-05-06,1936-01-20,United Kingdom
-Edward VII,1901-01-22,1910-05-06,United Kingdom
-Victoria,1837-06-20,1901-01-22,United Kingdom
-William IV,1830-06-26,1837-06-20,United Kingdom
-George IV,1820-01-29,1830-06-26,United Kingdom
-George III,1760-10-25,1801-01-01,Kingdom of Great Britain
-George III,1760-10-25,1801-01-01,Kingdom of Ireland
-George III,1801-01-01,1820-01-29,United Kingdom
-George II,1727-06-11,1760-10-25,Kingdom of Great Britain
-George II,1727-06-11,1760-10-25,Kingdom of Ireland
-George I,1714-08-01,1727-06-11,Kingdom of Great Britain
-George I,1714-08-01,1727-06-11,Kingdom of Ireland
-Anne,1702-03-08,1707-05-01,Kingdom of England
-Anne,1702-03-08,1707-05-01,Kingdom of Scotland
-Anne,1707-05-01,1714-08-01,Kingdom of Great Britain
-Anne,1702-03-08,1714-08-01,Kingdom of Ireland
+Elizabeth II,,1952-02-06,,United Kingdom
+George VI,,1936-12-11,1952-02-06,United Kingdom
+Edward VIII,,1936-01-20,1936-12-11,United Kingdom
+George V,,1910-05-06,1936-01-20,United Kingdom
+Edward VII,,1901-01-22,1910-05-06,United Kingdom
+Victoria,,1837-06-20,1901-01-22,United Kingdom
+William IV,,1830-06-26,1837-06-20,United Kingdom
+George IV,,1820-01-29,1830-06-26,United Kingdom
+George III,,1760-10-25,1801-01-01,Kingdom of Great Britain
+George III,,1760-10-25,1801-01-01,Kingdom of Ireland
+George III,,1801-01-01,1820-01-29,United Kingdom
+George II,,1727-06-11,1760-10-25,Kingdom of Great Britain
+George II,,1727-06-11,1760-10-25,Kingdom of Ireland
+George I,,1714-08-01,1727-06-11,Kingdom of Great Britain
+George I,,1714-08-01,1727-06-11,Kingdom of Ireland
+Anne,,1702-03-08,1707-05-01,Kingdom of England
+Anne,,1702-03-08,1707-05-01,Kingdom of Scotland
+Anne,,1707-05-01,1714-08-01,Kingdom of Great Britain
+Anne,,1702-03-08,1714-08-01,Kingdom of Ireland
+William III,,1694-12-28,1702-03-08,Kingdom of England
+William III,,1694-12-28,1702-03-08,Kingdom of Scotland
+William III,,1694-12-28,1702-03-08,Kingdom of Ireland
+William III,Mary II,1689-02-13,1694-12-28,Kingdom of England
+William III,Mary II,1689-04-11,1694-12-28,Kingdom of Scotland
+William III,Mary II,1689-02-13,1694-12-28,Kingdom of Ireland
+James II,,1685-02-06,1688-12-23,Kingdom of England
+James II,,1685-02-06,1689-04-11,Kingdom of Scotland
+James II,,1685-02-06,1688-12-23,Kingdom of Ireland
+Charles II,,1649-01-30,1685-02-06,Kingdom of England
+Charles II,,1649-01-30,1685-02-06,Kingdom of Scotland
+Charles II,,1649-01-30,1685-02-06,Kingdom of Ireland
+Charles I,,1625-03-27,1649-01-30,Kingdom of England
+Charles I,,1625-03-27,1649-01-30,Kingdom of Scotland
+Charles I,,1625-03-27,1649-01-30,Kingdom of Ireland
+James I,,1603-03-24,1625-03-27,Kingdom of England
+James I,,1567-07-24,1625-03-27,Kingdom of Scotland
+James I,,1603-03-24,1625-03-27,Kingdom of Ireland
