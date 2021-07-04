@@ -1,6 +1,7 @@
 class Kingdom < ActiveRecord::Base
   
   has_many :peerages, -> { order( :title ) }
+  has_many :reigns, -> { order( :start_on ) }
   
   def name_with_dates
     name_with_dates = self.name
@@ -16,10 +17,6 @@ class Kingdom < ActiveRecord::Base
     dates += ' - '
     dates += self.end_on.strftime( '%-d %B %Y') if self.end_on
     dates
-  end
-  
-  def reigns
-    Reign.all.select( 'r.*, m.name as monarch_name' ).joins( 'as r, monarchs as m' ).where( 'r.monarch_id = m.id' ).where( 'kingdom_id = ?', self ).order( 'r.start_on desc' )
   end
   
   def peerages_by_letter( letter )
@@ -43,7 +40,7 @@ class Kingdom < ActiveRecord::Base
           kingdom_join.kingdom_id AS kingdom_id_inline,
           kingdom_join.kingdom_name AS kingdom_name_inline,
         
-          reign_join.monarch_name AS monarch_name_inline,
+          reign_join.reign_title AS reign_title_inline,
           reign_join.reign_id AS reign_id_inline,
         
           letters_patent_time_join.letters_patent_time_label AS letters_patent_time_inline,
@@ -76,10 +73,9 @@ class Kingdom < ActiveRecord::Base
       
         LEFT JOIN (
           SELECT 
-            m.name as monarch_name,
+            r.title as reign_title,
             r.id as reign_id
-          FROM reigns r, monarchs m
-          WHERE r.monarch_id = m.id
+          FROM reigns r
         ) reign_join
         ON reign_join.reign_id = lp.reign_id
         
