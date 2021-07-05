@@ -28,6 +28,9 @@ create table kingdoms (
 create table monarchs (
 	id serial,
 	name varchar(255) not null,
+	date_of_birth date,
+	date_of_death date,
+	wikidata_id varchar(20),
 	primary key (id)
 );
 create table reigns (
