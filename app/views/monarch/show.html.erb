@@ -1,3 +1,9 @@
 <%= content_tag( 'h1', @monarch.name ) %>
+<%= content_tag( 'p', @monarch.date_range ) %>
 
 <%= render :partial => 'reign/reign_from_monarch', :collection => @monarch.reigns %>
+
+<% if @monarch.wikidata_id %>
+	<%= content_tag( 'h2', 'External identifiers' ) %>
+	<%= content_tag( 'p', "Wikidata: #{link_to( @monarch.wikidata_id, @monarch.wikidata_url)}".html_safe ) if @monarch.wikidata_id %>
+<% end -%>
