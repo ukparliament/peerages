@@ -1,6 +1,7 @@
 <%= content_tag( 'h1', @monarch.name ) %>
 <%= content_tag( 'p', @monarch.date_range ) %>
 
+<%= content_tag( 'h2', 'Reigns' ) %>
 <%= render :partial => 'reign/reign_from_monarch', :collection => @monarch.reigns %>
 
 <% if @monarch.wikidata_id %>
