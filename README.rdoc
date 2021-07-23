@@ -12,7 +12,7 @@
 
 ## Import source data
 
-` psql peerages < db/dumps/2020-03-12.sql
+` psql peerages < db/dumps/2021-07-23.sql
 
 ## Railsify database, add foreign keys
 
