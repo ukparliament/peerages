@@ -161,7 +161,7 @@ alter table peerages add column wikidata_id varchar(20);
 alter table announcements add column administration_id int;
 
 /* Make the id on the peerages table into an auto incrementing serial */
-create sequence peerages_id_seq minvalue 2935;
+create sequence peerages_id_seq minvalue 2996;
 alter table peerages alter id set default nextval('peerages_id_seq');
 alter sequence peerages_id_seq owned by peerages.id;
 
