@@ -1,5 +1,4 @@
 task :add_relationships => [
-  :add_new_announcement_type_category,
   :link_peerages_to_administration,
   :link_peerages_to_peerage_type,
   :link_peerages_to_rank,
@@ -9,24 +8,6 @@ task :add_relationships => [
   :link_subsidiary_titles_to_rank] do
 end
 
-task :add_new_announcement_type_category => :environment do
-  puts "adding new announcement type category"
-  
-  # There are 14 peers with an announcement type code of 'L', but no announcement type code of 'L' in the announcement types table. Lord Boothby being one example.
-  # David notes: When the Life Peerages Act 1958 came into force there was an initial list of appointments which does not neatly fit into any other category. The L (short for "Life Peerages Act") relates to that list.
-  # This will be rectified in later dump so first ...
-  
-  # ... we check if there's an announcment type with a code of 'L'.
-  announcement_type = AnnouncementType.all.where( 'code = ?', 'L' ).first
-  # unless there is an announcement type with code 'L' ...
-  unless announcement_type
-    # ... we create a new announcement type with code 'L'.
-    announcement_type = AnnouncementType.new
-    announcement_type.code = 'L'
-    announcement_type.name = 'Initial peerages created under the Life Peerages Act 1958'
-    announcement_type.save
-  end
-end
 task :link_peerages_to_administration => :environment do
   puts "linking peerages to administration"
   peerages = Peerage.all
@@ -69,28 +50,25 @@ task :link_announcements_to_announcement_types => :environment do
 end
 task :link_peerages_to_announcement => :environment do
   puts "linking peerages to announcements"
-  # NOTE: this is all quite broke
-  # 611 of 2882 peerages have no announced on date
-  # 1042 of 2882 peerages have no announcement type code
-  # 432 have a date but no code
-  # 1 has a code and no date
-  # matching only on date matches 1389 peerages to announcements
-  # matching on date and type matches 1389 peerages to announcements
-  # 1 peerage matches on date but not on date and code
-  # 404 peerages match on code but not date
+  # One peerage has an announcement type code but no announced on date.
+  # 436 peerages have an announced on date but no announcement type code.
+  # 609 have neither an announced on date nor an announcement type code but we think this is expected.
+  # Of the 1949 peerages having both an announcement type code and an announced on date, 560 don't have an announcement with that date and that code.
+  # In this code we deal only with the 1949 peerages having both an announcement type code and an announced on date.
   peerages = Peerage.all
   peerages.each do |peerage|
+    
     # If the peerage has both an announcement date and an announcement type code ...
     if peerage.announced_on and peerage.announcement_type_code
       
-      # ... find an announcement with that date and type and ...
+      # ... we try to find an announcement with that date and type and ...
       announcement = Announcement.all.where( announced_on: peerage.announced_on ).where( announcement_type_code: peerage.announcement_type_code ).first
       
-      # ... if the announcment doesn't exist ...
+      # ... if such an announcment doesn't exist ...
       unless announcement
       
-        # ... create the announcement.
-        # We know there are 14 peerages with an announcement type code of 'L' and 404 peerages that match a code but with no announcement for that code on that date. Creating the announcement fixes 418 matches.
+        # ... we create a new announcement with the appropriate type and date.
+        # This creates announcements for the 560 peerages where both values are known but there's no matching announcement.
         announcement_type = AnnouncementType.all.where( 'code = ?', peerage.announcement_type_code ).first
         if announcement_type
           
